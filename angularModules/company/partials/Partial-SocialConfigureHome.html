@@ -1,0 +1,98 @@
+<div class="p-md col-md-12">
+
+<div class="box-row">
+          <div class="box-cell scrollable hover">
+            <div class="box-inner">
+              <!-- social feature list -->
+              <div class="list-group list-group-md no-border no-radius no-margin">
+                <div class="list-group-item clear m-b-sm">
+                  <a href="" class="w-thumb-md pull-left m-r"><img src="images/facebook_large.ico" class="img-responsive"></a>
+                  <a href="" class="w-thumb-md pull-left m-r"><img src="images/in_large.ico" class="img-responsive"></a>
+                   <a href="" class="w-thumb-md pull-left m-r"><img src="images/a2.jpg" class="img-responsive"></a>
+                   <a href="" class="w-thumb-md pull-left m-r"><img src="images/a0.jpg" class="img-responsive"></a>
+                  <a href="" class="w-thumb-md pull-left m-r"><img src="images/a1.jpg" class="img-responsive"></a>
+                   <a href="" class="w-thumb-md pull-left m-r"><img src="images/a2.jpg" class="img-responsive"></a>
+                </div>
+              </div>
+              <!-- / social feature list -->
+            </div>
+          </div>
+        </div>
+</div>
+<div class="p-md">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading bg-white">
+          <label for="lock">Confiquration Form</label> <button bs-checkbox="" name="lock" class="btn btn-sm btn-addon btn-default pull-right" ng-model="button.toggle" ng-click="sendMessage($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button>
+          <small class="text-muted"></small>
+        </div>
+        <div class="panel-body">
+          <form role="form" nv-file-drop uploader="uploader" class="ng-pristine ng-valid">
+            <div class="form-group m-h-n clearfix ng-scope">
+                        <div class="col-sm-6">
+                          <img src="images/facebook_large.ico" class="img-responsive">
+                        </div>
+                        <div class="col-sm-6">
+                          <label for="state" class="control-label">App Id</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="App Id">
+                        </div>
+            </div>
+            <div class="form-group">
+              <label for="Event">Click</label>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Type*</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFile">File input</label>
+              <!-- <label for="exampleInputFile">Image Drop Box</label> -->
+              <div ng-show="uploader.isHTML5" class="m-b-md">
+              <!-- 3. nv-file-over uploader="link" over-class="className" -->
+                <div class="b-a b-dashed p-lg bg-white text-center m-b" nv-file-over="" over-class="b-info" uploader="uploader">
+                Base drop zone
+              </div>
+
+              <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
+              <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
+                <div nv-file-over="" uploader="uploader" over-class="b-danger" class="b-a b-white b-2x b-dashed p-lg text-center">
+                    Another drop zone with its own settings
+                </div>
+              </div>
+            </div>
+              <input type="file" id="exampleInputFile">
+              <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="form-group">
+
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Check me out
+              </label>
+            </div>
+            <button type="submit" class="btn btn-default m-b">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+       <div class="panel panel-default">
+        <div class="panel-body"> 
+          <div class="embed-responsive embed-responsive-16by9"  data-gist>
+              <!-- <iframe ng-model="receiver" ng-model="controlBoolean" class="embed-responsive-item" src="http://dev.baabtra.com"></iframe> -->
+              <!-- <div data-gist="{{gistId}}"></div> -->
+          </div>
+         </div>
+      </div> 
+    
+    </div>
+  
+    </div>
+  </div>
+</div>

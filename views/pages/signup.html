@@ -1,0 +1,40 @@
+<div class="container">  
+  <div class="center-block w-xl w-auto-xs m-b-lg">
+    <div class="text-2x m-v-lg text-primary"><i class="glyphicon glyphicon-th-large text-xl"></i> {{app.name}}</div>
+    <div class="m-b text-sm">
+      Sign up to your {{app.name}} Account
+    </div>
+    <form name="signupform" ng-submit="fnCompanySignup()"  class="form-validation">
+      <div class="form-group m-b-xs">
+        <label class="hide">Company Name</label>
+        <input type="text" placeholder="Your company name" class="form-control" ng-model="user.name" required>
+      </div>
+      <div class="form-group m-b-xs">
+        <label class="hide">Email</label>
+        <input type="email" placeholder="Someone@example.com" class="form-control" ng-model="user.email" required ng-change='fnCheckEmailExists(user.email)'>
+      </div>
+      <div class="form-group m-b-xs">
+        <label class="hide">Password</label>
+        <input type="password" placeholder="Password" class="form-control" name="password" ng-model="password" required >  
+      </div>
+      <div class="form-group m-b-xs">
+        <label class="hide">Confirm Password</label>
+         <input type="password" placeholder="Confirm Password" class="form-control" name="confirm_password" required ng-model="confirm_password" ui-validate=" '$value==password' " ui-validate-watch=" 'password' ">
+          <!-- <span ng-show='signupform.confirm_password.$error.validator'>Passwords do not match!</span> -->
+          <div class="alert ng-scope top-right am-fade alert-info" tabindex="-1" ng-show='signupform.confirm_password.$error.validator'>
+             <span class="ng-binding">Passwords do not match!</span>
+          </div>
+      </div>
+
+      <div class="checkbox no-margin">
+        <label class="ui-checks">
+          <input type="checkbox" ng-model="agree" required><i></i> Agree the <a href>terms and policy</a>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-info p-h-md m-v-lg" ng-disabled="signupform.$invalid" >Sign up</button>
+
+      <p>Already have an account? <a ui-sref="signin">Sign in</a></p>
+    </form>
+  </div>
+</div>
+<div class="app-footer" ng-include="'views/footer.html'"></div>
