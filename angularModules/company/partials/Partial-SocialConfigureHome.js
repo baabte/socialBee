@@ -57,7 +57,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope',function($scope){
 				e.preventDefault();
 				$scope.freezeIcon='fa-lock';
 				$scope.freezeText='Freeze';
-				console.log($scope.iframe.contentWindow);
+				
 				// Send a message with the text 'unfreeze' to the new window.
 				$scope.iframe.contentWindow.postMessage('freeze', 'http://dev.baabtra.com');
 			}

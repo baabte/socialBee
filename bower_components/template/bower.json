@@ -1,7 +1,7 @@
 {
   "name": "template",
   "version": "1.0",
-  "homepage": "https://github.com/baabte/baabtra",
+  "homepage": "https://github.com/baabte/socialBee",
   "description": "This is the stylesheet definitions of the design template",
   "main": [
             "dist/animate.css",
