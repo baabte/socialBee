@@ -29,7 +29,9 @@
         'ui.jp',
         'angular-loading-bar',
         'LocalStorageModule',
-        'xtForm'
+        'xtForm',
+        'textAngular',
+        'ngQuill'
       ])
       .config( ['$stateProvider',
           function ( $stateProvider) {
@@ -93,6 +95,17 @@
             });
 
           });*/
+.directive('iframeOnload', [function(){
+return {
+    scope: {
+        callBack: '&iframeOnload'
+    },
+    link: function(scope, element, attrs){
+        element.on('load', function(){
+            return scope.callBack();
+        })
+    }
+}}])
   .directive('gist', function() {
         return function(scope, elm, attrs) {
             //var gistId = scope.gistId;
@@ -102,11 +115,15 @@
             //iframe.setAttribute('frameborder', '0');
             //iframe.id = "gist-" + gistId;
             iframe.setAttribute('class', 'embed-responsive-item');
+            iframe.setAttribute('id', 'IFrameWindow');
+            iframe.setAttribute('ng-disabled', 'true');
             iframe.src="http://dev.baabtra.com";
+            iframe.setAttribute('iframe-onload','hideLoading()');
+            
             //iframe.class="embed-responsive-item";
             elm[0].appendChild(iframe);
             
-                   scope.iframe=iframe;
+            scope.iframe=iframe;
                
             //var iframeHtml = '<html><head><base target="_parent"><style>table{font-size:12px;}</style></head><body onload="parent.document.getElementById(\'' + iframe.id + '\').style.height=document.body.scrollHeight + \'px\'"><scr' + 'ipt type="text/javascript" src="https://gist.github.com/' + gistId + '.js"></sc'+'ript></body></html>';
             //scope.val=iframe.contentWindow;

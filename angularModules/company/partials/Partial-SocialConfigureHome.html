@@ -1,56 +1,162 @@
-<div class="p-md col-md-12">
+<div class="container-fluid">
+<div class="row">
+  <div class="p-md col-md-12">
 
+<div class="app-aside-inner" style="position: static;">
+
+      <nav ui-nav class="col-md-12">
+  <ul class="nav">
+  
+   <li ng-class="" ng-repeat="step in steps" class="pull-left {{step.active}}" ng-click='FnShowHideNavigation($index)'>
+      <a>
+        <span class="pull-right text-muted">
+          <i class="fa fa-angle-right"></i>
+        </span>
+        <i class="icon glyphicon {{step.iconUrl}} text-lt"></i>
+        <span class="font-normal">{{step.name}}</span>
+      </a>
+      
+    </li>
+
+  </ul>
+</nav>
+  </div>
+</div>
+</div>
+<div class="row" ng-hide="websiteConfigContainer">
+  <div class="p-md col-md-12">
+
+  <div class="col-md-12">
+<div class="panel panel-default {{confWebsiteClass}}">
+        <div class="panel-heading bg-white bg text-lt"  bs-backdrop='false' bs-modal="modal">
+          Touter Bee Configuration
+         
+        </div>
+      
+        <div class="panel-body">
+       
+        <form id="website-config-form" name="website-config-form" class="form-validation ng-pristine ng-invalid ng-invalid-required" role="form" xt-form novalidate>
+      <!--   <div id="form-views" ui-view="" class="ng-scope"> -->
+          <div class="col-xs-6 col-xs-offset-3"><div class="form-group row m-h-n clearfix">
+              <label for="configWebsite">website</label>
+              <select xt-validate required class="form-control ng-pristine ng-invalid ng-invalid-required" name="configWebsite" data-bv-field="website" ng-model="selection.configWebsite" ng-options="websites.websiteName for websites in websiteList" msg-required="Please select one sector"><option value="" class="">Select a website</option></select>
+          </div></div>
+
+
+          <div class="form-group row m-h-n clearfix ng-scope">
+ 
+          <div class="col-xs-6 col-xs-offset-5">
+          <!--   <a href class="btn btn-block btn-info" ng-disabled="" ng-click="FnWebsiteConfig()"> Configure <span class="glyphicon glyphicon-cog"></span>
+            </a> -->
+            <a href="" class="text-sm btn btn-lg btn-rounded btn-stroke btn-info m-r" ng-click="FnWebsiteConfig()">
+          <i class="fa fa-cog fa-3x pull-left"></i>
+          <span class="block clear text-left m-v-xs">Configure <b class="text-lg block font-bold">Website</b>
+          </span>
+        </a>
+        </div>
+
+</div>
+<!-- </div> -->
+      </form>
+        </div>
+      </div>
+</div></div></div>
+<div ng-class="{'p-md animated fadeInDown row':selectFeatureContainer,'p-md row ng-hide':!selectFeatureContainer}" ng-show="selectFeatureContainer">
+<!-- <div class="{'p-md animated fadeInDown row':selectFeatureContainer,'p-md animated fadeOut row ng-hide':!selectFeatureContainer}"> -->
+  <div class="col-md-12">
 <div class="box-row">
           <div class="box-cell scrollable hover">
             <div class="box-inner">
-              <!-- social feature list -->
+            
               <div class="list-group list-group-md no-border no-radius no-margin">
                 <div class="list-group-item clear m-b-sm">
-                  <a href="" class="w-thumb-md pull-left m-r"><img src="images/facebook_large.ico" class="img-responsive"></a>
-                  <a href="" class="w-thumb-md pull-left m-r"><img src="images/in_large.ico" class="img-responsive"></a>
-                   <a href="" class="w-thumb-md pull-left m-r"><img src="images/a2.jpg" class="img-responsive"></a>
-                   <a href="" class="w-thumb-md pull-left m-r"><img src="images/a0.jpg" class="img-responsive"></a>
-                  <a href="" class="w-thumb-md pull-left m-r"><img src="images/a1.jpg" class="img-responsive"></a>
-                   <a href="" class="w-thumb-md pull-left m-r"><img src="images/a2.jpg" class="img-responsive"></a>
+                  <a href href="" class="w-thumb-md pull-left m-r" ng-repeat="feature in featureList.features"><img src="{{feature.iconUrl}}" class="img-responsive" ng-click="fnSelectFeature(feature.id)"></a>
+                
                 </div>
               </div>
-              <!-- / social feature list -->
             </div>
           </div>
         </div>
 </div>
-<div class="p-md">
+       </div>
+<!-- </div> -->
+  <!-- <div class="row"> --><div ng-class="{'row animated m-md fadeInDown':selectedFeatureAction,'row m-md ng-hide':!selectedFeatureAction}" ng-show="selectedFeatureAction">
+
+    <div class="p-lg col-md-12 panel">
+        <div class="panel-body">
+          <form id="website-config-form" name="website-config-form" class="form-validation ng-pristine ng-invalid ng-invalid-required" role="form" xt-form novalidate>
+      <!--   <div id="form-views" ui-view="" class="ng-scope"> -->
+          <div class="col-xs-6 col-xs-offset-3"><div class="form-group row m-h-n clearfix">
+            <label for="eventList" bs-backdrop='false' bs-modal="modal">Feture Type</label>
+            <button type="button" name='eventList' class="btn btn-default form-control" data-animation="am-flip-x" ng-model="selectedFeatureType" data-html="1" ng-options="featureType.value as featureType.label for featureType in featureTypesList" bs-select>Share</button>
+          </div>
+          </div>
+
+
+          <div class="form-group row m-h-n clearfix ng-scope">
+ 
+          <div class="col-xs-6 col-xs-offset-5">
+          <!--   <a href class="btn btn-block btn-info" ng-disabled="" ng-click="FnWebsiteConfig()"> Configure <span class="glyphicon glyphicon-cog"></span>
+            </a> -->
+            <a href="" class="text-sm btn btn-lg btn-rounded btn-stroke btn-info m-r" ng-click="fnSelectFeatureType()">
+          <i class="fa fa-cog fa-3x pull-left"></i>
+          <span class="block clear text-left m-v-xs">Proceed <b class="text-lg block font-bold">Website</b>
+          </span>
+        </a>
+        </div>
+
+</div>
+<!-- </div> -->
+      </form>
+
+        </div>
+      </div>
+    </div>
+<!--   </div> -->
+<div ng-class="{'p-md animated fadeInDown':loadIframeContainer,'p-md ng-hide':!loadIframeContainer}" ng-show="loadIframeContainer">
   <div class="row">
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading bg-white">
-          <label for="lock">Confiquration Form</label> <button bs-checkbox="" name="lock" class="btn btn-sm btn-addon btn-default pull-right" ng-model="button.toggle" ng-click="sendMessage($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button>
+          <label for="lock">Configuration Form</label> <button bs-checkbox="" name="lock" class="btn btn-sm btn-addon btn-default pull-right" ng-model="button.toggle" ng-click="sendMessage($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button>
           <small class="text-muted"></small>
         </div>
         <div class="panel-body">
           <form role="form" nv-file-drop uploader="uploader" class="ng-pristine ng-valid">
             <div class="form-group m-h-n clearfix ng-scope">
-                        <div class="col-sm-6">
-                          <img src="images/facebook_large.ico" class="img-responsive">
-                        </div>
-                        <div class="col-sm-6">
-                          <label for="state" class="control-label">App Id</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="App Id">
-                        </div>
+                <div class="col-sm-6">
+                  <img src="images/facebook_large.ico" class="img-responsive">
+                </div>
+                <div class="col-sm-6">
+                  <label for="state" class="control-label">App Id</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="App Id">
+                </div>
             </div>
-            <div class="form-group">
+             <div class="form-group">
               <label for="Event">Click</label>
+              
+
+              <ul class="list-group-sm list-group-gap list-group">
+        <li class="list-group-item text-ellipsis">
+          {{clickEventLabel}}
+          <a href="" class="pull-right text-muted ng-hide" ng-show="deleteEventElem" ng-click='fnDeleteEvent()'><i class="fa fa-trash"></i></a>
+        </li>
+      
+      </ul>
             </div>
+          <div class="form-group ng-hide" ng-show="eventListContainer">
+            <label for="eventList">Event</label>
+            <button type="button" name='eventList' class="btn btn-default form-control" data-animation="am-flip-x" ng-model="selectedEvent" data-html="1" ng-options="event.value as event.label for event in eventsList" bs-select>click</button>
+          </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Type*</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              <label for="exampleInputEmail1">Element Value</label>
+              <!--text editor dirctive -->
+              <ng-quill-editor ng-model="message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" theme='snow' error-class="input-error"></ng-quill-editor>
+              <!--text editor dirctive end -->
             </div>
+            
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputFile">File input</label>
+              <label for="exampleInputFile">Images</label>
               <!-- <label for="exampleInputFile">Image Drop Box</label> -->
               <div ng-show="uploader.isHTML5" class="m-b-md">
               <!-- 3. nv-file-over uploader="link" over-class="className" -->
@@ -68,14 +174,6 @@
               <input type="file" id="exampleInputFile">
               <p class="help-block">Example block-level help text here.</p>
             </div>
-            <div class="form-group">
-
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> Check me out
-              </label>
-            </div>
             <button type="submit" class="btn btn-default m-b">Submit</button>
           </form>
         </div>
@@ -84,7 +182,12 @@
     <div class="col-md-8">
        <div class="panel panel-default">
         <div class="panel-body"> 
-          <div class="embed-responsive embed-responsive-16by9"  data-gist>
+             <!--  <div ng-style="divLoading"> 
+        <img src="images/loading.GIF" alt="" /> 
+    </div>  -->
+
+          <div ng-if="loading">Loading...</div>
+          <div ng-style="divFrameHolder" class="embed-responsive embed-responsive-16by9"  data-gist>
               <!-- <iframe ng-model="receiver" ng-model="controlBoolean" class="embed-responsive-item" src="http://dev.baabtra.com"></iframe> -->
               <!-- <div data-gist="{{gistId}}"></div> -->
           </div>
@@ -96,3 +199,4 @@
     </div>
   </div>
 </div>
+ </div>

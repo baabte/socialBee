@@ -31,4 +31,6 @@ angular.module('baabtra')
   }])
   .constant('SbConfig', { //used for storing enviornment variables ,Author: Akshath kumar M
     "BWS": "http://127.0.0.1:8000/",
+    "FbAppId": "",
+    "ConfigWebsite": "",
   });

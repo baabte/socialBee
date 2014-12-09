@@ -1,8 +1,10 @@
 var app=angular.module('baabtra');
-app.controller('SocialconfigurehomeCtrl',['$scope',function($scope){
+app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $modal){
 	var i=0;
-	$scope.freezeText='Unfreeze';
-	$scope.button = {
+	$scope.freezeText='Unfreeze'; //text for freeze button
+	$scope.steps=[{'name':'Configure Website','iconUrl':'glyphicon-pencil','active':'active'}];
+
+	$scope.button = { //button style while toggle
 		"toggle": true,
 		"checkbox": {
 		"left": false,
@@ -12,7 +14,98 @@ app.controller('SocialconfigurehomeCtrl',['$scope',function($scope){
 		"radio": "left",
 		"freezeIcon":"fa-unlock"
 	};
+	$scope.loading = true;
+	//popup modal
+	$scope.modal = {
+		"title": "Title"	
+	};
+
+	$scope.fnloadIframe=function(){
+		$modal({scope: $scope, template: 'angularModules/company/partials/Partial-IFrame.html',placement:'center', show: true});
+	};
+	$scope.hideLoading=function(){
+		alert('in');
+		$scope.loading=false;
+	};
+	//initialising the scope variables.
+	$scope.addEvent=true;
 	$scope.freezeIcon='fa-unlock';
+	$scope.selectedEvent='click';
+	$scope.clickEventLabel='Not selected any event!';
+	$scope.confWebsiteClass='flipInX animated';
+	var domElement=[];                //deleteing all the elements from the the selected array.
+	//function to config the website step-1
+	$scope.FnWebsiteConfig=function(){
+		$scope.confWebsiteClass='fadeOut';
+		$scope.websiteConfigContainer=true; //hiding the existing container
+		$scope.selectFeatureContainer=true;
+		$scope.steps.push({'name':'Select Feature','iconUrl':'glyphicon-saved','active':'active'});
+	};
+
+	//function to show hide the navigation the website step-1
+	$scope.FnShowHideNavigation=function(index){
+		
+		$scope.steps.splice(parseInt(index)+1,parseInt($scope.steps.length));
+		$scope.steps[index].active='active';
+		//$scope.steps[index].active='';
+		if(index===0){
+			$scope.websiteConfigContainer=false;
+			$scope.selectedFeatureAction=false;
+			$scope.selectFeatureContainer=false;
+			$scope.loadIframeContainer=false;
+		}
+		else if(index===1){
+			$scope.websiteConfigContainer=true;
+			$scope.selectFeatureContainer=true;
+			$scope.loadIframeContainer=false;
+			$scope.selectedFeatureAction=false;
+		}
+		else if(index===2){
+			$scope.selectedFeatureAction=true;
+			$scope.selectFeatureContainer=false;
+			$scope.websiteConfigContainer=true;
+			$scope.loadIframeContainer=false;
+		}
+		else{
+			$scope.loadIframeContainer=true;
+			$scope.selectedFeatureAction=false;
+			$scope.selectFeatureContainer=false;
+			$scope.websiteConfigContainer=true;
+		}
+	};
+
+	//function to selecting specific feature
+	$scope.fnSelectFeature=function(){
+		
+		$scope.selectedFeatureAction=true;
+		$scope.selectFeatureContainer=false;
+		$scope.steps.push({'name':'Select Feture type','iconUrl':'glyphicon-saved','active':'active'});
+	};
+
+	$scope.fnSelectFeatureType=function(){
+		
+		$scope.loadIframeContainer=true;
+		$scope.selectedFeatureAction=false;
+		$scope.steps.push({'name':'Save configuration','iconUrl':'glyphicon-saved','active':'active'});
+	};
+	//loading the features....
+
+	$scope.featureList={ "features" : [ 
+							{ "iconUrl"  : "images/facebook_large.ico","id": 1},
+							{ "iconUrl"  : "images/in_large.ico" ,"id": 2}
+						]
+					};    
+
+	//deleting events function
+	$scope.fnDeleteEvent=function(){
+
+		domElement=[];                //deleteing all the elements from the the selected array.
+		$scope.deleteEventElem=false; //hiding the delete event icon
+		$scope.clickEventLabel='Not selected any event!';
+		$scope.eventListContainer=false;
+
+	};
+
 	// Here "addEventListener" is for standards-compliant web browsers and "attachEvent" is for IE Browsers.
 	var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
 	var eventer = window[eventMethod];
@@ -26,18 +119,35 @@ app.controller('SocialconfigurehomeCtrl',['$scope',function($scope){
 
 		// Listen to message from child IFrame window
 		eventer(messageEvent, function (e) {
+			
 			if(e.origin==="http://dev.baabtra.com"){
-	            console.log(e.data);
-                //messageEle.innerHTML="Message Received: "+e.data;
-                //document.addEventListener('click', clickFunc);
+	            if(e.data!=="loadJSsuccess") // checking the post message from child window 
+				{
+					if(domElement.length===0){ //checking the consition that domElement Array have length is zero.
+						$scope.clickEventLabel='You have selected one event!';
+						$scope.deleteEventElem=true;
+						$scope.eventListContainer=true;
+						//$scope.eventsList=['click','change','blur','keyup','keydown','focus'];
+						$scope.eventsList=[{'value':'click','label':'click'},{'value':'change','label':'change'},{'value':'blur','label':'blur'},{'value':'kydown','label':'keydown'},{'value':'keyup','label':'keyup'},{'value':'focus','label':'focus'}];
+						$scope.$apply();
+						//binding click element to the selected dom element
+						domElement=e.data.value;
+						domElement=domElement+'.addEventListener(\"'+$scope.selectedEvent+'\",function(){';
+						domElement=domElement+'alert(\"helloooo\");});';
+						
+					}
+				}
+               
              }
 			// Do whatever you want to do with the data got from IFrame in Parent form.
 		}, false);    
 		var receiver;
-		window.onload = function() {$scope.iframe.contentWindow.postMessage('unfreeze', 'http://dev.baabtra.com');};
+		window.onload = function() { //onload event
+			$scope.iframe.contentWindow.postMessage('unfreeze', 'http://dev.baabtra.com');
+			
+		};
 		// Get the window displayed in the iframe.
-		 receiver = $scope.iframe;//document.getElementById('receiver').contentWindow;
-		console.log($scope.iframe);
+		receiver = $scope.iframe;//document.getElementById('receiver').contentWindow;
 		// Get a reference to the 'Send Message' button.
 		//var btn = document.getElementById('send'); 
 
@@ -57,34 +167,17 @@ app.controller('SocialconfigurehomeCtrl',['$scope',function($scope){
 				e.preventDefault();
 				$scope.freezeIcon='fa-lock';
 				$scope.freezeText='Freeze';
-				
+				$scope.TBFrame=true;
 				// Send a message with the text 'unfreeze' to the new window.
 				$scope.iframe.contentWindow.postMessage('freeze', 'http://dev.baabtra.com');
 			}
 			i++;
 		};
 	
-		//<![CDATA[
-        // window.onload=function(){
-        /*function receiveMessage(e){	
-         
-          if(e.origin==="http://dev.baabtra.com"){
-                console.log(e.data);
-                //messageEle.innerHTML="Message Received: "+e.data;
-                //document.addEventListener('click', clickFunc);
-             }
-          }
-        /*function clickFunc(e) { //fuction which prevent the default behavior of specifc element which we clicked.
-              e.preventDefault();
-              console.log(e.target);
-              window.parent.postMessage(e.target, "*");
-              return false; 
-        }*/
-        //window.addEventListener('message',receiveMessage); //attaching message listener to recieve the message from parent window
-        // }
-        //]]>
-  // Add an event listener that will execute the sendMessage() function
-  // when the send button is clicked.
-  
+		
+  /*$scope.hideLoading= function () { 
+            $scope.divLoading={'display':'none'}; 
+            $scope.divFrameHolder= {'display':'block'}; 
+    };*/
 //}
 }]);
