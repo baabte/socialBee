@@ -20,11 +20,11 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $mo
 		"title": "Title"	
 	};
 
+
 	$scope.fnloadIframe=function(){
 		$modal({scope: $scope, template: 'angularModules/company/partials/Partial-IFrame.html',placement:'center', show: true});
 	};
 	$scope.hideLoading=function(){
-		alert('in');
 		$scope.loading=false;
 	};
 	//initialising the scope variables.
@@ -173,11 +173,8 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $mo
 			}
 			i++;
 		};
-	
+	//function to submit the configuration details.
+	$scope.fnSaveConfDetails=function(){
 		
-  /*$scope.hideLoading= function () { 
-            $scope.divLoading={'display':'none'}; 
-            $scope.divFrameHolder= {'display':'block'}; 
-    };*/
-//}
+	}	
 }]);
