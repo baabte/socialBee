@@ -1,11 +1,11 @@
 var app=angular.module('baabtra');
-app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $modal){
+app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome',function($scope, $modal,SocialconfigHome){
 	var i=0;
-	$scope.freezeText='Unfreeze'; //text for freeze button
+	$scope.freezeText='Freeze'; //text for freeze button
 	$scope.steps=[{'name':'Configure Website','iconUrl':'glyphicon-pencil','active':'active'}];
 
 	$scope.button = { //button style while toggle
-		"toggle": true,
+		"toggle": false,
 		"checkbox": {
 		"left": false,
 		"middle": true,
@@ -34,6 +34,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $mo
 	$scope.clickEventLabel='Not selected any event!';
 	$scope.confWebsiteClass='flipInX animated';
 	var domElement=[];                //deleteing all the elements from the the selected array.
+	var domElementvalue=[];
 	//function to config the website step-1
 	$scope.FnWebsiteConfig=function(){
 		$scope.confWebsiteClass='fadeOut';
@@ -100,6 +101,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $mo
 	$scope.fnDeleteEvent=function(){
 
 		domElement=[];                //deleteing all the elements from the the selected array.
+		domElementvalue=[];
 		$scope.deleteEventElem=false; //hiding the delete event icon
 		$scope.clickEventLabel='Not selected any event!';
 		$scope.eventListContainer=false;
@@ -120,10 +122,13 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $mo
 		// Listen to message from child IFrame window
 		eventer(messageEvent, function (e) {
 			
-			if(e.origin==="http://dev.baabtra.com"){
+			if(e.origin==="http://localhost:9000"){
 	            if(e.data!=="loadJSsuccess") // checking the post message from child window 
 				{
+					//domElementvalue=e.data.value; //variable to store the element whose value to be taken at the time of event trigger
+					
 					if(domElement.length===0){ //checking the consition that domElement Array have length is zero.
+						
 						$scope.clickEventLabel='You have selected one event!';
 						$scope.deleteEventElem=true;
 						$scope.eventListContainer=true;
@@ -131,11 +136,16 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $mo
 						$scope.eventsList=[{'value':'click','label':'click'},{'value':'change','label':'change'},{'value':'blur','label':'blur'},{'value':'kydown','label':'keydown'},{'value':'keyup','label':'keyup'},{'value':'focus','label':'focus'}];
 						$scope.$apply();
 						//binding click element to the selected dom element
-						domElement=e.data.value;
-						domElement=domElement+'.addEventListener(\"'+$scope.selectedEvent+'\",function(){';
-						domElement=domElement+'alert(\"helloooo\");});';
 						
+						if(e.data.id!==undefined || e.data.id!==''){ //checking for id attribute exists or not
+							$scope.elementId=e.data.id;
+							$scope.currentPage=e.data.currentPage;
+							//domElement='if(window.location.href==\"'+e.data.currentPage+'\"){document.getElementById(\"'+e.data.id+'\").addEventListener(\"'+$scope.selectedEvent+'\",function(){';
+							//domElement=domElement+'alert(\"helloooo\");});}';
+						}
+
 					}
+					console.log(domElement);
 				}
                
              }
@@ -143,7 +153,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $mo
 		}, false);    
 		var receiver;
 		window.onload = function() { //onload event
-			$scope.iframe.contentWindow.postMessage('unfreeze', 'http://dev.baabtra.com');
+			$scope.iframe.contentWindow.postMessage('unfreeze', 'http://localhost:9000/#/');
 			
 		};
 		// Get the window displayed in the iframe.
@@ -157,24 +167,25 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal',function($scope, $mo
 				// Prevent any default browser behaviour.
 				e.preventDefault();
 				$scope.freezeIcon='fa-unlock';
-				$scope.freezeText='Unfreeze';
+				$scope.freezeText='Freeze';
 				// Send a message with the text 'freeze' to the new window.
-				$scope.iframe.contentWindow.postMessage('unfreeze', 'http://dev.baabtra.com');
+				$scope.iframe.contentWindow.postMessage('unfreeze', 'http://localhost:9000/#/');
 			}
 			else{
-
 				// Prevent any default browser behaviour.
 				e.preventDefault();
 				$scope.freezeIcon='fa-lock';
-				$scope.freezeText='Freeze';
+				$scope.freezeText='Unfreeze';
 				$scope.TBFrame=true;
 				// Send a message with the text 'unfreeze' to the new window.
-				$scope.iframe.contentWindow.postMessage('freeze', 'http://dev.baabtra.com');
+				$scope.iframe.contentWindow.postMessage('freeze', 'http://localhost:9000/#/');
 			}
 			i++;
 		};
 	//function to submit the configuration details.
-	$scope.fnSaveConfDetails=function(){
-		
-	}	
+	$scope.FnSaveSocialConfigDetails=function(){
+		SocialconfigHome.FnSaveSocialConfigDetails($scope);
+	};
+
+
 }]);

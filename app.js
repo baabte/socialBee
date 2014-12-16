@@ -107,7 +107,7 @@ return {
     }
 };
 }])
-  .directive('gist', function() {
+  .directive('iframe', function() {
         return function(scope, elm, attrs) {
             //var gistId = scope.gistId;
             //console.log(scope);
@@ -115,7 +115,7 @@ return {
             iframe.setAttribute('class', 'embed-responsive-item');
             iframe.setAttribute('id', 'IFrameWindow');
             iframe.setAttribute('ng-disabled', 'true');
-            iframe.src="http://dev.baabtra.com";
+            iframe.src="http://localhost:9000/#/";
             iframe.setAttribute('iframe-onload','hideLoading()');
             elm[0].appendChild(iframe);
             

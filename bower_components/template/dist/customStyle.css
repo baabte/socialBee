@@ -70,3 +70,11 @@ pre                             { margin-bottom:20px; }
 	from 	{ -webkit-transform:translateX(200%); }
 	to 		{ -webkit-transform: translateX(0); }
 }
+/* Style for text editor content container*/
+#content-container{
+	border-color: #e3e5e7;
+	border: 1px solid #e3e5e7;
+}
+.toolbar{
+	border-bottom: 1px solid #e3e5e7;
+}
