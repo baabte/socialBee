@@ -1,0 +1,13 @@
+{
+  "name": "",
+  "channelTemplate": {
+    "appId": "",
+    "appSecret": "",
+    "accessToken": "",
+    "profileId": ""
+  },
+  "broadcastTypes": {
+    "name": "",
+    "broadcastTypeTemplate": {}
+  }
+}
