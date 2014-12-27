@@ -4,22 +4,14 @@
 
 <div class="app-aside-inner" style="position: static;">
 
-      <nav ui-nav class="col-md-12">
-  <ul class="nav">
+<div class="col-md-12">
+ <ul class="nav nav-pills nav-wizard">
+        <li class="{{step.active}}" ng-repeat="step in steps" ng-click='FnShowHideNavigation($index)'>
 
-   <li ng-class="" ng-repeat="step in steps" class="pull-left {{step.active}}" ng-click='FnShowHideNavigation($index)'>
-      <a>
-        <span class="pull-right text-muted">
-          <i class="fa fa-angle-right"></i>
-        </span>
-        <i class="icon glyphicon {{step.iconUrl}} text-lt"></i>
-        <span class="font-normal">{{step.name}}</span>
-      </a>
-      
-    </li>
+        <a data-toggle="tab" style="border-radius:0px;"><b class="badge m-r-xs">{{step.stepNo}}</b>{{step.name}}</a><div class="nav-arrow"></div></li>
 
-  </ul>
-</nav>
+    </ul>
+  </div>
   </div>
 </div>
 </div>
@@ -118,7 +110,7 @@
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading bg-white">
-          <label for="lock">Configuration Form</label> <button bs-checkbox="" name="lock" class="btn btn-sm btn-addon btn-default pull-right" ng-model="button.toggle" ng-click="sendMessage($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button>
+          <label for="lock">Configuration Form</label> <!-- <button bs-checkbox="" name="lock" class="btn btn-sm btn-addon btn-default pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button> -->
           <small class="text-muted"></small>
         </div>
         <div class="panel-body">
@@ -150,9 +142,13 @@
           </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Element Value</label>
+
               <!--text editor dirctive -->
-              <ng-quill-editor ng-model="message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" theme='snow' error-class="input-error"></ng-quill-editor>
+           <!--    <ng-quill-editor id="contentEditDiv" ng-model="message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" theme='snow' error-class="input-error"></ng-quill-editor> -->
               <!--text editor dirctive end -->
+           <!--  <div ng-class="{focused: hasFocus}" contenteditable="true" id="contentEditDiv" class="contentEditDiv"></div> -->  
+          <div ng-class="{focused: hasFocus}" stripSpace ="true" id="contentEditDiv" class="contentEditDiv" contenteditable="true" ng-model="message" strip-br="false" no-line-breaks="true" select-non-editable="true"></div>
+          
             </div>
             
             <div class="form-group">
@@ -163,7 +159,7 @@
                 <div class="b-a b-dashed p-lg bg-white text-center m-b" nv-file-over="" over-class="b-info" uploader="uploader">
                 Base drop zone
               </div>
-
+              
               <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
               <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
                 <div nv-file-over="" uploader="uploader" over-class="b-danger" class="b-a b-white b-2x b-dashed p-lg text-center">
@@ -171,8 +167,12 @@
                 </div>
               </div>
             </div>
-              <input type="file" id="exampleInputFile">
-              <p class="help-block">Example block-level help text here.</p>
+             <input type="file" id="exampleInputFile" ng-file-select="onFileSelect($files)" ng-file-select ng-model="myFiles" ng-file-change="fileSelected($files, $event)" ng-multiple="false" accept="image/*,*.pdf,*.xml" resetOnClick="true">
+               
+            </div>
+            <div class="form-group">
+                <i ng-hide="imageSrc">No image choosed</i>
+                <img class="img-responsive" ng-src="{{imageSrc}}" /><br/>
             </div>
             <button type="submit" class="btn btn-info m-b">Submit</button>
           </form>
@@ -181,12 +181,16 @@
     </div>
     <div class="col-md-8">
        <div class="panel panel-default">
+        <div class="panel-heading bg-white">
+           <label for="lock">config</label> <button bs-checkbox name="lock" class="col-md-3 btn btn-sm btn-addon btn-info pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button>
+          <small class="text-muted"></small>
+        </div>
         <div class="panel-body"> 
              <!--  <div ng-style="divLoading"> 
         <img src="images/loading.GIF" alt="" /> 
     </div>  -->
 
-          <div ng-if="loading">Loading...</div>
+          <!-- <div ng-if="loading">Loading...</div> -->
           <div ng-style="divFrameHolder" class="embed-responsive embed-responsive-16by9"  data-iframe>
               <!-- <iframe ng-model="receiver" ng-model="controlBoolean" class="embed-responsive-item" src="http://dev.baabtra.com"></iframe> -->
               <!-- <div data-gist="{{gistId}}"></div> -->

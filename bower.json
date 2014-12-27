@@ -27,7 +27,9 @@
     "angular-local-storage": "~0.1.3",
     "xtform": "*",
     "textAngular": "~1.2.2",
-    "ngquill": "~1.0.3"
+    "ngquill": "~1.0.3",
+    "ng-file-upload": "~2.0.5",
+    "angular-contenteditable": "~0.3.7"
   },
   "devDependencies": {
     "angular-mocks": "~1.2"

@@ -31,7 +31,9 @@
         'LocalStorageModule',
         'xtForm',
         'textAngular',
-        'ngQuill'
+        'ngQuill',
+        'angularFileUpload',
+        'contenteditable'
       ])
       .config( ['$stateProvider',
           function ( $stateProvider) {
@@ -121,5 +123,46 @@ return {
             
             scope.iframe=iframe;
         };
+      })
+    .directive('tagClose', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: function(tElement, tAttrs) {
+            //var isClickable = angular.isDefined(tAttrs.isClickable) && eval(tAttrs.isClickable) === true ? true : false;
+
+            //var clickAttr = isClickable ? 'ng-click="onHandleClick()"' : '';
+
+            return '<i ng-click="onHandleClick()" class="fa fa-close pull-right"></i>';
+            
+        },
+        transclude: true,
+        link: function(scope, element, attrs) {
+            scope.onHandleClick = function() {
+            
+              console.log(element.parent());
+                element.parent().remove();
+             
+            };
+        }
+    };
+  })
+  .directive("ngFileSelect",function(){  //
+
+  return {
+    link: function($scope,el){
+      
+      el.bind("change", function(e){
+      
+        $scope.file = (e.srcElement || e.target).files[0];
+        $scope.getFile();
       });
+      
+    }
+    
+  };
+  
+  
+});
+
 }());
