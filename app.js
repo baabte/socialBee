@@ -33,7 +33,9 @@
         'textAngular',
         'ngQuill',
         'angularFileUpload',
-        'contenteditable'
+        'contenteditable',
+        'schemaForm',
+        'fg'
       ])
       .config( ['$stateProvider',
           function ( $stateProvider) {

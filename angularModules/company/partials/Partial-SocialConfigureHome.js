@@ -1,7 +1,7 @@
 var app=angular.module('baabtra');
 app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','$upload','$alert','$compile','fileReader',function($scope, $modal,SocialconfigHome,$upload,$alert,$compile,fileReader){
 	var i=0;
-	$scope.freezeText='Freeze'; //text for freeze button
+	$scope.freezeText='Configur your website'; //text for freeze button
 	$scope.steps=[{'stepNo':1,'name':'Configure Website','iconUrl':'glyphicon-pencil','active':'active'},{'stepNo':2,'name':'Feature Selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':3,'name':'Feture type selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':4,'name':'Save configuration','iconUrl':'glyphicon-saved','active':''}];
 
 	$scope.button = { //button style while toggle
@@ -14,6 +14,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		"radio": "left",
 		"freezeIcon":"fa-unlock"
 	};
+	$scope.myFormData = {};
 	$scope.loading = true;
 	$scope.addEleIcon='fa-plus';
 	//tooltip for add element button
@@ -21,10 +22,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		'title':'selecting element to get the value',
 	};
 	
-	$scope.fnloadIframe=function(){
-		$modal({scope: $scope, template: 'angularModules/company/partials/Partial-IFrame.html',placement:'center', show: true});
-	};
-
+	$scope.featureList={};
 	$scope.hideLoading=function(){
 		$scope.loading=false;
 	};
@@ -83,13 +81,14 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 			$scope.websiteConfigContainer=true;
 		}
 	};
-
+	$scope.featureId='';
 	//function to selecting specific feature
-	$scope.fnSelectFeature=function(){
+	$scope.fnSelectFeature=function(index,id){
 		
 		$scope.steps[1].active='';
 		$scope.steps[2].active='active';
-
+		$scope.featureId=id;
+		$scope.featureTypesList=$scope.featureList[index].broadcastTypes;
 		$scope.selectedFeatureAction=true;
 		$scope.selectFeatureContainer=false;
 		//$scope.steps.push({'name':'Select Feture type','iconUrl':'glyphicon-saved','active':'active'});
@@ -101,16 +100,15 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		$scope.steps[3].active='active';
 		$scope.loadIframeContainer=true;
 		$scope.selectedFeatureAction=false;
+
 		//$scope.steps.push({'name':'Save configuration','iconUrl':'glyphicon-saved','active':'active'});
-		
+		SocialconfigHome.fnLoadBroadcastTypeTemplate($scope);
 	};
 	//loading the features....
 
-	$scope.featureList={ "features" : [ 
-							{ "iconUrl"  : "images/facebook_large.ico","id": 1},
-							{ "iconUrl"  : "images/in_large.ico" ,"id": 2}
-						]
-					};    
+	//calling the service to load the channels.
+	SocialconfigHome.fnLoadChannels($scope);
+
 
 	//deleting events function
 	$scope.fnDeleteEvent=function(){
@@ -138,8 +136,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		eventer(messageEvent, function (e) {
 			
 			if(e.origin==="http://localhost:9000"){
-	            
-	            if(e.data!=="loadJSsuccess") // checking the post message from child window 
+				if(e.data!=="loadJSsuccess") // checking the post message from child window 
 				{
 					//domElementvalue=e.data; //variable to store the element whose value to be taken at the time of event trigger
 					
@@ -165,8 +162,9 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 				}
 				
 				var contentDiv=document.getElementById('contentEditDiv');
+				console.log($scope.myFormData);
 				if(e.data.type==='text' || e.data.type==='textarea') {
-					if($scope.message!==undefined){ //checking for value is defined or not
+					//if($scope.myFormData.Content!==undefined){ //checking for value is defined or not
 					
 						//console.log(contentDiv.textContent.length);
 						//var contentDiv=document.getElementById('contentEditDiv').firstChild.lastChild.children[1].firstChild.contentWindow.document.body.firstChild.lastChild;
@@ -175,7 +173,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 						//contentDiv.setAttribute('tabindex','0');
 						
 							if(e.data.id!==undefined){						//checking the value of the selected element id is defined or not. 
-								$scope.addHtmlAtCaret('&nbsp;<span contenteditable="false" class="btn m-v-xs btn-xs btn-default"> #'+e.data.id+'</span>&nbsp;'); //adding the selected id attribute for tracing.
+								$scope.addHtmlAtCaret('&nbsp;<span draggable="true" contenteditable="false" class="btn m-v-xs btn-xs btn-default"> #'+e.data.id+'</span>&nbsp;'); //adding the selected id attribute for tracing.
 								
 							}
 
@@ -183,7 +181,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 
 							//$scope.pasteHtmlAtCaret(' #'+e.data.id);
 							//htmlObj=$scope.message + ' #'+e.data.id;
-					}
+					//}
 				}
 				else{
 					if(e.data!=="loadJSsuccess"){ //checking the event triggered at loading page or not
@@ -211,7 +209,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 				// Prevent any default browser behaviour.
 				e.preventDefault();
 				$scope.freezeIcon='fa-unlock';
-				$scope.freezeText='Freeze';
+				$scope.freezeText='Configure your website';
 				// Send a message with the text 'freeze' to the new window.
 				$scope.iframe.contentWindow.postMessage('unfreeze', 'http://localhost:9000/#/');
 			}
@@ -219,7 +217,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 				// Prevent any default browser behaviour.
 				e.preventDefault();
 				$scope.freezeIcon='fa-lock';
-				$scope.freezeText='Unfreeze';
+				$scope.freezeText='Actual stage';
 				$scope.TBFrame=true;
 				// Send a message with the text 'unfreeze' to the new window.
 				$scope.iframe.contentWindow.postMessage('freeze', 'http://localhost:9000/#/');
@@ -234,8 +232,9 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		SocialconfigHome.FnSaveSocialConfigDetails($scope);
 	};
 
-
+	//function to add the specific selected node into a current cursor position.
 	$scope.addHtmlAtCaret = function (html) {
+		console.log(html);
         document.getElementById('contentEditDiv').focus();
         var sel, range;
         if (window.getSelection) {
@@ -257,7 +256,9 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
                     lastNode = frag.appendChild(node);
                 }
                 range.insertNode(frag);
-                $scope.message= document.getElementById('contentEditDiv').innerHTML; 
+                console.log($scope.myFormData);
+               
+                $scope.message= document.getElementById('contentEditDiv').innerHTML;  //updating the model value from content editable div
                 
                 // Preserve the selection
                 if (lastNode) {
@@ -281,7 +282,8 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 	$scope.loadExistingConfigDetails=function(){
 		//alert('in');
 	};
-	
+
+	//function used for image preview.
 	$scope.getFile = function () {
        
         fileReader.readAsDataUrl($scope.file, $scope)
@@ -289,4 +291,13 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
                           $scope.imageSrc = result;
                       });
     };
+
+	//$scope.configFormModel = {}; //model for schema form
+
+	//loading the channel list from corresponding result
+	$scope.fnLoadChannelsCallBack=function(result){
+		$scope.featureList=result;
+	
+	}; 
+
 }]);

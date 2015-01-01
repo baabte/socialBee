@@ -36,7 +36,6 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload',function($
       var featureImg=$scope.myFiles[0];
       var extArr=featureImg.name.split('.');
       var ext=extArr[extArr.length-1].toUpperCase();
-
       var socilaConfigData={};
       socilaConfigData.urmId=123;
       socilaConfigData.websiteId=321;
@@ -45,7 +44,7 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload',function($
       socilaConfigData.event=$scope.selectedEvent;
       socilaConfigData.feature='fb';
       socilaConfigData.currentPage=$scope.currentPage;
-      console.log(socilaConfigData);
+      
       // console.log(companyRegData);
       if(ext!=='JPG'&&ext!=='JPEG'&&ext!=='PNG'&&ext!=='TIF'&&ext!=='GIF'){
         result='fileErr';
@@ -77,5 +76,67 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload',function($
 
      return result;
    };
-	
+
+
+    this.fnLoadChannels=function($scope){
+      var result;
+      
+     $http({
+           url: SbConfig.BWS+'FnLoadChannels/',
+           data: JSON.stringify({urmId:123,websiteId:111}),
+           method: 'POST',
+           withCredentials: false,
+           contentType:'application/json',
+           dataType:'json',
+           }).
+              success(function(data, status, headers, config) {
+                        
+                result=angular.fromJson(JSON.parse(data));
+                
+                $scope.fnLoadChannelsCallBack(result);
+                //$scope.featureList=result;
+                console.log($scope.featureList);
+              }).
+              error(function(data, status, headers, config) {
+                result='error';
+                //$scope.featureList=[];
+                $scope.fnLoadChannelsCallBack(result);
+
+             });  
+
+     return result;
+
+    };
+
+
+    this.fnLoadBroadcastTypeTemplate=function($scope){
+        var result;
+      
+     $http({
+           url: SbConfig.BWS+'fnLoadBroadcastTypeTemplate/',
+           data: JSON.stringify({channelId:$scope.featureId,broadcastTypeId:$scope.selectedFeatureType}),
+           method: 'POST',
+           withCredentials: false,
+           contentType:'application/json',
+           dataType:'json',
+           }).
+              success(function(data, status, headers, config) {
+                        
+                result=angular.fromJson(JSON.parse(data));
+                console.log(result[0].broadcastTypes);
+                //$scope.fnLoadChannelsCallBack(result);
+                //$scope.form=result[0].broadcastTypes[0].broadcastTypeTemplate;
+                $scope.schema=result[0].broadcastTypes[0].broadcastTypeTemplate.schema;
+               // $scope.myFormData=result[0].broadcastTypes[0].broadcastTypeTemplate.schema;
+                //console.log($scope.myFormData);
+              }).
+              error(function(data, status, headers, config) {
+                result='error';
+                //$scope.featureList=[];
+                //$scope.fnLoadChannelsCallBack(result);
+
+             });  
+
+     return result;
+    };
 }]);

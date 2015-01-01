@@ -27,7 +27,7 @@
       
         <div class="panel-body">
        
-        <form id="website-config-form" name="website-config-form" class="form-validation ng-pristine ng-invalid ng-invalid-required" role="form" xt-form novalidate>
+        <form id="config-first-form" name="config-first-form" role="form" class="form-validation ng-pristine ng-invalid ng-invalid-required" role="form" xt-form novalidate>
       <!--   <div id="form-views" ui-view="" class="ng-scope"> -->
           <div class="col-xs-6 col-xs-offset-3"><div class="form-group row m-h-n clearfix">
               <label for="configWebsite">website</label>
@@ -36,51 +36,53 @@
 
 
           <div class="form-group row m-h-n clearfix ng-scope">
- 
-          <div class="col-xs-6 col-xs-offset-5">
+         
+                    <div class="col-xs-6 col-xs-offset-5">
           <!--   <a href class="btn btn-block btn-info" ng-disabled="" ng-click="FnWebsiteConfig()"> Configure <span class="glyphicon glyphicon-cog"></span>
             </a> -->
-            <a href="" class="text-sm btn btn-lg btn-rounded btn-stroke btn-info m-r" ng-click="FnWebsiteConfig()">
-          <i class="fa fa-cog fa-3x pull-left"></i>
-          <span class="block clear text-left m-v-xs">Configure <b class="text-lg block font-bold">Website</b>
+            <a href="" class="text-sm btn btn-xs btn-rounded btn-stroke btn-info m-r" ng-click="FnWebsiteConfig()">
+          <i class="fa fa-cog fa-2x pull-left"></i>
+          <span class="block clear block text-left m-v-sm">Configure Website
           </span>
         </a>
         </div>
 
 </div>
 <!-- </div> -->
-      </form>
+     <!--  </form> -->
         </div>
       </div>
 </div></div></div>
 <div ng-class="{'p-md animated fadeInDown row':selectFeatureContainer,'p-md row ng-hide':!selectFeatureContainer}" ng-show="selectFeatureContainer">
 <!-- <div class="{'p-md animated fadeInDown row':selectFeatureContainer,'p-md animated fadeOut row ng-hide':!selectFeatureContainer}"> -->
-  <div class="col-md-12">
-<div class="box-row">
-          <div class="box-cell scrollable hover">
+<!--   <div class=""> -->
+<div class="panel-body">
+         <!--  <div class="box-cell scrollable hover">
             <div class="box-inner">
             
-              <div class="list-group list-group-md no-border no-radius no-margin">
+              <div class="list-group list-group-md no-border no-radius no-margin"> -->
                 <div class="list-group-item clear m-b-sm">
-                  <a href href="" class="w-thumb-md pull-left m-r" ng-repeat="feature in featureList.features"><img src="{{feature.iconUrl}}" class="img-responsive" ng-click="fnSelectFeature(feature.id)"></a>
+                  <a href class="w-thumb-md pull-left m-r" ng-repeat="feature in featureList"><img src="../{{feature.imgUrl}}" class="img-responsive" ng-click="fnSelectFeature($index,feature._id.$oid)">
+                  <i class="fa fa-check-circle" ng-show="false"></i>
+                  </a>
                 
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-</div>
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+<!-- </div> -->
        </div>
 <!-- </div> -->
   <!-- <div class="row"> --><div ng-class="{'row animated m-md fadeInDown':selectedFeatureAction,'row m-md ng-hide':!selectedFeatureAction}" ng-show="selectedFeatureAction">
 
     <div class="p-lg col-md-12 panel">
         <div class="panel-body">
-          <form id="website-config-form" name="website-config-form" class="form-validation ng-pristine ng-invalid ng-invalid-required" role="form" xt-form novalidate>
+          <!-- <form id="website-config-form" name="website-config-form" class="form-validation ng-pristine ng-invalid ng-invalid-required" role="form" xt-form novalidate> -->
       <!--   <div id="form-views" ui-view="" class="ng-scope"> -->
           <div class="col-xs-6 col-xs-offset-3"><div class="form-group row m-h-n clearfix">
             <label for="eventList" bs-backdrop='false' bs-modal="modal">Feture Type</label>
-            <button type="button" name='eventList' class="btn btn-default form-control" data-animation="am-flip-x" ng-model="selectedFeatureType" data-html="1" ng-options="featureType.value as featureType.label for featureType in featureTypesList" bs-select>Share</button>
+            <button type="button" name='eventList' class="btn btn-default form-control" data-animation="am-flip-x" ng-model="selectedFeatureType" data-html="1" ng-options="featureType.btId.$oid as featureType.name for featureType in featureTypesList" bs-select>Share</button>
           </div>
           </div>
 
@@ -90,9 +92,9 @@
           <div class="col-xs-6 col-xs-offset-5">
           <!--   <a href class="btn btn-block btn-info" ng-disabled="" ng-click="FnWebsiteConfig()"> Configure <span class="glyphicon glyphicon-cog"></span>
             </a> -->
-            <a href="" class="text-sm btn btn-lg btn-rounded btn-stroke btn-info m-r" ng-click="fnSelectFeatureType()">
-          <i class="fa fa-cog fa-3x pull-left"></i>
-          <span class="block clear text-left m-v-xs">Proceed <b class="text-lg block font-bold">Website</b>
+            <a href="" class="text-sm btn btn-xs btn-rounded btn-stroke btn-info m-r" ng-click="fnSelectFeatureType()">
+          <i class="fa fa-cog fa-2x pull-left"></i>
+          <span class="block clear block text-left m-v-sm">Proceed Website
           </span>
         </a>
         </div>
@@ -100,7 +102,19 @@
 </div>
 <!-- </div> -->
       </form>
+<form class="form-horizontal">
 
+  <!-- Embed the schema editor on the form -->
+  <div fg-edit fg-schema="myForm.schema" ng-model="myForm"></div>
+{{myForm}}
+</form>
+
+<form novalidate class="form">
+  <div fg-form
+       fg-form-data="myFormData"
+       fg-schema="myForm.schema">
+  </div>
+</form>
         </div>
       </div>
     </div>
@@ -110,72 +124,28 @@
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading bg-white">
-          <label for="lock">Configuration Form</label> <!-- <button bs-checkbox="" name="lock" class="btn btn-sm btn-addon btn-default pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button> -->
-          <small class="text-muted"></small>
+          <label for="lock">Configuration Form <!-- <button bs-checkbox="" name="lock" class="btn btn-sm btn-addon btn-default pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button> -->
+           <img src="images/facebook_large.ico" class="col-sm-2 img-responsive pull-right clearfix">
+          <small class="text-muted"></small></label>
         </div>
         <div class="panel-body">
-          <form role="form" nv-file-drop ng-submit="FnSaveSocialConfigDetails()" uploader="uploader" class="ng-pristine ng-valid">
-            <div class="form-group m-h-n clearfix ng-scope">
-                <div class="col-sm-6">
-                  <img src="images/facebook_large.ico" class="img-responsive">
-                </div>
-                <div class="col-sm-6">
-                  <label for="state" class="control-label">App Id</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="App Id">
-                </div>
-            </div>
-             <div class="form-group">
-              <label for="Event">Click</label>
-              
+        <form sf-schema="schema" sf-form="form" id="config-sec-form" name="config-sec-form" role="form" nv-file-drop ng-submit="FnSaveSocialConfigDetails()" uploader="uploader"  class="form-validation ng-pristine ng-invalid ng-invalid-required form" role="form" xt-form novalidate>
+        <!-- <form novalidate class="form"> -->
+             <div fg-form fg-form-data="myFormData" fg-schema="schema">
+             <div jsonify="myFormData"></div>
 
-              <ul class="list-group-sm list-group-gap list-group">
-        <li class="list-group-item text-ellipsis">
-          {{clickEventLabel}}
-          <a href="" class="pull-right text-muted ng-hide" ng-show="deleteEventElem" ng-click='fnDeleteEvent()'><i class="fa fa-trash"></i></a>
-        </li>
-      
-      </ul>
             </div>
-          <div class="form-group ng-hide" ng-show="eventListContainer">
-            <label for="eventList">Event</label>
-            <button type="button" name='eventList' class="btn btn-default form-control" data-animation="am-flip-x" ng-model="selectedEvent" data-html="1" ng-options="event.value as event.label for event in eventsList" bs-select>click</button>
-          </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Element Value</label>
-
-              <!--text editor dirctive -->
-           <!--    <ng-quill-editor id="contentEditDiv" ng-model="message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" theme='snow' error-class="input-error"></ng-quill-editor> -->
-              <!--text editor dirctive end -->
-           <!--  <div ng-class="{focused: hasFocus}" contenteditable="true" id="contentEditDiv" class="contentEditDiv"></div> -->  
-          <div ng-class="{focused: hasFocus}" stripSpace ="true" id="contentEditDiv" class="contentEditDiv" contenteditable="true" ng-model="message" strip-br="false" no-line-breaks="true" select-non-editable="true"></div>
-          
-            </div>
-            
-            <div class="form-group">
-              <label for="exampleInputFile">Images</label>
-              <!-- <label for="exampleInputFile">Image Drop Box</label> -->
-              <div ng-show="uploader.isHTML5" class="m-b-md">
-              <!-- 3. nv-file-over uploader="link" over-class="className" -->
-                <div class="b-a b-dashed p-lg bg-white text-center m-b" nv-file-over="" over-class="b-info" uploader="uploader">
-                Base drop zone
-              </div>
-              
-              <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-              <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
-                <div nv-file-over="" uploader="uploader" over-class="b-danger" class="b-a b-white b-2x b-dashed p-lg text-center">
-                    Another drop zone with its own settings
-                </div>
-              </div>
-            </div>
-             <input type="file" id="exampleInputFile" ng-file-select="onFileSelect($files)" ng-file-select ng-model="myFiles" ng-file-change="fileSelected($files, $event)" ng-multiple="false" accept="image/*,*.pdf,*.xml" resetOnClick="true">
-               
-            </div>
-            <div class="form-group">
-                <i ng-hide="imageSrc">No image choosed</i>
-                <img class="img-responsive" ng-src="{{imageSrc}}" /><br/>
-            </div>
-            <button type="submit" class="btn btn-info m-b">Submit</button>
+           <button type="submit"
+          class="btn btn-primary"
+          ng-class="{ disabled: myForm.$invalid }">
+    Config
+  </button>
+        <!--      <div ng-class="{focused: hasFocus}" stripSpace ="true" id="contentEditDiv" class="contentEditDiv" contenteditable="true" ng-model="message" strip-br="false" no-line-breaks="true" select-non-editable="true"></div> -->
           </form>
+         <!--  <form sf-schema="schema" sf-form="form" sf-model="model"> <div class="form-group col-sm-6">
+                  <img src="images/facebook_large.ico" class="col-sm-6 img-responsive pull-left">
+                </div>
+                <div class="form-group col-sm-6"></div></form> -->
         </div>
       </div>
     </div>
