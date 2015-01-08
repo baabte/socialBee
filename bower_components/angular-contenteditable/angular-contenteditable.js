@@ -10,6 +10,7 @@ angular.module('contenteditable', [])
     require: '?ngModel',
     //scope:true,
     link: function(scope, element, attrs, ngModel) {
+console.log('in');
       // don't do anything unless this is actually bound to a model
       if (!ngModel) {
         return
@@ -27,13 +28,10 @@ angular.module('contenteditable', [])
         var o = attrs[opt]
         opts[opt] = o && o !== 'false'
       })
-      element[0].onchange=function(e){
-          scope.$apply(function() {console.log('in');})
-        };
+      
       // view -> model
       element.bind('input', function(e) {
         scope.$apply(function() {
-
           initialiseBinding();
         })
       })

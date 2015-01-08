@@ -1,49 +1,20 @@
 
 var app=angular.module('baabtra');
-app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload',function($http,SbConfig,$alert,$upload) {
-//service function for sector loading
-	/*this.FnSaveSocialConfigDetails=function($scope){
-  
-		var result;
-		//alert('in');
-		$http({
-				url: SbConfig.BWS+'FnSaveSocialConfigDetails/',
-				method: 'POST',
-				data: JSON.stringify({'urmId':123,'websiteId':321,'value':$scope.message,'elementId':$scope.elementId,'event':$scope.selectedEvent,'feature':'fb','currentPage':$scope.currentPage}),
-				file: $scope.myFiles,
-				withCredentials: false,
-				contentType:'application/json',
-				ataType:'json',
-			}).
-			success(function(data, status, headers, config) {
-				if(angular.fromJson(JSON.parse(data))==='Insert'||angular.fromJson(JSON.parse(data))==='Update'){
-					$alert({title: 'Success!', content: 'Successfully Saved!.', placement: 'top-right', type: 'info', show: true,animation: 'am-fade-and-slide-top',duration:2});
-				}
-				else{
-					$alert({title: 'failure!', content: 'Some errors while saving!.', placement: 'top-right', type: 'info', show: true,animation: 'am-fade-and-slide-top',duration:2});
-				}
-
-			}).
-		error(function(data, status, headers, config) {
-			result='error';
-			$scope.fnGetSectorsCallBack(result);
-		}); 
-		return result;
-	};*/
+app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload','$compile','$timeout',function($http,SbConfig,$alert,$upload,$compile,$timeout) {
 
 	  this.FnSaveSocialConfigDetails=function($scope){
       var result;
-      var featureImg=$scope.myFiles[0];
+      var featureImg=$scope.touterConfig.myFiles[0];
       var extArr=featureImg.name.split('.');
       var ext=extArr[extArr.length-1].toUpperCase();
       var socilaConfigData={};
       socilaConfigData.urmId=123;
       socilaConfigData.websiteId=321;
-      socilaConfigData.value=$scope.message;
-      socilaConfigData.elementId=$scope.elementId;
-      socilaConfigData.event=$scope.selectedEvent;
+      socilaConfigData.value=$scope.touterConfig.message;
+      socilaConfigData.elementId=$scope.touterConfig.elementId;
+      socilaConfigData.event=$scope.touterConfig.selectedEvent;
       socilaConfigData.feature='fb';
-      socilaConfigData.currentPage=$scope.currentPage;
+      socilaConfigData.currentPage=$scope.touterConfig.currentPage;
       
       // console.log(companyRegData);
       if(ext!=='JPG'&&ext!=='JPEG'&&ext!=='PNG'&&ext!=='TIF'&&ext!=='GIF'){
@@ -92,10 +63,9 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload',function($
               success(function(data, status, headers, config) {
                         
                 result=angular.fromJson(JSON.parse(data));
-                
+
                 $scope.fnLoadChannelsCallBack(result);
-                //$scope.featureList=result;
-                console.log($scope.featureList);
+              
               }).
               error(function(data, status, headers, config) {
                 result='error';
@@ -114,7 +84,7 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload',function($
       
      $http({
            url: SbConfig.BWS+'fnLoadBroadcastTypeTemplate/',
-           data: JSON.stringify({channelId:$scope.featureId,broadcastTypeId:$scope.selectedFeatureType}),
+           data: JSON.stringify({channelId:$scope.touterConfig.featureId,broadcastTypeId:$scope.touterConfig.selectedFeatureType}),
            method: 'POST',
            withCredentials: false,
            contentType:'application/json',
@@ -123,17 +93,11 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload',function($
               success(function(data, status, headers, config) {
                         
                 result=angular.fromJson(JSON.parse(data));
-                console.log(result[0].broadcastTypes);
-                //$scope.fnLoadChannelsCallBack(result);
-                //$scope.form=result[0].broadcastTypes[0].broadcastTypeTemplate;
-                $scope.schema=result[0].broadcastTypes[0].broadcastTypeTemplate.schema;
-               // $scope.myFormData=result[0].broadcastTypes[0].broadcastTypeTemplate.schema;
-                //console.log($scope.myFormData);
-              }).
-              error(function(data, status, headers, config) {
+                $scope.fnLoadBroadcastTypeTemplateCallBack(result[0].broadcastTypes[0].broadcastTypeTemplate.schema);
+              }). error(function(data, status, headers, config) {
                 result='error';
                 //$scope.featureList=[];
-                //$scope.fnLoadChannelsCallBack(result);
+                $scope.fnLoadBroadcastTypeTemplateCallBack(result);
 
              });  
 

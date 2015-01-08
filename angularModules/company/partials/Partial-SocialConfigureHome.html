@@ -6,7 +6,7 @@
 
 <div class="col-md-12">
  <ul class="nav nav-pills nav-wizard">
-        <li class="{{step.active}}" ng-repeat="step in steps" ng-click='FnShowHideNavigation($index)'>
+        <li class="{{step.active}}" ng-repeat="step in touterConfig.steps" ng-click='FnShowHideNavigation($index)'>
 
         <a data-toggle="tab" style="border-radius:0px;"><b class="badge m-r-xs">{{step.stepNo}}</b>{{step.name}}</a><div class="nav-arrow"></div></li>
 
@@ -15,11 +15,11 @@
   </div>
 </div>
 </div>
-<div class="row" ng-hide="websiteConfigContainer">
+<div class="row" ng-hide="touterConfig.websiteConfigContainer">
   <div class="p-md col-md-12">
 
   <div class="col-md-12">
-<div class="panel panel-default {{confWebsiteClass}}">
+<div class="panel panel-default {{touterConfig.confWebsiteClass}}">
         <div class="panel-heading bg-white bg text-lt"  bs-backdrop='false' bs-modal="modal">
           Touter Bee Configuration
          
@@ -31,13 +31,13 @@
       <!--   <div id="form-views" ui-view="" class="ng-scope"> -->
           <div class="col-xs-6 col-xs-offset-3"><div class="form-group row m-h-n clearfix">
               <label for="configWebsite">website</label>
-              <select xt-validate required class="form-control ng-pristine ng-invalid ng-invalid-required" name="configWebsite" data-bv-field="website" ng-model="selection.configWebsite" ng-options="websites.websiteName for websites in websiteList" msg-required="Please select one sector"><option value="" class="">Select a website</option></select>
+              <select xt-validate required class="form-control ng-pristine ng-invalid ng-invalid-required" name="configWebsite" data-bv-field="website" ng-model="selection.configWebsite" ng-options="websites.websiteName for websites in touterConfig.websiteList" msg-required="Please select one sector"><option value="" class="">Select a website</option></select>
           </div></div>
 
 
           <div class="form-group row m-h-n clearfix ng-scope">
          
-                    <div class="col-xs-6 col-xs-offset-5">
+          <div class="col-xs-6 col-xs-offset-5">
           <!--   <a href class="btn btn-block btn-info" ng-disabled="" ng-click="FnWebsiteConfig()"> Configure <span class="glyphicon glyphicon-cog"></span>
             </a> -->
             <a href="" class="text-sm btn btn-xs btn-rounded btn-stroke btn-info m-r" ng-click="FnWebsiteConfig()">
@@ -53,7 +53,7 @@
         </div>
       </div>
 </div></div></div>
-<div ng-class="{'p-md animated fadeInDown row':selectFeatureContainer,'p-md row ng-hide':!selectFeatureContainer}" ng-show="selectFeatureContainer">
+<div ng-class="{'p-md animated fadeInDown row':touterConfig.selectFeatureContainer,'p-md row ng-hide':!touterConfig.selectFeatureContainer}" ng-show="touterConfig.selectFeatureContainer">
 <!-- <div class="{'p-md animated fadeInDown row':selectFeatureContainer,'p-md animated fadeOut row ng-hide':!selectFeatureContainer}"> -->
 <!--   <div class=""> -->
 <div class="panel-body">
@@ -62,7 +62,7 @@
             
               <div class="list-group list-group-md no-border no-radius no-margin"> -->
                 <div class="list-group-item clear m-b-sm">
-                  <a href class="w-thumb-md pull-left m-r" ng-repeat="feature in featureList"><img src="../{{feature.imgUrl}}" class="img-responsive" ng-click="fnSelectFeature($index,feature._id.$oid)">
+                  <a href class="w-thumb-md pull-left m-r" ng-repeat="feature in touterConfig.featureList"><img src="../{{feature.imgUrl}}" class="img-responsive" ng-click="fnSelectFeature($index,feature._id.$oid,feature.imgUrl)">
                   <i class="fa fa-check-circle" ng-show="false"></i>
                   </a>
                 
@@ -74,15 +74,15 @@
 <!-- </div> -->
        </div>
 <!-- </div> -->
-  <!-- <div class="row"> --><div ng-class="{'row animated m-md fadeInDown':selectedFeatureAction,'row m-md ng-hide':!selectedFeatureAction}" ng-show="selectedFeatureAction">
+  <!-- <div class="row"> --><div ng-class="{'row animated m-md fadeInDown':touterConfig.selectedFeatureAction,'row m-md ng-hide':!touterConfig.selectedFeatureAction}" ng-show="touterConfig.selectedFeatureAction">
 
-    <div class="p-lg col-md-12 panel">
+    <div class="p-lg col-md-12 panel panel-default">
         <div class="panel-body">
           <!-- <form id="website-config-form" name="website-config-form" class="form-validation ng-pristine ng-invalid ng-invalid-required" role="form" xt-form novalidate> -->
       <!--   <div id="form-views" ui-view="" class="ng-scope"> -->
           <div class="col-xs-6 col-xs-offset-3"><div class="form-group row m-h-n clearfix">
             <label for="eventList" bs-backdrop='false' bs-modal="modal">Feture Type</label>
-            <button type="button" name='eventList' class="btn btn-default form-control" data-animation="am-flip-x" ng-model="selectedFeatureType" data-html="1" ng-options="featureType.btId.$oid as featureType.name for featureType in featureTypesList" bs-select>Share</button>
+            <button type="button" name='eventList' class="btn btn-default form-control" data-animation="am-flip-x" ng-model="touterConfig.selectedFeatureType" data-html="1" ng-options="featureType.btId.$oid as featureType.name for featureType in touterConfig.featureTypesList" bs-select>Share</button>
           </div>
           </div>
 
@@ -109,50 +109,50 @@
 {{myForm}}
 </form>
 
-<form novalidate class="form">
+<!-- <form novalidate class="form">
   <div fg-form
        fg-form-data="myFormData"
        fg-schema="myForm.schema">
   </div>
-</form>
+</form> -->
         </div>
       </div>
     </div>
 <!--   </div> -->
-<div ng-class="{'p-md animated fadeInDown':loadIframeContainer,'p-md ng-hide':!loadIframeContainer}" ng-show="loadIframeContainer">
+<div ng-class="{'p-md animated fadeInDown':touterConfig.loadIframeContainer,'p-md ng-hide':!touterConfig.loadIframeContainer}" ng-show="touterConfig.loadIframeContainer">
   <div class="row">
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading bg-white">
-          <label for="lock">Configuration Form <!-- <button bs-checkbox="" name="lock" class="btn btn-sm btn-addon btn-default pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button> -->
-           <img src="images/facebook_large.ico" class="col-sm-2 img-responsive pull-right clearfix">
-          <small class="text-muted"></small></label>
+          <label for="lock">Configuration Form
+           <img src="../{{touterConfig.featureImg}}" class="col-sm-2 img-responsive pull-right clearfix">
+           <small class="text-muted"></small></label>
         </div>
         <div class="panel-body">
-        <form sf-schema="schema" sf-form="form" id="config-sec-form" name="config-sec-form" role="form" nv-file-drop ng-submit="FnSaveSocialConfigDetails()" uploader="uploader"  class="form-validation ng-pristine ng-invalid ng-invalid-required form" role="form" xt-form novalidate>
-        <!-- <form novalidate class="form"> -->
-             <div fg-form fg-form-data="myFormData" fg-schema="schema">
-             <div jsonify="myFormData"></div>
 
+        <form id="config-sec-form" name="config-sec-form" role="form" nv-file-drop ng-submit="FnSaveSocialConfigDetails()" ng-model="my.form" uploader="uploader"  class="form form-validation" xt-form role="form" novalidate>
+         <div class="form-group" ng-model="touterConfig.clickEventLabel">
+           <label for="Event">Event status</label>
+           <ul class="list-group-sm list-group-gap list-group">
+            <li class="list-group-item text-ellipsis">
+              {{touterConfig.clickEventLabel}} <!-- Scope value accessing from parent scope --><a href="" ng-model="touterConfig.deleteEventElem" class="pull-right text-muted"><i class="fa fa-check-circle text-primary" ng-show="touterConfig.deleteEventElem"></i><i class="fa fa-close text-primary" ng-hide="touterConfig.deleteEventElem"></i></a>
+              <a href="" ng-model="touterConfig.deleteEventElem" class="pull-right text-muted ng-hide p-h-xs" ng-show="touterConfig.deleteEventElem" ng-click='fnDeleteEvent()'><i class="fa fa-trash"></i></a>
+            </li>
+            </ul>
             </div>
-           <button type="submit"
-          class="btn btn-primary"
-          ng-class="{ disabled: myForm.$invalid }">
-    Config
-  </button>
-        <!--      <div ng-class="{focused: hasFocus}" stripSpace ="true" id="contentEditDiv" class="contentEditDiv" contenteditable="true" ng-model="message" strip-br="false" no-line-breaks="true" select-non-editable="true"></div> -->
+            <div fg-form fg-form-data="myFormData" fg-schema="schema" form-data="formData">
+      
+             </div>
+           <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-save" ng-class="{ disabled: my.form.$invalid }">Save</button>{{my.form.$invalid }}
           </form>
-         <!--  <form sf-schema="schema" sf-form="form" sf-model="model"> <div class="form-group col-sm-6">
-                  <img src="images/facebook_large.ico" class="col-sm-6 img-responsive pull-left">
-                </div>
-                <div class="form-group col-sm-6"></div></form> -->
+   
         </div>
       </div>
     </div>
     <div class="col-md-8">
        <div class="panel panel-default">
         <div class="panel-heading bg-white">
-           <label for="lock">config</label> <button bs-checkbox name="lock" class="col-md-3 btn btn-sm btn-addon btn-info pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{freezeIcon}}"></i>{{freezeText}}</button>
+           <label for="lock">config</label> <button bs-checkbox name="lock" class="col-md-3 btn btn-sm btn-addon btn-info pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{touterConfig.freezeIcon}}"></i>{{touterConfig.freezeText}}</button>
           <small class="text-muted"></small>
         </div>
         <div class="panel-body"> 

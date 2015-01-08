@@ -91,14 +91,7 @@
                 templateUrl: 'angularModules/company/partials/Partial-SocialConfigureHome.html'
             });
       }])
-     /* .config(function($popoverProvider) {
-            angular.extend($popoverProvider.defaults, {
-              animation: 'am-flip-x',
-              trigger: 'focus',
-              placement: 'top'
-            });
 
-          });*/
 .directive('iframeOnload', [function(){
 return {
     scope: {
@@ -111,10 +104,8 @@ return {
     }
 };
 }])
-  .directive('iframe', function() {
+  .directive('iframe', function() { /* Directive to load the iframe dynamically.*/
         return function(scope, elm, attrs) {
-            //var gistId = scope.gistId;
-            //console.log(scope);
             var iframe = document.createElement('iframe');
             iframe.setAttribute('class', 'embed-responsive-item');
             iframe.setAttribute('id', 'IFrameWindow');
@@ -123,7 +114,7 @@ return {
             iframe.setAttribute('iframe-onload','hideLoading()');
             elm[0].appendChild(iframe);
             
-            scope.iframe=iframe;
+            scope.touterConfig.iframe=iframe;
         };
       })
     .directive('tagClose', function() {
@@ -149,22 +140,41 @@ return {
         }
     };
   })
-  .directive("ngFileSelect",function(){  //
+  .directive("ngFileSelect",['fileReader','$alert',function(fileReader,$alert){  //directive for file onload preview
 
   return {
-    link: function($scope,el){
-      
+    //scope:true,
+    link: function($scope,el,ctrls){
+      //console.log(ctrls);
       el.bind("change", function(e){
-      
-        $scope.file = (e.srcElement || e.target).files[0];
-        $scope.getFile();
+        var file = (e.srcElement || e.target).files[0];
+        $scope.getFile(file);
       });
-      
+      $scope.getFile = function (file) {
+       
+        fileReader.readAsDataUrl(file, $scope)
+                      .then(function(result) {
+                          var extArr=file.name.split('.');
+                          var ext=extArr[extArr.length-1].toUpperCase();
+                          console.log(ext);
+                          if(ext==='JPG'||ext==='JPEG'||ext==='PNG'||ext==='TIF'||ext==='GIF'){
+                              $scope.$parent.$parent.$parent.$parent.formData.image=file; /*updating the parent scope object to get the selected file control*/
+                              $scope.imageSrc = result;
+                            }
+                            else
+                            {
+                              delete $scope.$parent.$parent.$parent.$parent.formData.image;
+                              $alert({title: 'Failed!', content: 'Please select a image file', placement: 'top-right', type: 'warning', show: true,animation: 'am-fade-and-slide-top',duration:2});
+                              return false;
+                          }
+                          
+                      });
+    };
     }
     
   };
   
   
-});
+}]);
 
 }());

@@ -1,10 +1,11 @@
 var app=angular.module('baabtra');
 app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','$upload','$alert','$compile','fileReader',function($scope, $modal,SocialconfigHome,$upload,$alert,$compile,fileReader){
 	var i=0;
-	$scope.freezeText='Configur your website'; //text for freeze button
-	$scope.steps=[{'stepNo':1,'name':'Configure Website','iconUrl':'glyphicon-pencil','active':'active'},{'stepNo':2,'name':'Feature Selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':3,'name':'Feture type selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':4,'name':'Save configuration','iconUrl':'glyphicon-saved','active':''}];
+	$scope.touterConfig={};
+	$scope.touterConfig.freezeText='Configur your website'; //text for freeze button
+	$scope.touterConfig.steps=[{'stepNo':1,'name':'Configure Website','iconUrl':'glyphicon-pencil','active':'active'},{'stepNo':2,'name':'Feature Selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':3,'name':'Feture type selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':4,'name':'Save configuration','iconUrl':'glyphicon-saved','active':''}];
 
-	$scope.button = { //button style while toggle
+	$scope.touterConfig.button = { //button style while toggle
 		"toggle": false,
 		"checkbox": {
 		"left": false,
@@ -14,33 +15,34 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		"radio": "left",
 		"freezeIcon":"fa-unlock"
 	};
-	$scope.myFormData = {};
-	$scope.loading = true;
-	$scope.addEleIcon='fa-plus';
+	$scope.formData={};
+	$scope.myFormData = {'abc':123};
+	$scope.touterConfig.loading = true;
+	$scope.touterConfig.addEleIcon='fa-plus';
 	//tooltip for add element button
-	$scope.addEleTooltip={
+	$scope.touterConfig.addEleTooltip={
 		'title':'selecting element to get the value',
 	};
-	
-	$scope.featureList={};
+
+	$scope.touterConfig.featureList={};
 	$scope.hideLoading=function(){
-		$scope.loading=false;
+		$scope.touterConfig.loading=false;
 	};
 	//initialising the scope variables.
-	$scope.addEvent=true;
-	$scope.freezeIcon='fa-unlock';
-	$scope.selectedEvent='click';
-	$scope.clickEventLabel='Not selected any event!';
-	$scope.confWebsiteClass='flipInX animated';
+	$scope.touterConfig.addEvent=true;
+	$scope.touterConfig.freezeIcon='fa-unlock';
+	$scope.touterConfig.selectedEvent='click';
+	$scope.touterConfig.clickEventLabel='Not selected any event!';
+	$scope.touterConfig.confWebsiteClass='flipInX animated';
 	var domElement=[];                //deleteing all the elements from the the selected array.
 	var domElementvalue=[];
 	//function to config the website step-1
 	$scope.FnWebsiteConfig=function(){
-		$scope.confWebsiteClass='fadeOut';
-		$scope.steps[0].active='';
-		$scope.steps[1].active='active';
-		$scope.websiteConfigContainer=true; //hiding the existing container
-		$scope.selectFeatureContainer=true;
+		$scope.touterConfig.confWebsiteClass='fadeOut';
+		$scope.touterConfig.steps[0].active='';
+		$scope.touterConfig.steps[1].active='active';
+		$scope.touterConfig.websiteConfigContainer=true; //hiding the existing container
+		$scope.touterConfig.selectFeatureContainer=true;
 
 		//$scope.steps.push({'name':'Select Feature','iconUrl':'glyphicon-saved','active':'active'});
 		
@@ -51,56 +53,56 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		
 		//$scope.steps.splice(parseInt(index)+1,parseInt($scope.steps.length));
 		if(index!==0){
-			$scope.steps[index-1].active='';
+			$scope.touterConfig.steps[index-1].active='';
 		}
 
-		//$scope.steps[index].active='';
-		if(index===0){
-			$scope.websiteConfigContainer=false;
-			$scope.selectedFeatureAction=false;
-			$scope.selectFeatureContainer=false;
-			$scope.loadIframeContainer=false;
+		if(index===0){  
+			$scope.touterConfig.websiteConfigContainer=false;
+			$scope.touterConfig.selectedFeatureAction=false;
+			$scope.touterConfig.selectFeatureContainer=false;
+			$scope.touterConfig.loadIframeContainer=false;
 			
 		}
 		else if(index===1){
-			$scope.websiteConfigContainer=true;
-			$scope.selectFeatureContainer=true;
-			$scope.loadIframeContainer=false;
-			$scope.selectedFeatureAction=false;
+			$scope.touterConfig.websiteConfigContainer=true;
+			$scope.touterConfig.selectFeatureContainer=true;
+			$scope.touterConfig.loadIframeContainer=false;
+			$scope.touterConfig.selectedFeatureAction=false;
 		}
 		else if(index===2){
-			$scope.selectedFeatureAction=true;
-			$scope.selectFeatureContainer=false;
-			$scope.websiteConfigContainer=true;
-			$scope.loadIframeContainer=false;
+			$scope.touterConfig.selectedFeatureAction=true;
+			$scope.touterConfig.selectFeatureContainer=false;
+			$scope.touterConfig.websiteConfigContainer=true;
+			$scope.touterConfig.loadIframeContainer=false;
 		}
 		else{
-			$scope.loadIframeContainer=true;
-			$scope.selectedFeatureAction=false;
-			$scope.selectFeatureContainer=false;
-			$scope.websiteConfigContainer=true;
+			$scope.touterConfig.loadIframeContainer=true;
+			$scope.touterConfig.selectedFeatureAction=false;
+			$scope.touterConfig.selectFeatureContainer=false;
+			$scope.touterConfig.websiteConfigContainer=true;
 		}
 	};
-	$scope.featureId='';
+	$scope.touterConfig.featureId='';
 	//function to selecting specific feature
-	$scope.fnSelectFeature=function(index,id){
+	$scope.fnSelectFeature=function(index,id,src){
 		
-		$scope.steps[1].active='';
-		$scope.steps[2].active='active';
-		$scope.featureId=id;
-		$scope.featureTypesList=$scope.featureList[index].broadcastTypes;
-		$scope.selectedFeatureAction=true;
-		$scope.selectFeatureContainer=false;
+		$scope.touterConfig.steps[1].active='';
+		$scope.touterConfig.steps[2].active='active';
+		$scope.touterConfig.featureId=id;
+		$scope.touterConfig.featureTypesList=$scope.touterConfig.featureList[index].broadcastTypes;
+		$scope.touterConfig.featureImg=src;
+		$scope.touterConfig.selectedFeatureAction=true;
+		$scope.touterConfig.selectFeatureContainer=false;
 		//$scope.steps.push({'name':'Select Feture type','iconUrl':'glyphicon-saved','active':'active'});
 		
 	};
 
 	$scope.fnSelectFeatureType=function(){
-		$scope.steps[2].active='';
-		$scope.steps[3].active='active';
-		$scope.loadIframeContainer=true;
-		$scope.selectedFeatureAction=false;
-
+		$scope.touterConfig.steps[2].active='';
+		$scope.touterConfig.steps[3].active='active';
+		$scope.touterConfig.loadIframeContainer=true;
+		$scope.touterConfig.selectedFeatureAction=false;
+		
 		//$scope.steps.push({'name':'Save configuration','iconUrl':'glyphicon-saved','active':'active'});
 		SocialconfigHome.fnLoadBroadcastTypeTemplate($scope);
 	};
@@ -115,9 +117,9 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 
 		domElement=[];                //deleteing all the elements from the the selected array.
 		domElementvalue=[];
-		$scope.deleteEventElem=false; //hiding the delete event icon
-		$scope.clickEventLabel='Not selected any event!';
-		$scope.eventListContainer=false;
+		$scope.touterConfig.deleteEventElem=false; //hiding the delete event icon
+		$scope.touterConfig.clickEventLabel='Not selected any event!';
+		$scope.touterConfig.eventListContainer=false;
 
 	};
 
@@ -142,17 +144,15 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 					
 					if(domElement.length===0){ //checking the consition that domElement Array have length is zero.
 						domElement=e.data;
-						$scope.clickEventLabel='You have selected one event for the specific element!';
-						$scope.deleteEventElem=true;
-						$scope.eventListContainer=true;
-						//$scope.eventsList=['click','change','blur','keyup','keydown','focus'];
-						$scope.eventsList=[{'value':'click','label':'click'},{'value':'change','label':'change'},{'value':'blur','label':'blur'},{'value':'kydown','label':'keydown'},{'value':'keyup','label':'keyup'},{'value':'focus','label':'focus'}];
+						$scope.touterConfig.clickEventLabel='You have selected one event for the specific element!';
+						$scope.touterConfig.deleteEventElem=true;
+						$scope.touterConfig.eventListContainer=true;
 						$scope.$apply();
 						//binding click element to the selected dom element
 						
 						if(e.data.id!==undefined || e.data.id!==''){ //checking for id attribute exists or not
-							$scope.elementId=e.data.id;
-							$scope.currentPage=e.data.currentPage;
+							$scope.touterConfig.elementId=e.data.id;
+							$scope.touterConfig.currentPage=e.data.currentPage;
 							//domElement='if(window.location.href==\"'+e.data.currentPage+'\"){document.getElementById(\"'+e.data.id+'\").addEventListener(\"'+$scope.selectedEvent+'\",function(){';
 							//domElement=domElement+'alert(\"helloooo\");});}';
 						}
@@ -161,27 +161,15 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 					
 				}
 				
-				var contentDiv=document.getElementById('contentEditDiv');
-				console.log($scope.myFormData);
+				var contentDiv=document.getElementById('contentEditDiv'); //accesing the element to get the scope
+				//$compile(contentDiv)($scope);
 				if(e.data.type==='text' || e.data.type==='textarea') {
-					//if($scope.myFormData.Content!==undefined){ //checking for value is defined or not
-					
-						//console.log(contentDiv.textContent.length);
-						//var contentDiv=document.getElementById('contentEditDiv').firstChild.lastChild.children[1].firstChild.contentWindow.document.body.firstChild.lastChild;
-						//contentDiv.focus();
-						//$scope.message = $scope.message + ' #'+e.data.id;
-						//contentDiv.setAttribute('tabindex','0');
 						
-							if(e.data.id!==undefined){						//checking the value of the selected element id is defined or not. 
+							if(e.data.id!==undefined){		//checking the value of the selected element id is defined or not. 
 								$scope.addHtmlAtCaret('&nbsp;<span draggable="true" contenteditable="false" class="btn m-v-xs btn-xs btn-default"> #'+e.data.id+'</span>&nbsp;'); //adding the selected id attribute for tracing.
 								
 							}
 
-							//contentDiv.innerHTML= contentDiv.innerHTML+ '<span style="color: rgb(0, 138, 0);"> #'+e.data.id+'</span>';
-
-							//$scope.pasteHtmlAtCaret(' #'+e.data.id);
-							//htmlObj=$scope.message + ' #'+e.data.id;
-					//}
 				}
 				else{
 					if(e.data!=="loadJSsuccess"){ //checking the event triggered at loading page or not
@@ -193,34 +181,31 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		}, false);    
 		var receiver;
 		window.onload = function() { //onload event
-			$scope.iframe.contentWindow.postMessage('unfreeze', 'http://localhost:9000/#/');
+			$scope.touterConfig.iframe.contentWindow.postMessage('unfreeze', 'http://localhost:9000/#/');
 			
 		};
 		// Get the window displayed in the iframe.
-		receiver = $scope.iframe;//document.getElementById('receiver').contentWindow;
+		receiver = $scope.touterConfig.iframe;//document.getElementById('receiver').contentWindow;
 		// Get a reference to the 'Send Message' button.
-		//var btn = document.getElementById('send'); 
 
-		//$scope.$chan('message', function() { alert('in'); }, true);
-
-		// A function to handle sending messages.
+		// A function to handle sending messages to the iframe window.
 		$scope.sendMessageToIFrame=function(e) {
 			if(i%2!==0){
 				// Prevent any default browser behaviour.
 				e.preventDefault();
-				$scope.freezeIcon='fa-unlock';
-				$scope.freezeText='Configure your website';
+				$scope.touterConfig.freezeIcon='fa-unlock';
+				$scope.touterConfig.freezeText='Configure your website';
 				// Send a message with the text 'freeze' to the new window.
-				$scope.iframe.contentWindow.postMessage('unfreeze', 'http://localhost:9000/#/');
+				$scope.touterConfig.iframe.contentWindow.postMessage('unfreeze', 'http://localhost:9000/#/');
 			}
 			else{
 				// Prevent any default browser behaviour.
 				e.preventDefault();
-				$scope.freezeIcon='fa-lock';
-				$scope.freezeText='Actual stage';
-				$scope.TBFrame=true;
+				$scope.touterConfig.freezeIcon='fa-lock';
+				$scope.touterConfig.freezeText='Actual stage';
+				$scope.touterConfig.TBFrame=true;
 				// Send a message with the text 'unfreeze' to the new window.
-				$scope.iframe.contentWindow.postMessage('freeze', 'http://localhost:9000/#/');
+				$scope.touterConfig.iframe.contentWindow.postMessage('freeze', 'http://localhost:9000/#/');
 			}
 			i++;
 		};
@@ -228,14 +213,14 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 	
 	//function to submit the configuration details.
 	$scope.FnSaveSocialConfigDetails=function(){
-		
-		SocialconfigHome.FnSaveSocialConfigDetails($scope);
+		console.log($scope.formData);
+		//SocialconfigHome.FnSaveSocialConfigDetails($scope); //function to save the configuration
 	};
 
 	//function to add the specific selected node into a current cursor position.
 	$scope.addHtmlAtCaret = function (html) {
-		console.log(html);
-        document.getElementById('contentEditDiv').focus();
+		
+        document.getElementById('contentEditDiv').focus(); //to focus the content editable div
         var sel, range;
         if (window.getSelection) {
             // IE9 and non-IE
@@ -256,10 +241,8 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
                     lastNode = frag.appendChild(node);
                 }
                 range.insertNode(frag);
-                console.log($scope.myFormData);
-               
-                $scope.message= document.getElementById('contentEditDiv').innerHTML;  //updating the model value from content editable div
-                
+                //$scope.field.schema.name= document.getElementById('contentEditDiv').innerHTML;  //updating the model value from content editable div
+                               
                 // Preserve the selection
                 if (lastNode) {
                     range = range.cloneRange();
@@ -273,11 +256,10 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
             // IE < 9
             document.selection.createRange().pasteHTML(html);
         }
-        //$scope.apply();
+        //pushing the updated content to the scope object
+        $scope.formData.content= document.getElementById('contentEditDiv').innerHTML;
+       
     };
-	$scope.deleteTag=function(){
-		console.log('in');
-	};
 
 	$scope.loadExistingConfigDetails=function(){
 		//alert('in');
@@ -288,16 +270,23 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
        
         fileReader.readAsDataUrl($scope.file, $scope)
                       .then(function(result) {
-                          $scope.imageSrc = result;
+                          $scope.touterConfig.imageSrc = result;
                       });
     };
 
-	//$scope.configFormModel = {}; //model for schema form
-
 	//loading the channel list from corresponding result
 	$scope.fnLoadChannelsCallBack=function(result){
-		$scope.featureList=result;
+		$scope.touterConfig.featureList=result;
 	
 	}; 
+
+	//callback of loading the broadcasttype template.
+	$scope.fnLoadBroadcastTypeTemplateCallBack=function(result){
+		if(result!=='error'){
+			$scope.schema=result; //broadcast template initialise to scope schema object to load using form builder.
+			
+		}
+	}; 
+	
 
 }]);
