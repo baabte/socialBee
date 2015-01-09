@@ -39,23 +39,26 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 	//function to config the website step-1
 	$scope.FnWebsiteConfig=function(){
 		$scope.touterConfig.confWebsiteClass='fadeOut';
-		$scope.touterConfig.steps[0].active='';
-		$scope.touterConfig.steps[1].active='active';
-		$scope.touterConfig.websiteConfigContainer=true; //hiding the existing container
-		$scope.touterConfig.selectFeatureContainer=true;
-
-		//$scope.steps.push({'name':'Select Feature','iconUrl':'glyphicon-saved','active':'active'});
+		$scope.FnShowHideNavigation(1);
 		
 	};
 
 	//function to show hide the navigation the website step-1
 	$scope.FnShowHideNavigation=function(index){
-		
-		//$scope.steps.splice(parseInt(index)+1,parseInt($scope.steps.length));
-		if(index!==0){
-			$scope.touterConfig.steps[index-1].active='';
-		}
 
+		var i;
+		for(i=0;i<$scope.touterConfig.steps.length;i++){
+			
+			if(i===index){
+				$scope.touterConfig.steps[i].active='activate';
+				
+			}
+			else{
+				
+				$scope.touterConfig.steps[i].active='';
+			}
+		}
+		
 		if(index===0){  
 			$scope.touterConfig.websiteConfigContainer=false;
 			$scope.touterConfig.selectedFeatureAction=false;
@@ -85,25 +88,15 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 	$scope.touterConfig.featureId='';
 	//function to selecting specific feature
 	$scope.fnSelectFeature=function(index,id,src){
-		
-		$scope.touterConfig.steps[1].active='';
-		$scope.touterConfig.steps[2].active='active';
+		$scope.FnShowHideNavigation(2);
 		$scope.touterConfig.featureId=id;
 		$scope.touterConfig.featureTypesList=$scope.touterConfig.featureList[index].broadcastTypes;
 		$scope.touterConfig.featureImg=src;
-		$scope.touterConfig.selectedFeatureAction=true;
-		$scope.touterConfig.selectFeatureContainer=false;
-		//$scope.steps.push({'name':'Select Feture type','iconUrl':'glyphicon-saved','active':'active'});
-		
+				
 	};
 
 	$scope.fnSelectFeatureType=function(){
-		$scope.touterConfig.steps[2].active='';
-		$scope.touterConfig.steps[3].active='active';
-		$scope.touterConfig.loadIframeContainer=true;
-		$scope.touterConfig.selectedFeatureAction=false;
-		
-		//$scope.steps.push({'name':'Save configuration','iconUrl':'glyphicon-saved','active':'active'});
+		$scope.FnShowHideNavigation(3);
 		SocialconfigHome.fnLoadBroadcastTypeTemplate($scope);
 	};
 	//loading the features....
@@ -151,8 +144,8 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 						//binding click element to the selected dom element
 						
 						if(e.data.id!==undefined || e.data.id!==''){ //checking for id attribute exists or not
-							$scope.touterConfig.elementId=e.data.id;
-							$scope.touterConfig.currentPage=e.data.currentPage;
+							$scope.formData.elementId=e.data.id;
+							$scope.formData.currentPage=e.data.currentPage;
 							//domElement='if(window.location.href==\"'+e.data.currentPage+'\"){document.getElementById(\"'+e.data.id+'\").addEventListener(\"'+$scope.selectedEvent+'\",function(){';
 							//domElement=domElement+'alert(\"helloooo\");});}';
 						}
@@ -213,8 +206,8 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 	
 	//function to submit the configuration details.
 	$scope.FnSaveSocialConfigDetails=function(){
-		console.log($scope.formData);
-		//SocialconfigHome.FnSaveSocialConfigDetails($scope); //function to save the configuration
+		//console.log($scope.formData);
+		SocialconfigHome.FnSaveSocialConfigDetails($scope); //function to save the configuration
 	};
 
 	//function to add the specific selected node into a current cursor position.

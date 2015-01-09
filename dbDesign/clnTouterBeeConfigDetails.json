@@ -1,0 +1,27 @@
+{
+  "userId": "",
+  "websiteId": "",
+  "tbObj": [
+    {
+      "channelId": "",
+      "broadcastTypeId": ""
+    },
+    {
+      "channelId": "",
+      "broadcastTypeId": "",
+      "configDataObj": {
+        "Appid": "",
+        "accessTocken": "",
+        "pofileId": "",
+        "secreatId": "",
+        "field1": "",
+        "field2": ""
+      }
+    }
+  ],
+  "createdId": "",
+  "createdDate": "",
+  "updatedId": "",
+  "updatedDate": "",
+  "activeFlag": ""
+}

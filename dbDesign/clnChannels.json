@@ -1,13 +1,42 @@
 {
-  "name": "",
-  "channelTemplate": {
-    "appId": "",
-    "appSecret": "",
-    "accessToken": "",
-    "profileId": ""
-  },
-  "broadcastTypes": {
-    "name": "",
-    "broadcastTypeTemplate": {}
-  }
+    "name" : "",
+    "imgUrl" : "",
+    "channelUrl" : "",
+    "channelTemplate" : {
+                  "schema" : {
+                    "fields" : [ 
+                        {
+                            "type" : "",
+                            "name" : "",
+                            "displayName" : "",
+                            "options" : [],
+                            "value" : "1",
+                            "tooltip" : "",
+                            "customlist" : []
+                        }
+                    ]
+                  }
+      },
+    "broadcastTypes" : [ 
+        {
+            "btId" : "",
+            "name" : "",
+            "iconUrl" : "",
+            "broadcastTypeTemplate" : {
+            "schema" : {
+                    "fields" : [ 
+                        {
+                            "type" : "",
+                            "name" : "",
+                            "displayName" : "",
+                            "options" : [],
+                            "value" : "1",
+                            "tooltip" : "",
+                            "customlist" : []
+                        }
+                    ]
+                  }
+            }
+        }
+    ]
 }

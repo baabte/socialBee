@@ -4,24 +4,19 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload','$compile'
 
 	  this.FnSaveSocialConfigDetails=function($scope){
       var result;
-      var featureImg=$scope.touterConfig.myFiles[0];
-      var extArr=featureImg.name.split('.');
-      var ext=extArr[extArr.length-1].toUpperCase();
+      var featureImg;
       var socilaConfigData={};
       socilaConfigData.urmId=123;
       socilaConfigData.websiteId=321;
-      socilaConfigData.value=$scope.touterConfig.message;
-      socilaConfigData.elementId=$scope.touterConfig.elementId;
-      socilaConfigData.event=$scope.touterConfig.selectedEvent;
       socilaConfigData.feature='fb';
-      socilaConfigData.currentPage=$scope.touterConfig.currentPage;
-      
-      // console.log(companyRegData);
-      if(ext!=='JPG'&&ext!=='JPEG'&&ext!=='PNG'&&ext!=='TIF'&&ext!=='GIF'){
-        result='fileErr';
-        $alert({title: 'Failed!', content: 'Please choose the image file!.', placement: 'top-right', type: 'info', show: true,animation: 'am-fade-and-slide-top',duration:2});
-        return 0;
+      socilaConfigData.fieldObj=$scope.formData;
+      if(!angular.equals($scope.formData.image,undefined)){
+         featureImg= $scope.formData.image;
+         delete socilaConfigData.fieldObj.image; //deleting the image property from the formdata object
       }
+      //adding all the required fields into the custom json object
+      
+       console.log($scope.formData);
        $upload.upload({
            url: SbConfig.BWS+'FnSaveSocialConfigDetails/',
            file: featureImg,
@@ -43,6 +38,7 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload','$compile'
        progress(function(evt) {
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
       });
+
 
 
      return result;

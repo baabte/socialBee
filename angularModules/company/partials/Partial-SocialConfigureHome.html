@@ -102,12 +102,11 @@
 </div>
 <!-- </div> -->
       </form>
-<form class="form-horizontal">
+<!-- <form class="form-horizontal">
 
-  <!-- Embed the schema editor on the form -->
   <div fg-edit fg-schema="myForm.schema" ng-model="myForm"></div>
 {{myForm}}
-</form>
+</form> -->
 
 <!-- <form novalidate class="form">
   <div fg-form
@@ -130,20 +129,22 @@
         </div>
         <div class="panel-body">
 
-        <form id="config-sec-form" name="config-sec-form" role="form" nv-file-drop ng-submit="FnSaveSocialConfigDetails()" ng-model="my.form" uploader="uploader"  class="form form-validation" xt-form role="form" novalidate>
+       <!--  <form name="customForm" id="config-sec-form" name="config-sec-form" role="form" nv-file-drop ng-submit="FnSaveSocialConfigDetails()" uploader="uploader"  class="form form-validation" xt-form role="form" novalidate> -->
+       <form name="customForm"  ng-submit="FnSaveSocialConfigDetails()"  class="customForm form form-validation" role="form" xt-form novalidate>
+
          <div class="form-group" ng-model="touterConfig.clickEventLabel">
            <label for="Event">Event status</label>
-           <ul class="list-group-sm list-group-gap list-group">
-            <li class="list-group-item text-ellipsis">
-              {{touterConfig.clickEventLabel}} <!-- Scope value accessing from parent scope --><a href="" ng-model="touterConfig.deleteEventElem" class="pull-right text-muted"><i class="fa fa-check-circle text-primary" ng-show="touterConfig.deleteEventElem"></i><i class="fa fa-close text-primary" ng-hide="touterConfig.deleteEventElem"></i></a>
+           
+            <span ng-class="{'form-control text-ellipsis':touterConfig.deleteEventElem ,'text-ellipsis form-control b-warning':!touterConfig.deleteEventElem}">
+              {{touterConfig.clickEventLabel}} <!-- Scope value accessing from parent scope --><a href="" ng-model="touterConfig.deleteEventElem" class="pull-right text-muted"><i class="fa fa-check-circle text-success" ng-show="touterConfig.deleteEventElem"></i><i class="fa fa-warning text-warning" ng-hide="touterConfig.deleteEventElem"></i></a>
               <a href="" ng-model="touterConfig.deleteEventElem" class="pull-right text-muted ng-hide p-h-xs" ng-show="touterConfig.deleteEventElem" ng-click='fnDeleteEvent()'><i class="fa fa-trash"></i></a>
-            </li>
-            </ul>
+            </span>
+           
             </div>
             <div fg-form fg-form-data="myFormData" fg-schema="schema" form-data="formData">
       
              </div>
-           <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-save" ng-class="{ disabled: my.form.$invalid }">Save</button>{{my.form.$invalid }}
+           <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-save" ng-class="{ disabled: customForm.$invalid }">Save</button>{{customForm.$invalid}}
           </form>
    
         </div>

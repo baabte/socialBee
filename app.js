@@ -156,7 +156,7 @@ return {
                       .then(function(result) {
                           var extArr=file.name.split('.');
                           var ext=extArr[extArr.length-1].toUpperCase();
-                          console.log(ext);
+                          
                           if(ext==='JPG'||ext==='JPEG'||ext==='PNG'||ext==='TIF'||ext==='GIF'){
                               $scope.$parent.$parent.$parent.$parent.formData.image=file; /*updating the parent scope object to get the selected file control*/
                               $scope.imageSrc = result;
