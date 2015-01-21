@@ -35,7 +35,8 @@
         'angularFileUpload',
         'contenteditable',
         'schemaForm',
-        'fg'
+        'fg',
+        'angular-growl'
       ])
       .config( ['$stateProvider',
           function ( $stateProvider) {
@@ -158,12 +159,13 @@ return {
                           var ext=extArr[extArr.length-1].toUpperCase();
                           
                           if(ext==='JPG'||ext==='JPEG'||ext==='PNG'||ext==='TIF'||ext==='GIF'){
-                              $scope.$parent.$parent.$parent.$parent.formData.image=file; /*updating the parent scope object to get the selected file control*/
+                              $scope.$parent.$parent.$parent.$parent.fileObj.image=file; /*updating the parent scope object to get the selected file control*/
+                              //console.log($scope.$parent.$parent.$parent.$parent.fileObj.image);
                               $scope.imageSrc = result;
                             }
                             else
                             {
-                              delete $scope.$parent.$parent.$parent.$parent.formData.image;
+                              //delete $scope.$parent.$parent.$parent.$parent.formData.image;
                               $alert({title: 'Failed!', content: 'Please select a image file', placement: 'top-right', type: 'warning', show: true,animation: 'am-fade-and-slide-top',duration:2});
                               return false;
                           }

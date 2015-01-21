@@ -1,10 +1,12 @@
 var app=angular.module('baabtra');
-app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','$upload','$alert','$compile','fileReader',function($scope, $modal,SocialconfigHome,$upload,$alert,$compile,fileReader){
+app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','$upload','$alert','$compile','fileReader','growl',function($scope, $modal,SocialconfigHome,$upload,$alert,$compile,fileReader,growl){
 	var i=0;
 	$scope.touterConfig={};
+	$scope.fileObj={};
+	$scope.touterConfig.websiteList=[{'1':'dev.baabtra.com'}];
 	$scope.touterConfig.freezeText='Configur your website'; //text for freeze button
 	$scope.touterConfig.steps=[{'stepNo':1,'name':'Configure Website','iconUrl':'glyphicon-pencil','active':'active'},{'stepNo':2,'name':'Feature Selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':3,'name':'Feture type selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':4,'name':'Save configuration','iconUrl':'glyphicon-saved','active':''}];
-
+	$scope.touterConfig.valid=true;
 	$scope.touterConfig.button = { //button style while toggle
 		"toggle": false,
 		"checkbox": {
@@ -15,8 +17,9 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		"radio": "left",
 		"freezeIcon":"fa-unlock"
 	};
+
 	$scope.formData={};
-	$scope.myFormData = {'abc':123};
+	$scope.myFormData = {};
 	$scope.touterConfig.loading = true;
 	$scope.touterConfig.addEleIcon='fa-plus';
 	//tooltip for add element button
@@ -50,13 +53,16 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		for(i=0;i<$scope.touterConfig.steps.length;i++){
 			
 			if(i===index){
-				$scope.touterConfig.steps[i].active='activate';
+				$scope.touterConfig.steps[i].active='active';
 				
 			}
 			else{
 				
 				$scope.touterConfig.steps[i].active='';
 			}
+
+			
+
 		}
 		
 		if(index===0){  
@@ -84,6 +90,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 			$scope.touterConfig.selectFeatureContainer=false;
 			$scope.touterConfig.websiteConfigContainer=true;
 		}
+
 	};
 	$scope.touterConfig.featureId='';
 	//function to selecting specific feature
@@ -107,7 +114,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 
 	//deleting events function
 	$scope.fnDeleteEvent=function(){
-
+		$scope.touterConfig.valid=true;
 		domElement=[];                //deleteing all the elements from the the selected array.
 		domElementvalue=[];
 		$scope.touterConfig.deleteEventElem=false; //hiding the delete event icon
@@ -134,20 +141,30 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 				if(e.data!=="loadJSsuccess") // checking the post message from child window 
 				{
 					//domElementvalue=e.data; //variable to store the element whose value to be taken at the time of event trigger
-					
 					if(domElement.length===0){ //checking the consition that domElement Array have length is zero.
-						domElement=e.data;
-						$scope.touterConfig.clickEventLabel='You have selected one event for the specific element!';
-						$scope.touterConfig.deleteEventElem=true;
-						$scope.touterConfig.eventListContainer=true;
-						$scope.$apply();
 						//binding click element to the selected dom element
-						
-						if(e.data.id!==undefined || e.data.id!==''){ //checking for id attribute exists or not
-							$scope.formData.elementId=e.data.id;
-							$scope.formData.currentPage=e.data.currentPage;
+						if(!angular.equals(e.data.id,undefined) && e.data.id!==''){ //checking for id attribute exists or not
+							$scope.touterConfig.valid=false;
+							domElement=e.data;
+							$scope.touterConfig.clickEventLabel='You have selected the element to trigger';
+							$scope.touterConfig.deleteEventElem=true;
+							$scope.touterConfig.eventListContainer=true;
+							$scope.$apply();
+							$scope.touterConfig.elementId=e.data.id;
+							$scope.touterConfig.currentPage=e.data.currentPage;
+							
 							//domElement='if(window.location.href==\"'+e.data.currentPage+'\"){document.getElementById(\"'+e.data.id+'\").addEventListener(\"'+$scope.selectedEvent+'\",function(){';
 							//domElement=domElement+'alert(\"helloooo\");});}';
+						}
+						else{
+							$alert({title: 'Not possible!', content: 'Please select a element which have a "id" attribute.', placement: 'top-right', type: 'info', show: true,animation: 'am-fade-and-slide-top',duration:5});
+							$scope.touterConfig.valid=true;
+							domElement='';
+							$scope.touterConfig.clickEventLabel='Not selected any event!';
+							$scope.touterConfig.deleteEventElem=false;
+							$scope.touterConfig.eventListContainer=false;
+							$scope.$apply();
+
 						}
 
 					}
@@ -270,14 +287,18 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 	//loading the channel list from corresponding result
 	$scope.fnLoadChannelsCallBack=function(result){
 		$scope.touterConfig.featureList=result;
-	
+		
 	}; 
 
 	//callback of loading the broadcasttype template.
 	$scope.fnLoadBroadcastTypeTemplateCallBack=function(result){
 		if(result!=='error'){
-			$scope.schema=result; //broadcast template initialise to scope schema object to load using form builder.
-			
+
+			$scope.schema=result.schema[0].broadcastTypes[0].broadcastTypeTemplate.schema; //broadcast template initialise to scope schema object to load using form builder.
+			if(!angular.equals(result.formData,undefined)){
+				$scope.formData=result.formData;
+			}
+				//console.log(result);	
 		}
 	}; 
 	

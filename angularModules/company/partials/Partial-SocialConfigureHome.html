@@ -17,10 +17,10 @@
 </div>
 <div class="row" ng-hide="touterConfig.websiteConfigContainer">
   <div class="p-md col-md-12">
-
+<div growl></div>
   <div class="col-md-12">
 <div class="panel panel-default {{touterConfig.confWebsiteClass}}">
-        <div class="panel-heading bg-white bg text-lt"  bs-backdrop='false' bs-modal="modal">
+        <div class="panel-heading bg-white bg text-lt">
           Touter Bee Configuration
          
         </div>
@@ -31,7 +31,7 @@
       <!--   <div id="form-views" ui-view="" class="ng-scope"> -->
           <div class="col-xs-6 col-xs-offset-3"><div class="form-group row m-h-n clearfix">
               <label for="configWebsite">website</label>
-              <select xt-validate required class="form-control ng-pristine ng-invalid ng-invalid-required" name="configWebsite" data-bv-field="website" ng-model="selection.configWebsite" ng-options="websites.websiteName for websites in touterConfig.websiteList" msg-required="Please select one sector"><option value="" class="">Select a website</option></select>
+              <select xt-validate required class="form-control ng-pristine ng-invalid ng-invalid-required" name="configWebsite" data-bv-field="website" ng-model="selection.configWebsite" ng-options="websites.websiteName for websites in touterConfig.websiteList" msg-required="Please select one website"><option value="" selected>select one website</option></select>
           </div></div>
 
 
@@ -62,10 +62,21 @@
             
               <div class="list-group list-group-md no-border no-radius no-margin"> -->
                 <div class="list-group-item clear m-b-sm">
-                  <a href class="w-thumb-md pull-left m-r" ng-repeat="feature in touterConfig.featureList"><img src="../{{feature.imgUrl}}" class="img-responsive" ng-click="fnSelectFeature($index,feature._id.$oid,feature.imgUrl)">
+          <!--         <a href class="w-thumb-md pull-left m-r" ng-repeat="feature in touterConfig.featureList"><img src="../{{feature.imgUrl}}" class="img-thumbnail img-responsive" ng-click="fnSelectFeature($index,feature._id.$oid,feature.imgUrl)">
                   <i class="fa fa-check-circle" ng-show="false"></i>
-                  </a>
-                
+                  </a> -->
+                <div ng-repeat="feature in touterConfig.featureList" ng-click="fnSelectFeature($index,feature._id.$oid,feature.imgUrl)" class="m-l-md pull-left" style="background:url(../{{feature.imgUrl}}) center center; background-size:cover">
+                    <div class="p-sm bg-white-opacity text-center">
+                      <a href="" class="w-xxs inline">
+                        <img src="../{{feature.imgUrl}}" class="img-circle img-responsive">
+                      </a>
+                      <div class="m-b m-t-sm h5">
+                        <p class="">{{feature.name}}</p> <i class="fa fa-check-circle" ng-show="true"></i>
+                      </div>
+                      
+                      
+                    </div>
+                  </div>
                 </div>
               </div>
             <!-- </div> -->
@@ -102,11 +113,11 @@
 </div>
 <!-- </div> -->
       </form>
-<!-- <form class="form-horizontal">
+<form class="form-horizontal">
 
   <div fg-edit fg-schema="myForm.schema" ng-model="myForm"></div>
 {{myForm}}
-</form> -->
+</form>
 
 <!-- <form novalidate class="form">
   <div fg-form
@@ -141,10 +152,10 @@
             </span>
            
             </div>
-            <div fg-form fg-form-data="myFormData" fg-schema="schema" form-data="formData">
-      
+            <div fg-form fg-form-data="formData" fg-schema="schema" form-data="formData">
+          
              </div>
-           <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-save" ng-class="{ disabled: customForm.$invalid }">Save</button>{{customForm.$invalid}}
+            <button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-save" ng-class="{ disabled: customForm.$invalid || touterConfig.valid}">Save</button>
           </form>
    
         </div>

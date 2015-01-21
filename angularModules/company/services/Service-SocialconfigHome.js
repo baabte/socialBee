@@ -5,22 +5,25 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload','$compile'
 	  this.FnSaveSocialConfigDetails=function($scope){
       var result;
       var featureImg;
-      var socilaConfigData={};
-      socilaConfigData.urmId=123;
-      socilaConfigData.websiteId=321;
-      socilaConfigData.feature='fb';
-      socilaConfigData.fieldObj=$scope.formData;
-      if(!angular.equals($scope.formData.image,undefined)){
-         featureImg= $scope.formData.image;
-         delete socilaConfigData.fieldObj.image; //deleting the image property from the formdata object
+      var socialConfigData={};
+      socialConfigData.urmId=123;
+      socialConfigData.websiteId=321;
+      socialConfigData.feature='fb';
+      socialConfigData.elementId=$scope.touterConfig.elementId;
+      socialConfigData.currentPage=$scope.touterConfig.currentPage;
+      socialConfigData.channelId=$scope.touterConfig.featureId;
+      socialConfigData.broadcastTypeId=$scope.touterConfig.selectedFeatureType;
+      if(!angular.equals($scope.fileObj.image,undefined)){
+         featureImg= $scope.fileObj.image;
+         //delete $scope.formData['image']; //deleting the image property from the formdata object
       }
+      socialConfigData.fieldObj=$scope.formData;
+      console.log(featureImg);
       //adding all the required fields into the custom json object
-      
-       console.log($scope.formData);
        $upload.upload({
            url: SbConfig.BWS+'FnSaveSocialConfigDetails/',
            file: featureImg,
-           data: socilaConfigData,
+           data: socialConfigData,
            method: 'POST',
            withCredentials: false,
            contentType:'application/json',
@@ -80,7 +83,7 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload','$compile'
       
      $http({
            url: SbConfig.BWS+'fnLoadBroadcastTypeTemplate/',
-           data: JSON.stringify({channelId:$scope.touterConfig.featureId,broadcastTypeId:$scope.touterConfig.selectedFeatureType}),
+           data: JSON.stringify({channelId:$scope.touterConfig.featureId,broadcastTypeId:$scope.touterConfig.selectedFeatureType,urmId:'123',websiteId:'321',currentPage:'http://localhost:9000/#/',elementId:'username'}),
            method: 'POST',
            withCredentials: false,
            contentType:'application/json',
@@ -89,7 +92,8 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload','$compile'
               success(function(data, status, headers, config) {
                         
                 result=angular.fromJson(JSON.parse(data));
-                $scope.fnLoadBroadcastTypeTemplateCallBack(result[0].broadcastTypes[0].broadcastTypeTemplate.schema);
+                
+                $scope.fnLoadBroadcastTypeTemplateCallBack(result);
               }). error(function(data, status, headers, config) {
                 result='error';
                 //$scope.featureList=[];
