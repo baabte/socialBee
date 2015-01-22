@@ -83,7 +83,7 @@ app.service('SocialconfigHome',['$http','SbConfig','$alert','$upload','$compile'
       
      $http({
            url: SbConfig.BWS+'fnLoadBroadcastTypeTemplate/',
-           data: JSON.stringify({channelId:$scope.touterConfig.featureId,broadcastTypeId:$scope.touterConfig.selectedFeatureType,urmId:'123',websiteId:'321',currentPage:'http://localhost:9000/#/',elementId:'username'}),
+           data: JSON.stringify({channelId:$scope.touterConfig.featureId,broadcastTypeId:$scope.touterConfig.selectedFeatureType,urmId:'123',websiteId:'321',currentPage:'http://localhost:9000/#/',elementId:$scope.touterConfig.tempSelElemId}),
            method: 'POST',
            withCredentials: false,
            contentType:'application/json',

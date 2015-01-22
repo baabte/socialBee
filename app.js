@@ -36,7 +36,9 @@
         'contenteditable',
         'schemaForm',
         'fg',
-        'angular-growl'
+        'angular-growl',
+        'ezfb',
+        'ngLinkedIn'
       ])
       .config( ['$stateProvider',
           function ( $stateProvider) {
@@ -92,91 +94,122 @@
                 templateUrl: 'angularModules/company/partials/Partial-SocialConfigureHome.html'
             });
       }])
+      //config setting for easyfb 
+      .config(function (ezfbProvider) {
+          ezfbProvider.setInitParams({
+            // This is your FB app id 
+            appId: '610577519050579',
+            // Module default is `v1.0`.
+            // If you want to use Facebook platform `v2.0`, you'll have to add the following parameter.
+            // https://developers.facebook.com/docs/javascript/reference/FB.init/v2.0
+            version: 'v2.0'
+          }); 
+          // Default load SDK function
+          var _defaultLoadSDKFunction = [
+                   '$window', '$document', 'ezfbAsyncInit', 'ezfbLocale',
+          function ($window,   $document,   ezfbAsyncInit,   ezfbLocale) {
+            // Load the SDK's source Asynchronously
+            (function(d){
+              var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+              if (d.getElementById(id)) {return;}
+              js = d.createElement('script'); js.id = id; js.async = true;
+              js.src = "//connect.facebook.net/" + ezfbLocale + "/all.js";
+              // js.src = "//connect.facebook.net/" + ezfbLocale + "/all/debug.js";  // debug
+              ref.parentNode.insertBefore(js, ref);
+            }($document[0]));
 
-.directive('iframeOnload', [function(){
-return {
-    scope: {
-        callBack: '&iframeOnload'
-    },
-    link: function(scope, element, attrs){
-        element.on('load', function(){
-            return scope.callBack();
-        });
-    }
-};
-}])
-  .directive('iframe', function() { /* Directive to load the iframe dynamically.*/
-        return function(scope, elm, attrs) {
-            var iframe = document.createElement('iframe');
-            iframe.setAttribute('class', 'embed-responsive-item');
-            iframe.setAttribute('id', 'IFrameWindow');
-            iframe.setAttribute('ng-disabled', 'true');
-            iframe.src="http://localhost:9000/#/";
-            iframe.setAttribute('iframe-onload','hideLoading()');
-            elm[0].appendChild(iframe);
-            
-            scope.touterConfig.iframe=iframe;
-        };
+            $window.fbAsyncInit = ezfbAsyncInit;
+          }];
       })
-    .directive('tagClose', function() {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: function(tElement, tAttrs) {
-            //var isClickable = angular.isDefined(tAttrs.isClickable) && eval(tAttrs.isClickable) === true ? true : false;
+      //linked in sdk config
+      .config(function($linkedInProvider) {
+          $linkedInProvider.set('appKey', '78balr8oe7bptc')
+                            .set('scope', 'r_basicprofile r_network');
+      })
+      .directive('iframeOnload', [function(){
+      return {
+          scope: {
+              callBack: '&iframeOnload'
+          },
+          link: function(scope, element, attrs){
+              element.on('load', function(){
+                  return scope.callBack();
+              });
+          }
+      };
+      }])
+        .directive('iframe', function() { /* Directive to load the iframe dynamically.*/
+              return function(scope, elm, attrs) {
+                  var iframe = document.createElement('iframe');
+                  iframe.setAttribute('class', 'embed-responsive-item');
+                  iframe.setAttribute('id', 'IFrameWindow');
+                  iframe.setAttribute('ng-disabled', 'true');
+                  iframe.src="http://localhost:9000/#/";
+                  iframe.setAttribute('iframe-onload','hideLoading()');
+                  elm[0].appendChild(iframe);
+                  
+                  scope.touterConfig.iframe=iframe;
+              };
+            })
+          .directive('tagClose', function() {
+          return {
+              restrict: 'E',
+              replace: true,
+              template: function(tElement, tAttrs) {
+                  //var isClickable = angular.isDefined(tAttrs.isClickable) && eval(tAttrs.isClickable) === true ? true : false;
 
-            //var clickAttr = isClickable ? 'ng-click="onHandleClick()"' : '';
+                  //var clickAttr = isClickable ? 'ng-click="onHandleClick()"' : '';
 
-            return '<i ng-click="onHandleClick()" class="fa fa-close pull-right"></i>';
-            
-        },
-        transclude: true,
-        link: function(scope, element, attrs) {
-            scope.onHandleClick = function() {
-            
-              console.log(element.parent());
-                element.parent().remove();
+                  return '<i ng-click="onHandleClick()" class="fa fa-close pull-right"></i>';
+                  
+              },
+              transclude: true,
+              link: function(scope, element, attrs) {
+                  scope.onHandleClick = function() {
+                  
+                    console.log(element.parent());
+                      element.parent().remove();
+                   
+                  };
+              }
+          };
+        })
+        .directive("ngFileSelect",['fileReader','$alert',function(fileReader,$alert){  //directive for file onload preview
+
+        return {
+          //scope:true,
+          link: function($scope,el,ctrls){
+            //console.log(ctrls);
+            el.bind("change", function(e){
+              var file = (e.srcElement || e.target).files[0];
+              $scope.getFile(file);
+            });
+            $scope.getFile = function (file) {
              
-            };
-        }
-    };
-  })
-  .directive("ngFileSelect",['fileReader','$alert',function(fileReader,$alert){  //directive for file onload preview
-
-  return {
-    //scope:true,
-    link: function($scope,el,ctrls){
-      //console.log(ctrls);
-      el.bind("change", function(e){
-        var file = (e.srcElement || e.target).files[0];
-        $scope.getFile(file);
-      });
-      $scope.getFile = function (file) {
-       
-        fileReader.readAsDataUrl(file, $scope)
-                      .then(function(result) {
-                          var extArr=file.name.split('.');
-                          var ext=extArr[extArr.length-1].toUpperCase();
-                          
-                          if(ext==='JPG'||ext==='JPEG'||ext==='PNG'||ext==='TIF'||ext==='GIF'){
-                              $scope.$parent.$parent.$parent.$parent.fileObj.image=file; /*updating the parent scope object to get the selected file control*/
-                              //console.log($scope.$parent.$parent.$parent.$parent.fileObj.image);
-                              $scope.imageSrc = result;
-                            }
-                            else
-                            {
-                              //delete $scope.$parent.$parent.$parent.$parent.formData.image;
-                              $alert({title: 'Failed!', content: 'Please select a image file', placement: 'top-right', type: 'warning', show: true,animation: 'am-fade-and-slide-top',duration:2});
-                              return false;
-                          }
-                          
-                      });
-    };
-    }
-    
-  };
-  
-  
-}]);
+              fileReader.readAsDataUrl(file, $scope)
+                            .then(function(result) {
+                                var extArr=file.name.split('.');
+                                var ext=extArr[extArr.length-1].toUpperCase();
+                                
+                                if(ext==='JPG'||ext==='JPEG'||ext==='PNG'||ext==='TIF'||ext==='GIF'){
+                                    $scope.$parent.$parent.$parent.$parent.fileObj.image=file; /*updating the parent scope object to get the selected file control*/
+                                    //console.log($scope.$parent.$parent.$parent.$parent.fileObj.image);
+                                    $scope.imageSrc = result;
+                                  }
+                                  else
+                                  {
+                                    //delete $scope.$parent.$parent.$parent.$parent.formData.image;
+                                    $alert({title: 'Failed!', content: 'Please select a image file', placement: 'top-right', type: 'warning', show: true,animation: 'am-fade-and-slide-top',duration:2});
+                                    return false;
+                                }
+                                
+                            });
+          };
+          }
+          
+        };
+        
+        
+      }]);
 
 }());

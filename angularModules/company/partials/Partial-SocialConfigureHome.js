@@ -1,12 +1,34 @@
 var app=angular.module('baabtra');
-app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','$upload','$alert','$compile','fileReader','growl',function($scope, $modal,SocialconfigHome,$upload,$alert,$compile,fileReader,growl){
+app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','$upload','$alert','$compile','fileReader','growl','ezfb','$linkedIn',function($scope, $modal,SocialconfigHome,$upload,$alert,$compile,fileReader,growl,ezfb,$linkedIn){
 	var i=0;
 	$scope.touterConfig={};
 	$scope.fileObj={};
-	$scope.touterConfig.websiteList=[{'1':'dev.baabtra.com'}];
+
+	/**
+   * Update loginStatus result
+   */
+	$scope.updateLoginStatus=function(more) {
+		ezfb.getLoginStatus(function (res) {
+			$scope.loginStatus = res;
+
+			(more || angular.noop)();
+		});
+	}
+
+	/**
+	* Update api('/me') result
+	*/
+	$scope.updateApiMe=function() {
+		ezfb.api('/me', function (res) {
+			$scope.apiMe = res;
+		});
+	}
+
+	$scope.touterConfig.websiteList=[{'websiteName':'dev.baabtra.com'}];
 	$scope.touterConfig.freezeText='Configur your website'; //text for freeze button
-	$scope.touterConfig.steps=[{'stepNo':1,'name':'Configure Website','iconUrl':'glyphicon-pencil','active':'active'},{'stepNo':2,'name':'Feature Selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':3,'name':'Feture type selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':4,'name':'Save configuration','iconUrl':'glyphicon-saved','active':''}];
+	$scope.touterConfig.steps=[{'stepNo':1,'name':'Configure Website','iconUrl':'glyphicon-pencil','active':'active'},{'stepNo':2,'name':'Channel Selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':3,'name':'Broadcast type selection','iconUrl':'glyphicon-saved','active':''},{'stepNo':4,'name':'Save configuration','iconUrl':'glyphicon-saved','active':''}];
 	$scope.touterConfig.valid=true;
+	$scope.updateLoginStatus($scope.updateApiMe);
 	$scope.touterConfig.button = { //button style while toggle
 		"toggle": false,
 		"checkbox": {
@@ -99,6 +121,23 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		$scope.touterConfig.featureId=id;
 		$scope.touterConfig.featureTypesList=$scope.touterConfig.featureList[index].broadcastTypes;
 		$scope.touterConfig.featureImg=src;
+		//added for getting active icon
+		var i;
+		for(i=0;i<$scope.touterConfig.featureList.length;i++){
+			
+			if(i===index){
+				$scope.touterConfig.featureList[i].active='ng-show';
+				
+			}
+			else{
+				
+				$scope.touterConfig.featureList[i].active='ng-hide';
+			}
+
+			
+
+		}
+		//.end ective icon
 				
 	};
 
@@ -301,6 +340,27 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 				//console.log(result);	
 		}
 	}; 
-	
+	//function to load the fb permission popup
+	$scope.fnfbPermissionAccess = function () {
+	/**
+	* Calling FB.login with required permissions specified
+	* https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
+	*/
+	$scope.touterConfig.tempSelElemId='submit';
+		ezfb.login(function (res) {
+		/**
+		* no manual $scope.$apply, I got that handled
+		*/
+		if (res.authResponse) {
+		$scope.updateLoginStatus($scope.updateApiMe);
+		}
+		}, {scope: 'public_profile, email,user_likes,publish_actions,user_photos,status_update'});
+	};
+	//function to get the access for our app from the user
+	$scope.fnLnPermissionAccess = function() {
+		$scope.touterConfig.tempSelElemId='username';
+		$linkedIn.authorize();
+	};
+
 
 }]);

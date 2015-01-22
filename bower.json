@@ -33,7 +33,9 @@
     "angular-schema-form": "~0.7.6",
     "angular-form-gen": "~0.0.2",
     "angular-block-ui": "~0.1.2",
-    "angular-growl": "~0.4.0"
+    "angular-growl": "~0.4.0",
+    "angular-easyfb": "~1.2.1",
+    "ngLinkedIn": "~0.1.4"
   },
   "devDependencies": {
     "angular-mocks": "~1.2"
