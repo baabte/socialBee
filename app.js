@@ -104,27 +104,12 @@
             // https://developers.facebook.com/docs/javascript/reference/FB.init/v2.0
             version: 'v2.0'
           }); 
-          // Default load SDK function
-          var _defaultLoadSDKFunction = [
-                   '$window', '$document', 'ezfbAsyncInit', 'ezfbLocale',
-          function ($window,   $document,   ezfbAsyncInit,   ezfbLocale) {
-            // Load the SDK's source Asynchronously
-            (function(d){
-              var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-              if (d.getElementById(id)) {return;}
-              js = d.createElement('script'); js.id = id; js.async = true;
-              js.src = "//connect.facebook.net/" + ezfbLocale + "/all.js";
-              // js.src = "//connect.facebook.net/" + ezfbLocale + "/all/debug.js";  // debug
-              ref.parentNode.insertBefore(js, ref);
-            }($document[0]));
 
-            $window.fbAsyncInit = ezfbAsyncInit;
-          }];
       })
       //linked in sdk config
       .config(function($linkedInProvider) {
           $linkedInProvider.set('appKey', '78balr8oe7bptc')
-                            .set('scope', 'r_basicprofile r_network');
+                            .set('scope', 'r_emailaddress r_fullprofile r_network rw_nus w_messages rw_company_admin');
       })
       .directive('iframeOnload', [function(){
       return {

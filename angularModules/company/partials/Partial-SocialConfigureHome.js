@@ -13,7 +13,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 
 			(more || angular.noop)();
 		});
-	}
+	};
 
 	/**
 	* Update api('/me') result
@@ -22,7 +22,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		ezfb.api('/me', function (res) {
 			$scope.apiMe = res;
 		});
-	}
+	};
 
 	$scope.touterConfig.websiteList=[{'websiteName':'dev.baabtra.com'}];
 	$scope.touterConfig.freezeText='Configur your website'; //text for freeze button
@@ -121,7 +121,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 		$scope.touterConfig.featureId=id;
 		$scope.touterConfig.featureTypesList=$scope.touterConfig.featureList[index].broadcastTypes;
 		$scope.touterConfig.featureImg=src;
-		//added for getting active icon
+		//added for getting active icon-------------------------------
 		var i;
 		for(i=0;i<$scope.touterConfig.featureList.length;i++){
 			
@@ -137,7 +137,7 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 			
 
 		}
-		//.end ective icon
+		//.end ective icon--------------------------------------------
 				
 	};
 
@@ -359,8 +359,29 @@ app.controller('SocialconfigurehomeCtrl',['$scope','$modal','SocialconfigHome','
 	//function to get the access for our app from the user
 	$scope.fnLnPermissionAccess = function() {
 		$scope.touterConfig.tempSelElemId='username';
-		$linkedIn.authorize();
+		$linkedIn.authorize().then(function(arg){
+			$linkedIn.isAuthorized().then(function(status){
+				if(status===true){
+					$scope.getLinkedInData();
+				}
+			});
+		});
+		
+	};
+	$scope.getLinkedInData= function(){
+		$linkedIn.profile("~",["id","firstName","lastName","pictureUrl","publicProfileUrl","email-address","location","headline","phoneNumbers","network"],{scope:"r_fullprofile+r_emailaddress+rw_nus"}).then( 
+		function(response) {
+		//console.log(response.values[0]);
+			/*$scope.loginCredential={};
+		$scope.signinform.$setPristine();
+		$scope.loginCredential.id=response.id;
+		$scope.socialData=response;
+		$scope.socialData.mediaName="linkedIn";
+		$scope.from_where="linkedIn";
+		LoginService.fnloginService($scope);*/
+		});
 	};
 
-
 }]);
+
+
