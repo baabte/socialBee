@@ -84,7 +84,7 @@ pre                             { margin-bottom:20px; }
 }
 .nav-wizard > li > a {
   position: relative;
-  background-color: #eeeeee;
+  background-color: #FFFFFF; /*#eeeeee */
 }
 .nav-wizard > li > a .badge {
   margin-left: 3px;
