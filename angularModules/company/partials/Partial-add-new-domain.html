@@ -1,0 +1,49 @@
+<div class="col-sm-12 container-fluid bg-white flipInX animated bx-sh">
+	<div class="row">
+		<div class="p-md ng-scope">
+			<div class="panel panel-default">
+      <div class="panel panel-heading bg-warning"></div>
+			<div class="panel panel-body">
+<div class="col-sm-offset-2 col-md-4">
+      <div class="panel panel-default">
+        <div class="text-info panel-heading bg-white">
+          <label class="text-info">Add a new domain</label><br>
+          <small class="text-muted">You can add your new domain here.</small>
+        </div>
+        <div class="panel-body">
+          <form name="addNewDomain" role="form" class="form-validation" xt-form novalidate>
+           <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon text-info">www</div>
+                <input type="text" name="domainUrl" placeholder="Your domain url" xt-validate class="form-control" ng-model="domainUrl" ng-pattern="urlPattern" required ui-validate=" '$value!==existingDomainName' " ui-validate-watch=" 'existingDomainName' " msg-validator='{{EMsgDomainExist}}' msg-pattern="{{errMsgDomain}}"  msg-required="This is required field" ng-change="fnDomainNameExists()">
+              </div>
+            </div>
+           	<button ladda="loginLoading" ng-click="fnAddNewDomain()" data-style="slide-down" class="col-sm-offset-5 btn btn-info m-b" ng-disabled="addNewDomain.$invalid">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading bg-white">
+          <label class="text-info">Existing domains</label><br>
+
+        </div>
+        <div class="panel-body">
+        <!-- <div class="col-md-12" data-ng-repeat="domain in domainObj.domainList"><div class="panel p bg-warning">{{domain.domainUrl}}<a ng-click="fnDeActivateDomain(domain._id.$oid)" class="btn m-v-m btn-xs pull-right glyphicon  glyphicon-trash"></a></div></div></div>
+        </div> -->
+        <div class="list-group list-group-sm list-group-gap">
+        <div ng-repeat="domain in domainObj.domainList" class="list-group-item bg-warning">
+          {{domain.domainUrl}}<a ng-click="fnDeActivateDomain(domain._id.$oid)" class="btn m-v-m btn-xs pull-right glyphicon  glyphicon-trash"></a>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+   			 </div>
+			      </div>
+			</div>
+		</div>
+	</div>
+</div>

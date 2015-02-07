@@ -1,0 +1,38 @@
+<div class="col-sm-12 container-fluid bg-white">
+<div class="row">
+<div class="p-md ng-scope">
+<div class="panel panel-default">
+    <div class="panel-heading">Domain Verification</div>
+    <div class="panel-body">
+1. Select the HTML Method tab, in the Domain Verification page.<br />
+2. Download the 'TBDomainVerification.html.tar.gz' file from <a title="Please click here to download the file" download="TBDomainVerification.html" onclick ="location.href='http://localhost:8000/TBConfigFiles/TBDomainVerification.html.tar.gz'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-download-alt"></i>Click here</a> and extract the folder.<br />
+3. Upload the file to ./tbverify/TBVerifyDomain.html'. <br />
+4. You should now be able to view the code, when you click the webpage link.
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Domain Name</th>
+          <th>Domain verification status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="domain in domainObj.domainList">
+          <td>{{$index+1}}</td>
+          
+          <td>{{domain.domainUrl}}</td>
+          <td>{{domain.status==0?'Not verified':'Verified'}}</td>
+          <td><button ng-hide="domain.status" title="click here to verify your domain" type="button" ng-click="fnVerifyDomain(domain._id.$oid,domain.domainUrl)"  class="btn btn-xs btn-info">
+           <i class="glyphicon glyphicon-check">
+            </i>Click me to verify
+          </button><!-- <i ng-show="domain.status" class="fa fa-check-circle text-success">verified</i> -->
+  
+<span ng-if="domain.status" class="label bg-success pos-rlt m-r-xs"><b class="arrow left b-success pull-in"></b>Verified<i class="p-sm fa fa-check-circle"></i></span>
+          </td>
+        </tr>
+       
+      </tbody>
+    </table>   </div></div>
+  </div></div>

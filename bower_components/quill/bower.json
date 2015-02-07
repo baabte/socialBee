@@ -8,7 +8,7 @@
     "Keegan Poppen <keegan.poppen@gmail.com>"
   ],
   "description": "Cross browser rich text editor",
-  "main": ["dist/quill.js","dist/quill.snow.css"],
+  "main": ["dist/quill.min.js", "dist/quill.snow.css"],
   "license": "BSD",
   "ignore": [
     "**/.*",

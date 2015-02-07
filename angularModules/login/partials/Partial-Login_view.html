@@ -1,0 +1,95 @@
+<!-- 
+
+<div class="container  w-lg p-v-md bg-white " >  
+
+ <div class="animated fadeInDown " >
+  <div class="w-lg p-v-md " >  
+   <div class="center-block w-xl w-auto-xs m-b-lg" >
+    <div class="social-title pull-center" >&nbsp &nbsp  
+     Connect with Your Social Accounts</div>
+     <br>
+
+     <div >&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <span ng-href="" ng-click="facebook_login()"><img src="images/facebook.png" class="logo-prop" ng-enabled="isLoggedIn" ></span>&nbsp <span ng-click="linkedIn_login()"> <img src="images/linkedin.png" class="logo-prop"></span>
+     </div>
+     <div>
+
+      <br>
+      <div class="m-b text-sm" >
+       Sign in with your {{app.name}} Account
+      </div>
+
+      <form name="signinform" ng-submit="fnCheckLogin()" class="form-validation" role="form" xt-form novalidate >
+
+       <div class="form-group form-group m-b-xs">
+        <label class="hide">Email</label>
+        <input type="text"  placeholder="Someone@example.com" class="login-form-control" ng-model="loginCredential.userName" ng-pattern="emailPattern" id="email" xt-validate name="email"  msg-pattern='{{emailMsg}}'  class="form-control email" ng-focus="Show_hide_val_msg()"  required>
+
+       </div>
+       <div class="form-group form-group m-b-xs" >
+        <label class="hide" >Password</label>
+        <input type="password" placeholder="Password" name="password" class="login-form-control " ng-model="loginCredential.password" xt-validate required ng-minlength="5">
+       </div>      
+       <div class="checkbox" >        
+        <label class="ui-checks">
+         <input type="checkbox"><i></i> Keep me signed in 
+        </label>
+       </div>
+       <button type="submit" class="btn btn-info " style="margin:0px"  ng-disabled="signinform.$invalid || progress" >{{btnSignupText}}</button>
+       <p class="text-xs"><a ui-sref="forgot-password">Forgot password?</a></p>
+       <p class="m-v-lg text-sm">Do not have an account? <a ui-sref="signup" href="#/signup">Create an account</a></p>
+       <div  ng-class="Error_msg ? 'login-form-control' : ''" id="login_error_msg" ng-show="Error_msg">
+        <div class="ms_content" ><span class="content_span">{{login_error}}</span></div>
+       </div>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </div>
+ 
+</div>
+
+ -->
+
+ <div class="container w-xxl p-lg bg-white shadow" >
+<button type="button" class="close" ui-sref="forgot-password"><code>×</code></button>
+  <div class="" >
+    <h4 >Sign in to {{app.name}}</h4>
+    <div class="p-v-sm"></div>
+    <div >
+      <a class="btn btn-block btn-social btn-lg btn-facebook " ng-click="facebook_login()" ng-enabled="isLoggedIn">
+        <i class="fa fa-facebook "></i>
+        Sign in with facebook
+      </a>
+      <div class="p-xs"></div>
+      <a class="btn btn-block btn-social btn-lg btn-linkedin" ng-click="linkedIn_login()" ng-enabled="isLoggedIn">
+        <i class="fa fa-linkedin "></i>
+        Sign in with linkedin
+      </a>
+    </div>
+    <div class="p-v-sm">
+      <hr>
+    </div>
+     <form name="signinform" ng-submit="fnCheckLogin()" class="form-validation" role="form" xt-form novalidate >
+    <div class="input-group m-b " >
+          <span class="input-group-addon">@</span>
+          <input type="text" class="form-control hg" placeholder="Username" id="email" ng-model="loginCredential.userName" ng-pattern="emailPattern" xt-validate name="email"  msg-pattern='{{emailMsg}}' ng-focus="Show_hide_val_msg()" ng-minlength="1">
+    </div>
+    <div class="input-group m-b h-md" >
+          <span class="input-group-addon"><i class="ti-unlock"></i></span>
+          <input type="password" class="form-control hg" placeholder="Password"  name="password" ng-model="loginCredential.password" xt-validate required ng-minlength="5">
+    </div>
+    <div  ng-class="Error_msg ? 'login-form' : ''" ng-show="Error_msg">
+      <span class="content_span" >{{login_error}}</span>
+    </div>
+    <label class="ui-checks">
+        <input type="checkbox"><i></i> Keep me signed in 
+    </label>
+    <div>
+      <button  type="submit" class="btn btn-primary hg" ng-disabled="signinform.$invalid || progress" ><span class="p-h-md">{{btnSignupText}}</span></button>
+      </form>
+      <p class="text-xs"><a ui-sref="forgot-password">Forgot password?</a></p>
+      
+    </div>
+  </div>  
+</div>

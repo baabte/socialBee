@@ -59,7 +59,7 @@
 
     InputValidator.prototype.showErrors = function (isSubmit) {
 
-        var ngModel = this.ngModel;
+        var ngModel = this.ngModel;   
         this.setDirty(true);
         if (!ngModel.$valid) {
 
@@ -157,8 +157,7 @@
                 min: 'Must be at least {{min}}',
                 max: 'Must be no greater than {{max}}',
                 email: 'Invalid Email',
-                pattern: 'Illegal value',
-                blacklist: 'hi'
+                pattern: 'Illegal value'
             };
 
             this.setErrors = function (errors) {
@@ -298,6 +297,7 @@
                     var ngModel = ctrls[0],
                         xtFormCtrl = ctrls[1],
                         errors = angular.copy(xtFormErrors);
+                        // console.log(ngModel);
 
                     if (ngModel.$name === undefined) {
                         throw new Error('element must have a "name" attribute to use xtValidate');

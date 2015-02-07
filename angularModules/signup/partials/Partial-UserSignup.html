@@ -1,0 +1,40 @@
+<div class="container">  
+  <div class="center-block w-xl w-auto-xs m-b-lg">
+    <div class="text-2x m-v-lg text-primary"><i class="glyphicon glyphicon-th-large text-xl"></i> {{app.name}}</div>
+    <div class="m-b text-sm">
+      Sign up to your {{app.name}} Account
+    </div>
+    <form name="signupform"  ng-submit="fnCompanySignup()"  class="form-validation" role="form" xt-form novalidate>
+       <div class="input-group m-b">
+          <span class="input-group-addon ti-email"></span>
+        <input type="text" ng-pattern="emailPattern" id="email" xt-validate name="email" ui-validate=" '$value!==existingEmail' " ui-validate-watch=" 'existingEmail' " placeholder="Someone@example.com" class="form-control email" msg-pattern='{{emailMsg}}' msg-validator='{{emailEMsg}}' ng-model="signupDetails.email" required ng-change="fnCheckEmailExists(signupDetails.email)">       
+      </div>
+      <div class="input-group m-b">
+          <span class="input-group-addon ti-user"></span>
+          <input type="text" name="companyName" placeholder="Your Full Name" xt-validate class="form-control" ng-model="signupDetails.fullName" required msg-required="This is required field">
+       
+      </div>
+    
+       <div class="input-group m-b">
+          <span class="input-group-addon ti-key"></span>
+        <input type="password" placeholder="Password"  class="form-control" name="password" ng-model="signupDetails.password" xt-validate required ng-minlength="6">  
+      </div>
+<!--       <div class="input-group m-b">
+          <span class="input-group-addon ti-key"></span>
+         <input type="password" placeholder="Confirm Password"  class="form-control " name="confpassword" required ng-model="confpassword" ui-validate=" '$value==password' " ui-validate-watch=" 'password' " xt-validate name="confpassword" msg-validator='not matching'>
+         
+      </div> -->
+       
+      <div class="checkbox no-margin">
+        <label class="ui-checks">
+          <input type="checkbox" ng-model="agree" required><i></i> Agree the <a href>terms and policy</a>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-info p-h-md m-v-lg" ng-disabled="signupform.$invalid || progress" >{{btnSignupText}}</button>
+
+      <p>Already have an account? <a ui-sref="login">Sign in</a></p>
+    </form>
+  </div>
+</div>
+<div class="app-footer" ng-include="'views/footer.html'"></div>
+

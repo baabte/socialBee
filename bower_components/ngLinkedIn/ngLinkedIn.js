@@ -14,10 +14,10 @@
 angular.module('ngLinkedIn', [])
     .provider('$linkedIn', function() {
         var config = {
-            appKey: null,
-            authorize: false,
+            appKey: "78jnfwsxzeqtdl",
+            authorize: true,
             lang: 'en_US',
-            scope: 'r_basicprofile'
+            scope: 'r_fullprofile r_network r_emailaddress'
         };
 
         this.set = function(property, value) {

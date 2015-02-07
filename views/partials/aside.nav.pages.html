@@ -1,52 +1,19 @@
-<nav ui-nav>
-  <ul class="nav">
-    <li class="nav-header h4 m-v-sm">
-      Pages
-    </li>
-    <li ui-sref-active="active">
-      <a ui-sref="page.profile">
-        <span>Profile</span>
+
+<div ui-nav ng-class="{'ng-hide':!navBar}" class="breadCrumb">
+  <ul suppress-scroll-y="true" ng-class="{'hideScrollBar':!showScrollbarBreadcrumb}" class="perfect-scrollbar nav nav-container-scroll">
+    <li ng-click="goHome()" ng-class="{'animated fadeInDown':navBar,'ng-hide':!navBar}" ui-sref-active="active" >
+      <a>
+       <i class="icon glyphicon glyphicon-list text-lg"></i>
       </a>
     </li>
-    <li ui-sref-active="active">
-      <a ui-sref="page.settings">
-        <span>Settings</span>
-      </a>
-    </li>
-    <li ui-sref-active="active">
-      <a ui-sref="page.blank">
-        <span>Blank</span>
-      </a>
-    </li>
-    <li>
-      <a ui-sref="signin">
-        <span>Sign In</span>
-      </a>
-    </li>
-    <li>
-      <a ui-sref="signup">
-        <span>Sign Up</span>
-      </a>
-    </li>
-    <li>
-      <a ui-sref="forgot-password">
-        <span>Forgot Password</span>
-      </a>
-    </li>
-    <li>
-      <a ui-sref="lockme">
-        <span>Lockme Screen</span>
-      </a>
-    </li>
-    <li>
-      <a ui-sref="404">
-        <span>Error 404</span>
-      </a>
-    </li>
-    <li>
-      <a ui-sref="505">
-        <span>Error 505</span>
+    <li  ng-click="goMenu(path,$index)" ng-repeat="path in linkPath track by $index" ui-sref-active="active">
+      <a class="animated fadeInDown">
+        <i class="fa fa-chevron-right" style="font-size: 8px;position: relative;top: -3px; left:-10px;"></i>
+      	<i class="fa {{path.menuIcon}} fa-1x"></i>
+       <i class="text-md">{{path.MenuName}}</i>
       </a>
     </li>
   </ul>
-</nav>
+  </ul>
+
+</div>

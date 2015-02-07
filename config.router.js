@@ -22,17 +22,14 @@
         [          '$stateProvider', '$urlRouterProvider',
           function ( $stateProvider,   $urlRouterProvider ) {
             $urlRouterProvider
-              .otherwise('/page/home');
+              .otherwise('/login');
             $stateProvider
               .state('app', {
                 abstract: true,
                 url: '/app',
                 views: {
                   '': {
-                    templateUrl: 'views/layout.html'
-                  },
-                  'aside': {
-                    templateUrl: 'views/partials/aside.nav.uikit.html'
+                    templateUrl: 'angularModules/login/partials/Partial-Login_view.html'
                   }
                 }
               })

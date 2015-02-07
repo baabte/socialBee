@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" style="background: url(../images/BeeYellow.png);">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Social Bee | Social connectivity </title>
+  <title>Baabtra.com</title>
   <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  
+  <link rel="shortcut" href="images/favicon.png">
   <!-- build:css(.) css/baabtra.min.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/template/dist/animate.css" />
@@ -17,18 +17,38 @@
   <link rel="stylesheet" href="bower_components/template/dist/font.css" />
   <link rel="stylesheet" href="bower_components/template/dist/app.css" />
   <link rel="stylesheet" href="bower_components/template/dist/loading-bar.css" />
-  <link rel="stylesheet" href="bower_components/template/dist/customStyle.css" />
-  <link rel="stylesheet" href="bower_components/quill/dist/quill.snow.css" />
+  <link rel="stylesheet" href="bower_components/template/dist/customstyles.css" />
+  <link rel="stylesheet" href="bower_components/template/dist/timeLine.css" />
+  <link rel="stylesheet" href="bower_components/template/dist/colors.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/selectize.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select2.css" />
   <link rel="stylesheet" href="bower_components/angular-form-gen/dist/angular-form-gen.css" />
-  <link rel="stylesheet" href="bower_components/angular-block-ui/dist/angular-block-ui.css" />
+  <link rel="stylesheet" href="bower_components/perfect-scrollbar/min/perfect-scrollbar.min.css" />
+  <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
+  <link rel="stylesheet" href="bower_components/quill/dist/quill.snow.css" />
+  <link rel="stylesheet" href="bower_components/ngHierarchicalSelector/dist/ng-hierarchical-selector.0.2.0.css" />
+  <link rel="stylesheet" href="bower_components/spectrum/spectrum.css" />
+  <link rel="stylesheet" href="bower_components/ladda/dist/ladda.min.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
 </head>
 <body ng-app="baabtra">
+
+<div class="container text-center" style="height:85%;" ng-show="hide_when_root_empty">
+   <div style="margin-top:25%;"><i class="fa fa-gear fa-spin text-4x row-centered baab-loader" ></i></div>
+   <div style="margin-top:-10px;margin-left:45px;" ><i class="fa fa-gear fa-spin-reverse text-4x row-centered baab-loader"></i></div>
+   <div style="margin-top:-70px;margin-left:-75px;"><i class="fa fa-gear fa-spin-reverse   text-3x row-centered baab-loader"></i></div>
+</div>
+<div ng-hide="hide_when_root_empty">
   <div class="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-top':app.settings.asideTop}" ui-view ng-controller="MainCtrl"></div>
 
+<!-- build:js(.) js/script.min.js -->
 <!-- bower:js -->
+<script src="bower_components/es5-shim/es5-shim.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -47,55 +67,148 @@
 <script src="bower_components/angular-translate/storage-cookie.js"></script>
 <script src="bower_components/angular-translate/storage-local.js"></script>
 <script src="bower_components/angular-loading-bar/loading-bar.js"></script>
+<script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
 <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/xtform/xtForm.js"></script>
-<script src="bower_components/textAngular/dist/textAngular.min.js"></script>
-<script src="bower_components/quill/dist/quill.js"></script>
-<script src="bower_components/ngquill/src/ng-quill.min.js"></script>
+<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
-<script src="bower_components/angular-contenteditable/angular-contenteditable.js"></script>
+<script src="bower_components/jsPlumb/dist/js/jquery.jsPlumb-1.7.2-min.js"></script>
+<script src="bower_components/angular-ui-router-styles/ui-router-styles.js"></script>
 <script src="bower_components/tv4/tv4.js"></script>
 <script src="bower_components/objectpath/lib/ObjectPath.js"></script>
 <script src="bower_components/angular-schema-form/dist/schema-form.min.js"></script>
 <script src="bower_components/angular-schema-form/dist/bootstrap-decorator.min.js"></script>
+<script src="bower_components/angular-ui-select/dist/select.js"></script>
 <script src="bower_components/angular-form-gen/dist/angular-form-gen.js"></script>
-<script src="bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
-<script src="bower_components/angular-growl/build/angular-growl.js"></script>
-<script src="bower_components/angular-easyfb/angular-easyfb.js"></script>
+<script src="bower_components/ng-facebook/ngFacebook.js"></script>
+<script src="bower_components/perfect-scrollbar/min/perfect-scrollbar.min.js"></script>
+<script src="bower_components/perfect-scrollbar/min/perfect-scrollbar.with-mousewheel.min.js"></script>
+<script src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+<script src="bower_components/angular-google-plus/dist/angular-google-plus.js"></script>
 <script src="bower_components/ngLinkedIn/ngLinkedIn.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+<script src="bower_components/quill/dist/quill.min.js"></script>
+<script src="bower_components/ngquill/src/ng-quill.min.js"></script>
+<script src="bower_components/contextMenu/contextMenu.js"></script>
+<script src="bower_components/ngHierarchicalSelector/dist/ng-hierarchical-selector.0.2.0.js"></script>
+<script src="bower_components/angular-growl/build/angular-growl.js"></script>
+<script src="bower_components/spectrum/spectrum.js"></script>
+<script src="bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.js"></script>
+<script src="bower_components/spin.js/spin.js"></script>
+<script src="bower_components/ladda/dist/ladda.min.js"></script>
+<script src="bower_components/angular-ladda/dist/angular-ladda.min.js"></script>
 <!-- endbower -->
-<!-- endbuild -->
-<!-- build:js(.) js/script.min.js -->
-<!-- App -->
 
-  <script src="app.js"></script>
-  <script src="config.js"></script>
-  <script src="config.router.js"></script>
-  <script src="config.router.ui.js"></script>
-  <script src="config.router.pages.js"></script>
-  <script src="config.lazyload.js"></script>
 
-  <script src="angularModules/template/directives/lazyload.js"></script>
-  <script src="angularModules/template/directives/ui-jp.js"></script>
-  <script src="angularModules/template/directives/ui-nav.js"></script>
-  <script src="angularModules/template/directives/ui-fullscreen.js"></script>
-  <script src="angularModules/template/directives/ui-scroll.js"></script>
-  <script src="angularModules/template/services/ui-load.js"></script>
-  <script src="angularModules/main.js"></script>
-  <script src="angularModules/company/partials/Partial-signup.js"></script>
-  <script src="angularModules/company/services/Service-signup.js"></script>
 
-  <script src="angularModules/company/controllers/Controller-home.js"></script>
-  <script src="angularModules/company/controllers/Controller-header.js"></script>
-  <script src="angularModules/company/partials/Partial-profileCompletion.js"></script>
-  <script src="angularModules/company/services/Service-profileCompletion.js"></script>
-  <script src="angularModules/company/partials/Partial-SocialConfigureHome.js"></script>
-  <script src="angularModules/company/services/Service-SocialconfigHome.js"></script>
-  <script src="angularModules/company/services/Service-fileReader.js"></script>
+
+<script src="app.js"></script>
+<script src="config.js"></script>
+<script src="config.router.js"></script>
+<script src="config.router.ui.js"></script>
+<script src="config.router.pages.js"></script>
+<script src="config.lazyload.js"></script>
+<script src="angularModules/template/directives/lazyload.js"></script>
+<script src="angularModules/template/directives/ui-jp.js"></script>
+<script src="angularModules/template/directives/ui-nav.js"></script>
+<script src="angularModules/template/directives/ui-fullscreen.js"></script>
+<script src="angularModules/template/directives/ui-scroll.js"></script>
+<script src="angularModules/template/services/ui-load.js"></script>
+<script src="angularModules/main.js"></script>
+<script src="angularModules/roleMenuMapping/partials/Partial-roleMenuMapping.js"></script>
+<script src="angularModules/roleMenuMapping/services/Service-roleMenuMappingSrv.js"></script>
+<script src="angularModules/company/partials/Partial-JobPosting.js"></script>
+<script src="angularModules/company/partials/Partial-ListJobs.js"></script>
+<script src="angularModules/company/services/Service-JobSrv.js"></script>
+<script src="angularModules/company/partials/Partial-viewJobDetailsModal.js"></script>
+<script src="angularModules/company/partials/Partial-editJobDetailsModal.js"></script>
+<script src="angularModules/company/partials/Partial-userMenuMapping.js"></script>
+<script src="angularModules/company/services/Service-userMenuMappingSrv.js"></script>
+<script src="angularModules/login/partials/Partial-Login_view.js"></script>
+<script src="angularModules/login/services/Service-LoginService.js"></script>
+<script src="angularModules/login/partials/Partial-home.js"></script>
+<script src="angularModules/login/services/Service-home.js"></script>
+<script src="angularModules/login/partials/Partial-home.js"></script>
+<script src="angularModules/login/services/Service-home.js"></script>
+<script src="angularModules/company/partials/Partial-manage_user_role.js"></script>
+<script src="angularModules/company/services/Service-manageCompanyRoleService.js"></script>
+<script src="angularModules/common/directives/Directive-fileuploadDir.js"></script>
+<script src="angularModules/company/partials/Partial-company_registration.js"></script>
+<script src="angularModules/company/partials/Partial-company_view.js"></script>
+<script src="angularModules/company/services/Service-companyRegistrationService.js"></script>
+<script src="angularModules/company/services/Service-companyViewService.js"></script>
+<script src="angularModules/login/controllers/Controller-header.js"></script>
+<script src="angularModules/billing/partials/Partial-user_billing_config.js"></script>
+<script src="angularModules/feature/partials/Partial-user_feature_config.js"></script>
+<script src="angularModules/billing/services/Service-userBillingConfigService.js"></script>
+<script src="angularModules/feature/services/Service-userFeatureConfigService.js"></script>
+<script src="angularModules/company/partials/Partial-addMenu.js"></script>
+<script src="angularModules/company/services/Service-addMenu.js"></script>
+<script src="angularModules/company/partials/Partial-viewMenu.js"></script>
+<script src="angularModules/company/services/Service-viewMenuSrv.js"></script>
+<script src="angularModules/company/partials/Partial-manageCompany.js"></script>
+<script src="angularModules/company/services/Service-manageCompanySrv.js"></script>
+<script src="angularModules/company/partials/Partial-companyHome.js"></script>
+<script src="angularModules/Branches/partials/Partial-Branches.js"></script>
+<script src="angularModules/common/directives/Directive-onFinishRender.js"></script>
+<script src="angularModules/Branches/services/Service-branchSrv.js"></script>
+<script src="angularModules/feature/partials/Partial-feature_config.js"></script>
+<script src="angularModules/feature/services/Service-feature_config.js"></script>
+<script src="angularModules/feature/directives/Directive-add_attr_dir.js"></script>
+<script src="angularModules/feature/directives/Directive-ngEnter.js"></script>
+<script src="angularModules/feature/directives/Directive-autoComplete.js"></script>
+<script src="angularModules/billing/partials/Partial-billing_plans.js"></script>
+<script src="angularModules/billing/services/Service-billing_plans.js"></script>
+<script src="angularModules/common/directives/Directive-fileuploadDir.js"></script>
+<script src="angularModules/course/partials/Partial-addCourse.js"></script>
+<script src="angularModules/course/services/Service-addCourseService.js"></script>
+<script src="angularModules/login/services/Service-header.js"></script>
+<script src="angularModules/commonservice/services/Service-commonService.js"></script>
+<script src="angularModules/courseTimeline/directives/Directive-courseTimeline.js"></script>
+<script src="angularModules/login/controllers/Controller-forgot-password.js"></script>
+<script src="angularModules/login/services/Service-forgotPassword.js"></script>
+<script src="angularModules/course/partials/Partial-addCourseElement.js"></script>
+<script src="angularModules/course/services/Service-addCourseElementService.js"></script>
+<script src="angularModules/course/partials/Partial-addCourseDomain.js"></script>
+<script src="angularModules/course/services/Service-addCourseDomainSrv.js"></script>
+<script src="angularModules/common/services/Service-manageTreeStructureSrv.js"></script>
+  <script src="angularModules/common/services/Service-commonSrv.js"></script>
+  <script src="angularModules/course/partials/Partial-addExitCriteria.js"></script>
+  <script src="angularModules/course/services/Service-addExitCriteriaService.js"></script>
+  <script src="angularModules/common/services/Service-fileReader.js"></script>
+  <script src="angularModules/user/partials/Partial-userRegistration.js"></script>
+  <script src="angularModules/user/services/Service-userRegistrationService.js"></script>
+  <script src="angularModules/Reseller/partials/Partial-reseller.js"></script>
+  <script src="angularModules/Reseller/services/Service-resellerSrv.js"></script>
+  <script src="angularModules/common/directives/Directive-customValidations.js"></script>
+  <script src="angularModules/form/partials/Partial-formCustomizer.js"></script>
+  <script src="angularModules/form/services/Service-formCustomizerService.js"></script>
+  <script src="angularModules/courseElementFields/youtubeVideo/directives/Directive-youtubeVideo.js"></script>
+  <script src="angularModules/courseElementPreview/directives/Directive-courseElementPreview.js"></script>
+  <script src="angularModules/courseElementFields/courseElementTitle/directives/Directive-coursElementTitle.js"></script>
+  <script src="angularModules/courseElementFields/docViewer/directives/Directive-docViewer.js"></script>
+  <script src="angularModules/courseElementFields/slideViewer/directives/Directive-slideViewer.js"></script>
+  <script src="angularModules/common/directives/Directive-fileValidations.js"></script>
+  <script src="angularModules/course/partials/Partial-draftedCourses.js"></script>
+  <script src="angularModules/course/services/Service-draftedCourses.js"></script>
+  <script src="angularModules/durationSelector/directives/Directive-durationSelector.js"></script>
+  <script src="angularModules/courseStreamline/directives/Directive-courseStreamline.js"></script>
+
+  <script src="angularModules/common/services/Service-SocialConfigHome.js"></script>
+  <script src="angularModules/common/partials/Partial-SocialConfigHome.js"></script>
+  <script src="angularModules/common/directives/Directive-dynamicIframe.js"></script>
+
+  <script src="angularModules/signup/partials/Partial-UserSignup.js"></script>
+  <script src="angularModules/signup/services/Service-UserSignup.js"></script>
+  <script src="angularModules/company/partials/Partial-domain-verification.js"></script>
+  <script src="angularModules/company/services/Service-domain-verification.js"></script>
+  <script src="angularModules/common/directives/Directive-iframe.js"></script>
+  <script src="angularModules/company/partials/Partial-add-new-domain.js"></script>
+  <script src="angularModules/company/services/Service-add-new-domain.js"></script>
   <!-- Add New Component JS Above -->
-
-
+<!-- endbuild -->
+</div>
 
 </body>
 </html>

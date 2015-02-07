@@ -2609,8 +2609,6 @@ select[multiple].input-lg {
 .has-error .checkbox-inline {
   color: #a94442;
 }
-
-
 .has-error .form-control {
   border-color: #a94442;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -5506,9 +5504,7 @@ button.close {
   filter: alpha(opacity=0);
   opacity: 0;
 }
-
-
-  .tooltip.in {
+.tooltip.in {
   filter: alpha(opacity=90);
   opacity: .9;
 }
@@ -5529,8 +5525,6 @@ button.close {
   margin-left: -3px;
 }
 .tooltip-inner {
-  font-size: 14px;
-  font-weight:bold;
   max-width: 200px;
   padding: 3px 8px;
   color: #fff;
@@ -5538,14 +5532,7 @@ button.close {
   text-decoration: none;
   background-color: #000;
   border-radius: 4px;
-    box-shadow: 5px 5px 5px #999999;  
-  -o-box-shadow: 5px 5px 5px #999999;
-  -ms-box-shadow: 5px 5px 5px #999999;
-  -moz-box-shadow: 5px 5px 5px #999999;
--webkit-box-shadow: 5px 5px 5px #999999;
--khtml-box-shadow: 5px 5px 5px #999999;
 }
-
 .tooltip-arrow {
   position: absolute;
   width: 0;
