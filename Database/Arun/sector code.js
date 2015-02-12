@@ -1,5 +1,0 @@
-db.clnSectors.insert({sectorName:"IT"})
-db.clnSectors.insert({sectorName:"Banking"})
-db.clnSectors.insert({sectorName:"TeleCom"})
-db.clnSectors.insert({sectorName:"Tourist"})
-db.clnSectors.insert({sectorName:"Transport"})

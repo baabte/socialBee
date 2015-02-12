@@ -1,5 +1,5 @@
 
-angular.module('baabtra').controller('CompanyRegistrationCtrl',['$scope','commonService','companyRegistrationService','localStorageService','$location','$alert','$rootScope', function ($scope,commonService,companyRegistrationService,localStorageService,$location,$alert,$rootScope) {
+angular.module('baabtra').controller('CompanyRegistrationCtrl',['$scope','commonService','companyRegistrationService','localStorageService','$location','$alert','$rootScope','$state', function ($scope,commonService,companyRegistrationService,localStorageService,$location,$alert,$rootScope,$state) {
    
         
 

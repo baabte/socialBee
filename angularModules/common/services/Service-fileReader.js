@@ -1,5 +1,5 @@
 angular.module('baabtra').factory('fileReader',function ($q, $log) {
- 
+ console.log('hiii');
         var onLoad = function(reader, deferred, scope) {
             return function () {
                 scope.$apply(function () {

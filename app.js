@@ -34,8 +34,8 @@
         'ui.utils',
         'mgcrea.ngStrap',
         'pascalprecht.translate',
-        'oc.lazyLoad',
         'ui.load',
+        'oc.lazyLoad',
         'ui.jp',
         'angular-loading-bar',
         'LocalStorageModule',
@@ -56,13 +56,15 @@
         'ngTagsInput',
         'ngQuill',
         'hierarchical-selector',
-        'angularSpectrumColorpicker',
+        'angularSpectrumColorpicker',       
         'angular-growl',
-        'angular-ladda'
+        'angular-ladda',
+        'angular-intro',
+        'contenteditable'
 
       ]).run(function(editableOptions) {
   editableOptions.theme = 'bs3';
-})
+});
       
 
 }());

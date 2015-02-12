@@ -13,7 +13,7 @@ angular.module('baabtra').controller('ManagecompanyCtrl',['$scope','$localStorag
         $scope.companyId=loginInfo.roleMappingObj[0].fkCompanyId.$oid;          
       }        
       $scope.roleId=loginInfo.roleMappingObj[0].fkRoleId;
-      if($scope.roleId!=1 && $scope.roleId!=2){ //checking for login role id 
+      if(!angular.equals($scope.roleId,1) && !angular.equals($scope.roleId,2)){ //checking for login role id 
           $location.path('/home');
       }      
     }

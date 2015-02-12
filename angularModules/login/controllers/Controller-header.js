@@ -4,7 +4,7 @@ angular.module('baabtra').controller('header',['$scope','$rootScope','$state','l
 			$scope.loggedUserInfo=$rootScope.userinfo.ActiveUserData;
 		}
 		$scope.$watch(function() {
-  					return $rootScope.userinfo;
+					return $rootScope.userinfo;
 		}, function() {
 				if($rootScope.userinfo){
 					$scope.loggedUserInfo=$rootScope.userinfo.ActiveUserData;
@@ -18,13 +18,10 @@ angular.module('baabtra').controller('header',['$scope','$rootScope','$state','l
 			};
 		//call back functions of LOGOUT
 		$scope.fnCallbackLogout=function(){
-   				localStorageService.set('logDatas','{}');//resetting the userinfo before logout 
-   				$rootScope.loggedIn=false;
-   				$rootScope.userinfo=undefined;
+				localStorageService.set('logDatas','{}');//resetting the userinfo before logout 
+				$rootScope.loggedIn=false;
+				$rootScope.userinfo=undefined;
 				$state.go('login');//redirecting path into login
 
-			}
-				
-   			
-
+			};
 }]);

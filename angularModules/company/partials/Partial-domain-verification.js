@@ -16,8 +16,8 @@ app.controller('DomainVerificationCtrl',['$scope','domainVerification','$rootSco
 	};
 	        
 	//to set the src for iframe
- 	$scope.getSrc = function() {
- 		return $sce.trustAsResourceUrl($scope.domainSrc);
+	$scope.getSrc = function() {
+		return $sce.trustAsResourceUrl($scope.domainSrc);
 	};
 
 	// Here "addEventListener" is for standards-compliant web browsers and "attachEvent" is for IE Browsers.
@@ -37,7 +37,7 @@ app.controller('DomainVerificationCtrl',['$scope','domainVerification','$rootSco
 			if(e.origin==="http://localhost:9000"){
 				if(e.data==="verified") // checking the post message from child window 
 				{
-					for (item in $scope.domainObj.domainList){
+					for (var item in $scope.domainObj.domainList){
 						if(angular.equals($scope.domainObj.domainList[item].domainUrl,e.origin)){
 							$scope.domainObj.domainList[item].status=1;
 						}

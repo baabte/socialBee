@@ -6,7 +6,7 @@ angular.module('baabtra').controller('AddmenuCtrl',['$scope','commonService','$a
    $rootScope.hide_when_root_empty=false;
 }
 
-if($rootScope.loggedIn==false){
+if(angular.equals($rootScope.loggedIn,false)){
  $state.go('login');
 }
 

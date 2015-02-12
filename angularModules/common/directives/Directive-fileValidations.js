@@ -14,16 +14,16 @@ angular.module('baabtra')
 //      });
 
 //      $scope.getFile = function () {
-      
+
 //        fileReader.readAsDataUrl($scope.file, $scope)
 //                      .then(function(result) {                     
 //                          $scope.$parent.imageSrc = result;       
 //         });
 //      };
 //    }
-   
+
 //  }; 
- 
+
 // }])
 
 //directive to validate the max size of the file
@@ -33,9 +33,6 @@ angular.module('baabtra')
 		require: ["^?form",'ngModel'],
 		scope: {srcObj:"="},
 		link: function(scope, elem, attrs, ctrls) {
-
-			
-			console.log(ctrls[1]);
 			
 			// if there is no $error object in the control, define an error object to push our custom validation error
 			if (angular.equals(ctrls[1].$error, undefined)){
@@ -49,74 +46,69 @@ angular.module('baabtra')
 		elem.bind("change", function(e){ 
 
 				//getting the file object of the control into a scope variable
-		       scope.file = (e.srcElement || e.target).files[0];
+			scope.file = (e.srcElement || e.target).files[0];
 
-		       // checking the validity of the control (f-max-size)		      
-		       if(scope.validateFileSIze()) {
-		      
-			       	// if the control is valid setting the validity of the control to true
-			        ctrls[1].$setValidity("fMaxSize", true);
+			// checking the validity of the control (f-max-size)		      
+			if(scope.validateFileSIze()) {
 
-			        // displaying the file
-			       	scope.getFile();
+			// if the control is valid setting the validity of the control to true
+			ctrls[1].$setValidity("fMaxSize", true);
 
-			       	//setting the tolltip to null if the file is valid
-			       	scope.title = '';
+			// displaying the file
+			scope.getFile();
 
-			       	//removing the red danger class
-			       	elem.removeClass('bg-danger lt');
+			//setting the tolltip to null if the file is valid
+			scope.title = '';
 
-		       }
+			//removing the red danger class
+			elem.removeClass('bg-danger lt');
 
-		             
+			}
 		});
 
-				// To validate the file attributes
-			     scope.validateFileSIze = function () {     
+				//To validate the file attributes
+				scope.validateFileSIze=function(){
 
-						// file size checking
-					      if ((scope.file.size) > parseInt(attrs.fMaxSize)*1024) { 
+				//file size checking
+					if((scope.file.size)>parseInt(attrs.fMaxSize)*1024){
+						// if the file size has a size more than the defined f-max-size attribute, setting the property in the $error object of the control to false. This will in turn set the form invalid
+						ctrls[1].$setValidity("fMaxSize", false);
 
-					     	  // if the file size has a size more than the defined f-max-size attribute, setting the property in the $error object of the control to false. This will in turn set the form invalid		  			
-					      	  ctrls[1].$setValidity("fMaxSize", false);  	  
-					      	  
-					      	  //setting the corresponding title(tooltiop)
-					      	  scope.title = 'This exceeds the maximum file size limit of ' + attrs.fMaxSize + 'Kb';
-					      	  
-					      	  // adding a danger class to the control
-					          elem.addClass('bg-danger lt'); 
+						//setting the corresponding title(tooltiop)
+						scope.title = 'This exceeds the maximum file size limit of ' + attrs.fMaxSize + 'Kb';
 
-					          //clearing the loaded image
-					          if (!angular.equals(scope.$parent.imageSrc, undefined)) {
-					          		scope.$parent.imageSrc = '';
-					          }
-					          $(elem).parent().find('img').attr('src', '');
-					         
-					          // returning the flse status back
-					          return false;             
-					       }
-					       else{
+						// adding a danger class to the control
+						elem.addClass('bg-danger lt'); 
 
-					       	  //else return true status
-					       	  return true;
-					       }       
+						//clearing the loaded image
+						if (!angular.equals(scope.$parent.imageSrc, undefined)) {
+						scope.$parent.imageSrc = '';
+						}
+						$(elem).parent().find('img').attr('src', '');
 
-			    };
+						// returning the flse status back
+						return false;
+					}
+					else{
 
+						//else return true status
+						return true;
+					}
 
+				};
 
-			    //To show the added image
-			    scope.getFile = function () {
-		      
-				       fileReader.readAsDataUrl(scope.file, scope)
-				                     .then(function(result) {             
-				                         scope.srcObj = result;      
-				        });
+				//To show the added image
+				scope.getFile = function () {
 
-		        };
+				fileReader.readAsDataUrl(scope.file, scope)
+					.then(function(result) {
+					scope.$parent.$parent.$parent.$parent.configFileObj=scope.file; //addedd by akshath for storing the file object in parent scope
+					scope.srcObj = result;      
+				});
 
-		} //.End link
-	  
-	}//. End return
+			};
 
-}]); // .End directive('fMaxSIze'
+		}//.End link
+	};//.End return
+
+}]);//.End directive('fMaxSIze'

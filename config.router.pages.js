@@ -382,6 +382,15 @@
                   }
                 }
               })
+                 .state('home.main.addNewChannel', {
+                url: '/addNewChannel',
+                views:{
+                  'innercontent':{
+                    templateUrl: 'angularModules/channel/partials/Partial-add-new-channel.html',
+                     controller: 'AddNewChannelCtrl'
+                  }
+                }
+              })
               .state('home.main.addSocialConfig', {
                       url: '/addSocialConfig',
                       views:{
@@ -417,11 +426,11 @@
                 url: '/signin',
                 templateUrl: 'views/pages/signin.html'
               })
-              .state('signup', {
-                url: '/signup',
-                controller:'UsersignupCtrl',
-                templateUrl: 'angularModules/signup/partials/Partial-UserSignup.html',
-              })
+              // .state('signup', {
+              //   url: '/signup',
+              //   controller:'UsersignupCtrl',
+              //   templateUrl: 'angularModules/signup/partials/Partial-UserSignup.html',
+              // })
               .state('forgot-password', {
                 url: '/forgot-password',
                 templateUrl: 'views/pages/forgot-password.html'

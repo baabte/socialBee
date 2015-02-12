@@ -1,0 +1,61 @@
+<div class="col-md-12 container-fluide bg-white">
+
+	 <div class="panel panel-default">
+    <br>
+    <span class="pull-right">
+    <!-- <a class="btn btn-lg btn-primary" ng-href="#/home/main/company">Registered Companies</a> </span>  -->
+    <div class="panel-heading bg-white">
+         <h3>Add New Channel</h3>
+        
+    </div>
+    <div class="panel-body">
+      <form name="companyregistrationform" class="form-validation" enctype= "multipart/form-data" ng-submit="fnGetCompanyRegisterDetails(company,selection)"  xt-form novalidate>
+            
+
+
+            <div class="col-sm-12 animated flipInX">
+                  <div class="panel panel-default">
+                    <div class="panel-heading bg-white">
+                      Company Info
+                    </div>
+                    <div class="panel-body">
+                      <div>
+                          
+                                    <div class="form-group col-sm-2" >
+                                    <img class="img-responsive img-thumbnail m-xs" ng-bind="company.companyLogo" style="width:125px; height:125px;" ng-src="{{imageSrc}}" /><span class="btn btn-default btn-file">Browse..<input type="file" ng-model="company.companyLogo" fileupload-dir="company.companyLogo" name="companyLogo" src-obj="imageSrc" f-max-size="200"></span>
+                                    </div>
+                         
+                                    <div class="form-group col-sm-5" >
+                                    <label for="definpu">Channel Name*</label>
+                                    <input type="text" ng-model="company.companyName"class="form-control" id="definput" xt-validate placeholder="Company Name" name="companyName" required>
+                                    </div>
+                                   
+                                    <div class="form-group col-sm-5">
+                                    <label for="definpu">Channel *</label>            
+                                    <select  class="form-control" xt-validate name="sector" data-bv-field="sectors" ng-model="selection.sectors" ng-options="sectorNames.sectorName for sectorNames in sectorlist"  required>
+                                    <option value="">Select a Sector</option>
+                                    <option value="other">Other</option>                         
+                                    </select>
+                                    </div>
+                                    <div class="form-group col-sm-5">
+                                    <label for="definpu">E-mail Address*</label>
+                                    <input type="text" ng-model="company.eMail" ng-pattern="emailPattern" class="form-control email" ui-validate=" '$value!==existingEmail' " ui-validate-watch=" 'existingEmail'" msg-pattern='{{emailMsg}}' msg-validator='{{emailEMsg}}'  xt-validate id="definput" placeholder="Company Email Address" name="companyEmail" ng-change="userVal(company)" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-5">
+                                    <!-- <label for="definpu">Alternate  E-mail*</label>
+                                    <input type="text" ng-model="company.alternateEmail" class="form-control" id="definput" placeholder="Alternate E-mail Address"name="alternateEmail" xt-validate msg-pattern='{{emailMsg}}' ng-pattern="emailPattern" required> -->
+                                     <!-- <div class="form-group" > -->
+                                    <label for="definpu">Damain</label>
+                                    <input type="text" required ng-model="company.webSite" xt-validate class="form-control" id="definput" placeholder="Website url" name="webSite" ng-pattern="urlPattern">
+                                   <!--  </div>  -->
+                                    </div>
+                                   
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            </form>
+            </div>
+           
+</div>

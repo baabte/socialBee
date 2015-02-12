@@ -24,7 +24,7 @@ $scope.facebook_login=function(){
   $facebook.login().then(function() {
       refresh();
     });
-}
+};
 
 function refresh() {
     $facebook.api("/me").then( 
@@ -57,10 +57,9 @@ function refresh() {
 
 //     };
  $scope.linkedIn_login= function() {
-  ;
       $linkedIn.authorize().then(function(arg){
         $linkedIn.isAuthorized().then(function(status){
-          if(status==true){
+          if(status===true){
             $scope.getLinkedInData();
           }
         });
@@ -108,7 +107,7 @@ $scope.loginSuccessCallback=function(data){
     $scope.logData=angular.fromJson(JSON.parse(data));
     console.log($scope.logData);
     if($scope.logData.add_fb){
-      if($scope.logData.add_fb=="facebook"){
+      if($scope.logData.add_fb==="facebook"){
         $scope.socialSiteName="facebook";
       $modal({ scope: $scope,
               template: 'angularModules/login/partials/Partial-addSocialInfo.html',

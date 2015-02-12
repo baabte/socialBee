@@ -39,11 +39,13 @@
     "ngLinkedIn": "~0.1.4",
     "ng-tags-input": "~2.1.1",
     "ngquill": "~1.0.3",
-    "contextMenu":"~0.0.0",
-    "ngHierarchicalSelector":"~1.0",
+    "contextMenu": "~0.0.0",
+    "ngHierarchicalSelector": "~1.0",
     "angular-growl": "~0.4.0",
     "angular-spectrum-colorpicker": "1.2.0",
-    "angular-ladda": "~0.2.1"
+    "angular-ladda": "~0.2.1",
+    "angular-intro.js": "~1.2.0",
+    "angular-contenteditable": "~0.3.7"
   },
   "devDependencies": {
     "angular-mocks": "~1.2"

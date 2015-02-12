@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('UsermenumappingCtrl',['$location','$modal','commonService','$scope','$rootScope','userMenuMappingSrv','$alert','localStorageService',function ($location,$modal,commonService,$scope,$rootScope,userMenuMappingSrv,$alert,localStorageService){
+angular.module('baabtra').controller('UsermenumappingCtrl',['$location','$modal','commonService','$scope','$rootScope','userMenuMappingSrv','$alert','localStorageService','$state',function ($location,$modal,commonService,$scope,$rootScope,userMenuMappingSrv,$alert,localStorageService,$state){
 
 
 if(!$rootScope.userinfo){
@@ -6,7 +6,7 @@ if(!$rootScope.userinfo){
    $rootScope.hide_when_root_empty=false;
 }
 
-if($rootScope.loggedIn==false){
+if(angular.equals($rootScope.loggedIn,false)){
  $state.go('login');
 }
 
@@ -173,7 +173,7 @@ else if(angular.equals($scope.roleId,2))
           $scope.fnActionExists = function(thisAction, actions){    
       for (var action_count = 0; action_count < actions.length; action_count++){
         if(actions[action_count]!=null){
-          if (actions[action_count].actionName == thisAction){ 
+          if (angular.equals(actions[action_count].actionName,thisAction)){ 
                   return true;
                 }
               }

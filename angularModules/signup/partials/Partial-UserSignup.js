@@ -7,24 +7,24 @@
 var app=angular.module('baabtra');
 app.controller('UsersignupCtrl',['$scope','UserSignup','bbConfig','$alert','$rootScope','$location','localStorageService','$popover','$state','$modal', function($scope,UserSignup,SbConfig,$alert,$rootScope,$location,localStorageService,$popover,$state,$modal) {  //here signup refer to signup service
 	
-  $scope.btnSignupText='Signup'; //Setting the button value as 'signup'
-  $scope.signupDetails={};
-	//function for company signup
-	$scope.fnCompanySignup=function(){
-    $scope.progress=true;
-      $scope.btnSignupText='Inprogress...'; //While login to show the inprogress status as value of button.
-      $scope.from_where="direct";
-      UserSignup.fnUserSignup($scope);
-	};
+    $scope.btnSignupText='Signup'; //Setting the button value as 'signup'
+    $scope.signupDetails={};
+    //function for company signup
+    $scope.fnCompanySignup=function(){
+        $scope.progress=true;
+        $scope.btnSignupText='Inprogress...'; //While login to show the inprogress status as value of button.
+        $scope.from_where="direct";
+        UserSignup.fnUserSignup($scope);
+    };
 
 	//function for user name validation
-	$scope.fnCheckEmailExists = function (email){
-     var userEmail={};
-     userEmail.eMail=email; //Email of specific company.
-     if(email!==undefined){   //checking for email field is empty or not
+  $scope.fnCheckEmailExists = function (email){
+      var userEmail={};
+      userEmail.eMail=email; //Email of specific company.
+      if(email!==undefined){   //checking for email field is empty or not
         UserSignup.fnCheckEmailExists($scope,userEmail); //call the service function present inside signup service.
       }
-	};
+  };
  
   //function for user name validation
   $scope.fnCheckCompanyNameExists = function (companyName){
@@ -39,19 +39,19 @@ app.controller('UsersignupCtrl',['$scope','UserSignup','bbConfig','$alert','$roo
   $scope.emailRMsg='This is required field';    //error message for required field validator
   $scope.emailEMsg='This Email Already registered'; //error message for email already exists validation 
   $scope.existingEmail='';                       //setting the existsing email id to a scope variable      
-	$scope.companyNameEMsg='This company name already registered!'; //error message for invalid company name validation
+  $scope.companyNameEMsg='This company name already registered!'; //error message for invalid company name validation
   $scope.existingCompanyName=''; 
 
   //callback function for fnCheckEmailExists
-	$scope.fnCheckEmailExistsCallBack=function(result){
+  $scope.fnCheckEmailExistsCallBack=function(result){
 
     if(result.userCheck===1){   //if the email id already registered
-       $scope.existingEmail=$scope.signupDetails.email; //setting the existing email id to scope variable for validation.
-      }
-      if(result.userCheck===0){ //if not matching existing registered email
-      
-     }
-    
+      $scope.existingEmail=$scope.signupDetails.email; //setting the existing email id to scope variable for validation.
+    }
+    if(result.userCheck===0){ //if not matching existing registered email
+
+    }
+
   };
 
   //callback function for fnCheckCompanyNameExists
@@ -79,7 +79,7 @@ app.controller('UsersignupCtrl',['$scope','UserSignup','bbConfig','$alert','$roo
   $scope.fnUserSignupCallBack=function(data){
    $scope.logData=angular.fromJson(JSON.parse(data));
     if($scope.logData.add_fb){
-      if($scope.logData.add_fb=="facebook"){
+      if($scope.logData.add_fb==="facebook"){
         $scope.progress=false;
         $scope.btnSignupText='Signup'; //While login to show the inprogress status as value of button.
         $scope.socialSiteName="facebook";

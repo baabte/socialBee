@@ -94,12 +94,12 @@ this.fnUserNameValid=function($scope,userNameId){
       var extArr=companyLogo.name.split('.');
       var ext=extArr[extArr.length-1].toUpperCase();
       // console.log(companyRegData);
-      if(ext!=='JPG'&&ext!=='JPEG'&&ext!=='PNG'&&ext!=='TIF'&&ext!=='GIF'){
+      if(ext!=='JPG'&&ext!=='JPEG'&&ext!=='PNG'&&ext!=='TIF'&&ext!=='GIF'&&ext!=='ICO'){
         result='fileErr';
         $scope.fnGetCompanyRegisterDetailsCallBack(result);
         return 0;
       }
-       $upload.upload({
+      $upload.upload({
            url: bbConfig.BWS+'CompanyRegistration/',
            file: companyLogo,
            data: companyRegData,
@@ -117,7 +117,7 @@ this.fnUserNameValid=function($scope,userNameId){
                  result='error';    
                 $scope.fnGetCompanyRegisterDetailsCallBack(result);
              }).
-       progress(function(evt) {
+        progress(function(evt) {
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
       });
 

@@ -2,18 +2,15 @@
   <div class="panel panel-default">
     <br>
     <span class="pull-right">
-    <a class="btn btn-lg btn-primary" ng-href="#/home/main/company">Registered Companies</a> </span> 
+   <!--  <a class="btn btn-lg btn-primary" ng-href="#/home/main/company">Registered Companies</a> --> </span> 
     <div class="panel-heading bg-white">
-        <br>
-        <br>
+      
          <h3> Company Registration</h3>
         
     </div>
     <div class="panel-body">
       <form name="companyregistrationform" class="form-validation" enctype= "multipart/form-data" ng-submit="fnGetCompanyRegisterDetails(company,selection)"  xt-form novalidate>
-            
-
-
+   
             <div class="col-md-12 animated flipInX">
                   <div class="panel panel-default">
                     <div class="panel-heading bg-white">
@@ -23,7 +20,7 @@
                       <div >
                           
                                     <div class="form-group col-sm-2" >
-                                    <img ng-bind="company.companyLogo" style="width:125px; height:125px;">
+                                    <img class="img-responsive img-thumbnail m-xs" ng-bind="company.companyLogo" style="width:125px; height:125px;" ng-src="{{imageSrc}}" /><span class="btn btn-default btn-file">Browse <input type="file" ng-model="company.companyLogo" fileupload-dir="company.companyLogo" name="companyLogo" src-obj="imageSrc" f-max-size="200"></span>
                                     </div>
                          
                                     <div class="form-group col-sm-5" >
@@ -52,10 +49,7 @@
                                     <input type="text" required ng-model="company.webSite" xt-validate class="form-control" id="definput" placeholder="Website url" name="webSite" ng-pattern="urlPattern">
                                    <!--  </div>  -->
                                     </div>
-                                    <div>
-                                        </br>
-                                        <input type="file" ng-model="company.companyLogo" fileupload-dir="company.companyLogo" name="companyLogo">
-                                    </div>
+                                   
                         </div>
                     </div>
                   </div>

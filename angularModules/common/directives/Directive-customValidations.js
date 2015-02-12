@@ -9,8 +9,7 @@ angular.module('baabtra')
 
 										
 			scope.$watch(function (){return elem.context.required;/* define what to watch*/
-}, function() { 
-			  			  
+}, function() {
 					// the array to hold the symbols
 					scope.symbolCollection = {
 						'required': 'ti-star text-danger',
@@ -30,7 +29,7 @@ angular.module('baabtra')
 						scope.icon=$('<span class="input-group-addon"></span>');
 
 						scope.icon.addClass(scope.symbolCollection[attrs.indicateVal]);
-						add=true;
+						var add=true;
 
 									
 
@@ -55,12 +54,11 @@ angular.module('baabtra')
 							$(elem).parent().find("span").removeClass('text-danger').addClass('text-success');				
 						}
 
-				});	
+				});
 							
 			
-		} 
-	  
-	}
+		}
+	};
 
 })
 
@@ -93,7 +91,7 @@ angular.module('baabtra')
 
 			//binding a change event to validate when the text changes
 			scope.$watch(function (){return elem.context.value;/* define what to watch*/
-}, function(){				
+},function(){				
 			
 
 				//defining a variable to hold the validation group name
@@ -110,40 +108,39 @@ angular.module('baabtra')
 						}
 																		
 						
-	                } else{
+					}else{
 
-	                	var setAllRequired = true;                	
+						var setAllRequired = true;
 
-	                	// checking whether the value of the element i null, if so validate other controls and set the validity to true if any of the other fields holds a value
-	                	if(angular.equals(elem.context.value.trim(),"") && !ctrls[0].$pristine)	{
+						// checking whether the value of the element i null, if so validate other controls and set the validity to true if any of the other fields holds a value
+						if(angular.equals(elem.context.value.trim(),"") && !ctrls[0].$pristine)	{
 
-	                		for (var i = 0; i < scope.validationGroups[scope.vgName].length; i++ ){	
-	                			if(!angular.equals($( "input[name='" + scope.validationGroups[scope.vgName][i].$name + "']" ).val().trim(), "")){
-	                				setAllRequired = false;
-	                			}	                		
+							for (var i = 0; i < scope.validationGroups[scope.vgName].length; i++ ){	
+								if(!angular.equals($( "input[name='" + scope.validationGroups[scope.vgName][i].$name + "']" ).val().trim(), "")){
+									setAllRequired = false;
+								}				
 
-	                		} //.End for (var i = 0; i < scope.validationGroups[scope.vgName].length; i++ )
+							} //.End for (var i = 0; i < scope.validationGroups[scope.vgName].length; i++ )
 
-	                		// 2nd loop to set the controls valid or invalid in accordance with the setAllRequiredVariable
-	                		for (var i = 0; i < scope.validationGroups[scope.vgName].length; i++ ){
-	                			
-	                			scope.validationGroups[scope.vgName][i].$setValidity("required", !setAllRequired);
-
-	                		} //.End 2nd loop
+							// 2nd loop to set the controls valid or invalid in accordance with the setAllRequiredVariable
+							for (i = 0; i < scope.validationGroups[scope.vgName].length; i++ ){
 								
-						} //.End if(angular.equals(elem.context.value.trim(),""))
+								scope.validationGroups[scope.vgName][i].$setValidity("required", !setAllRequired);
 
-	                }
+							} //.End 2nd loop
+								
+						}//.End if(angular.equals(elem.context.value.trim(),""))
 
-	                //.End if(!ctrl.$invalid)
+					}
 
-                // }
+				//.End if(!ctrl.$invalid)
+
+				//}
 
 			});// .End scope.$watch(function (){return elem.context.value	
 
 
 		} //.End link
-	  
-	}//. End return
+	};//. End return
 
 }]); // .End directive('validateOneInMany'

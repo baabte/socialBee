@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid"  ng-intro-options="IntroOptions" ng-intro-method="CallMe" ng-intro-autostart="false">
 <div class="row">
   <div class="p-md col-md-12">
 
@@ -27,11 +27,11 @@
       
         <div class="panel-body">
        
-        <form id="config-first-form" name="config-first-form" role="form" class="form-validation ng-pristine ng-invalid ng-invalid-required" role="form" xt-form novalidate>
+        <form id="configForm" name="configForm" role="form" class="form-validation ng-invalid ng-invalid-required" role="form" xt-form novalidate>
       <!--   <div id="form-views" ui-view="" class="ng-scope"> -->
           <div class="col-xs-6 col-xs-offset-3"><div class="form-group row m-h-n clearfix">
               <label for="configWebsite">website Name</label>
-              <select xt-validate required class="form-control" name="configWebsite" data-bv-field="website" ng-model="touterConfig.selectedDomainId"  ng-options="domain._id.$oid as domain.domainUrl for domain in touterConfig.domainList" msg-required="Please select one website"><option value="" selected>select one website</option></select>
+              <select xt-validate required class="form-control ng-invalid" name="configWebsite" data-bv-field="website" ng-model="touterConfig.selectedDomainId"  ng-options="domain as domain.domainUrl for domain in touterConfig.domainList" msg-required="Please select one website"><option value="" selected>select one website</option></select>
           </div></div>
 
 
@@ -40,7 +40,7 @@
           <div class="col-xs-6 col-xs-offset-5">
           <!--   <a href class="btn btn-block btn-info" ng-disabled="" ng-click="FnWebsiteConfig()"> Configure <span class="glyphicon glyphicon-cog"></span>
             </a> -->
-            <button class="text-sm btn btn-m btn-info m-r" ng-click="FnWebsiteConfig()">
+            <button ng-class="{disabled:configForm.$invalid}" class="text-sm btn btn-m btn-info m-r" ng-click="FnWebsiteConfig()">
           <i class="fa fa-cog pull-left"></i>
           Configure Website
           
@@ -65,8 +65,18 @@
           <!--         <a href class="w-thumb-md pull-left m-r" ng-repeat="feature in touterConfig.featureList"><img src="../{{feature.imgUrl}}" class="img-thumbnail img-responsive" ng-click="fnSelectFeature($index,feature._id.$oid,feature.imgUrl)">
                   <i class="fa fa-check-circle" ng-show="false"></i>
                   </a> -->
-                 
-                <div ng-repeat="feature in touterConfig.featureList" ng-click="fnSelectFeature($index,feature.channelId.$oid,feature.imgUrl);{{feature.clickFn}}" class="m-l-md pull-left" style="background:url(../{{feature.imgUrl}}) center center; background-size:cover">
+                <div ng-if="configForm.$invalid">
+                  
+      <ul class="list-group ">
+
+        <li class="list-group-item bg-warning">
+           <span class="text-white">Please select specific website to view this step</span>
+        </li>
+        
+      </ul>
+
+                </div>
+                <div ng-if="configForm.$valid" ng-repeat="feature in touterConfig.featureList" ng-click="fnSelectFeature($index,feature.channelId.$oid,feature.imgUrl,feature.name);{{feature.clickFn}};" class="m-l-md pull-left {{feature.active}}" style="background:url(../{{feature.imgUrl}}) center center; background-size:cover">
                     <div class="p-sm bg-white-opacity text-center">
                       <a href="" class="w-xxs inline">
                         <img src="../{{feature.imgUrl}}" class="img-circle img-responsive">
@@ -109,8 +119,16 @@
     <div class="col-md-4">
       <div class="panel panel-default bx-sh">
         <div class="panel-heading bg-white">
-          <label for="lock">Configuration Form
-           <img src="../{{touterConfig.featureImg}}" class="col-sm-2 img-responsive pull-right clearfix">
+          <label for="lock">
+           <!-- <img src="../{{touterConfig.featureImg}}" class="col-sm-2 img-responsive pull-right clearfix"> -->
+           <ul class="list-group">
+        <li class="list-group-item">
+          <a href="" class="pull-left w-thumb m-r b-b b-b-2x b-success"><img src="../{{touterConfig.featureImg}}" class="img-responsive"> </a>
+          <div class="clear">
+            <a href="" class="font-bold block">{{touterConfig.channelName}}</a>
+           Configuration Form
+          </div>
+        </li>
            <small class="text-muted"></small></label>
         </div>
         <div class="panel-body">
@@ -125,13 +143,12 @@
             <label for="eventList" bs-backdrop='false' bs-modal="modal">Broadcast Type</label>
         <!--     <button type="button" name='eventList' class="btn btn-default form-control" data-animation="am-flip-x" ng-model="touterConfig.selectedFeatureType" data-html="1" ng-options="featureType.btId.$oid as featureType.name for featureType in touterConfig.featureTypesList"  bs-select>Share</button> -->
 
-            <select xt-validate name='eventList' required class="form-control ng-invalid ng-invalid-required" data-bv-field="eventList" ng-model="touterConfig.selectedFeatureType" ng-options="featureType.btId.$oid as featureType.name for featureType in touterConfig.featureTypesList" ng-change="fnSelectFeatureType()" msg-required="Please select one broadcast type"><option value="" selected>select one website</option></select>
+            <select xt-validate name='eventList' required class="form-control ng-invalid ng-invalid-required" data-bv-field="eventList" ng-model="touterConfig.selectedFeatureType" ng-options="featureType as featureType.name for featureType in touterConfig.featureTypesList" ng-change="fnSelectFeatureType();CallMe(2);" msg-required="Please select one broadcast type"><option value="" selected="true">select one broadcast type</option></select>
             <span class="text-success-dk">[Note: This field is used for selecting the specific broadcast type which you want to configure]</span>
           </div>
-          <pre>{{touterConfig.selectedFeatureType}}</pre>
           <!-- k.btId.$oid as v.name for (k, v) in touterConfig.featureTypesList -->
-           <label for="Event">Event status</label>
-           <div class="form-group"> 
+           <label for="Event">Click in any one of the element in the configure window where you want to perform the action</label>
+           <div id="step1" class="form-group"> 
             <span ng-class="{'form-control text-ellipsis':touterConfig.deleteEventElem ,'text-ellipsis form-control b-warning':!touterConfig.deleteEventElem}">
               {{touterConfig.clickEventLabel}} <!-- Scope value accessing from parent scope --><a href="" ng-model="touterConfig.deleteEventElem" class="pull-right text-muted"><i class="fa fa-check-circle text-success" ng-show="touterConfig.deleteEventElem"></i><i class="fa fa-warning text-warning" ng-hide="touterConfig.deleteEventElem"></i></a>
               <a href="" ng-model="touterConfig.deleteEventElem" class="pull-right text-muted ng-hide p-h-xs" ng-show="touterConfig.deleteEventElem" ng-click='fnDeleteEvent()'><i class="fa fa-trash"></i></a>
@@ -150,16 +167,17 @@
     <div class="col-md-8">
        <div class="panel panel-default bx-sh">
         <div class="panel-heading bg-white">
-           <label for="lock">config</label> <button bs-checkbox name="lock" class="col-md-3 btn btn-sm btn-addon btn-info pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{touterConfig.freezeIcon}}"></i>{{touterConfig.freezeText}}</button>
+           <label for="lock">Configuration Window</label> <button bs-checkbox name="lock" class="col-md-3 btn btn-sm btn-addon btn-info pull-right" ng-model="button.toggle" ng-click="sendMessageToIFrame($event)"><i class="fa {{touterConfig.freezeIcon}}"></i>{{touterConfig.freezeText}}</button>
           <small class="text-muted"></small>
         </div>
-        <div class="panel-body"> 
+        <div id="step2" class="panel-body"> 
              <!--  <div ng-style="divLoading"> 
         <img src="images/loading.GIF" alt="" /> 
     </div>  -->
 
           <!-- <div ng-if="loading">Loading...</div> -->
-          <div ng-style="divFrameHolder" bs-modal class="embed-responsive embed-responsive-16by9"  data-iframe>
+          <div ng-style="divFrameHolder" bs-modal class="embed-responsive embed-responsive-16by9"  data-iframe iframe-obj="touterConfig.iframe" domain-url="touterConfig.selectedDomainId.domainUrl">
+        <!--  <div ng-style="divFrameHolder" class="embed-responsive embed-responsive-16by9" src="getSrc()" iframe-obj="touterConfig.iframe" my-iframe>  -->
               <!-- <iframe ng-model="receiver" ng-model="controlBoolean" class="embed-responsive-item" src="http://dev.baabtra.com"></iframe> -->
               <!-- <div data-gist="{{gistId}}"></div> -->
           </div>

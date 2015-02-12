@@ -11,7 +11,7 @@ $rootScope.$watch('userinfo',function(){
   if($rootScope.userinfo){
     $scope.rm_id=$rootScope.userinfo.ActiveUserData.roleMappingId.$oid;
     $scope.verificationFlag=$rootScope.userinfo.verificationFlag;
-    if($scope.verificationFlag==1){ //condition to check the account is verified or not by the user.
+    if($scope.verificationFlag===1){ //condition to check the account is verified or not by the user.
       home.FnLoadMenus($scope);//Load Menus for logged user
     }else{ $modal({ scope: $scope,
               template: 'angularModules/login/partials/Partial-verifyAccountInfo.html',
@@ -23,7 +23,7 @@ else{
     $rootScope.hide_when_root_empty=true;
     commonService.GetUserCredentials($scope);
     if($rootScope.userinfo){$scope.rm_id=$rootScope.userinfo.ActiveUserData.roleMappingId.$oid;
-      if($scope.verificationFlag==1){ //condition to check the account is verified or not by the user.
+      if($scope.verificationFlag===1){ //condition to check the account is verified or not by the user.
     home.FnLoadMenus($scope);
 
   }
@@ -36,7 +36,7 @@ else{
 }
     
 }
-if($rootScope.loggedIn==false){
+if($rootScope.loggedIn===false){
   $state.go('login');
 }
 
@@ -44,7 +44,7 @@ if($rootScope.loggedIn==false){
 $scope.genRandomNumbers=function(){
   return Math.floor(Math.random()*10,1);
 };
-$scope.colorArray=['btn-danger','btn-inbox-green','btn-inbox-orange','btn-baabtra-blue','btn-inbox-bluee','btn-success','btn-inbox-blue','btn-info','btn-warning','btn-inbox-inverse','btn-inbox-red']
+$scope.colorArray=['btn-danger','btn-inbox-green','btn-inbox-orange','btn-baabtra-blue','btn-inbox-bluee','btn-success','btn-inbox-blue','btn-info','btn-warning','btn-inbox-inverse','btn-inbox-red'];
 
 $scope.$watch('userMenusOrigin',function(){
   if (!angular.equals($scope.userMenusOrigin,undefined)) {
@@ -108,13 +108,13 @@ $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState
 
 
   function getMenuByLink(menu,sub,path_obj,state){
-    if (sub==null) {
+    if (sub===null) {
       sub=0;
     }
     if(!angular.equals(menu[sub],undefined)){
       getMenuByLink(menu,sub+1,path_obj,state);
       if(menu[sub].childMenuStructure.length){
-        if(path_obj==null){
+        if(path_obj===null){
           path_obj=[];
         }
           if(!angular.equals(menu[sub].fkMenuId,undefined)){
@@ -126,7 +126,7 @@ $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState
           getMenuByLink(menu[sub].childMenuStructure,null,path_obj,state);
         }
         else{
-          if(path_obj==null){
+          if(path_obj===null){
             path_obj=[];
           }
           angular.forEach(menu[sub].actions,function(action){

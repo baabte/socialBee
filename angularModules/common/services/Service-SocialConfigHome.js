@@ -16,26 +16,24 @@ app.service('SocialConfigHome',['$http','bbConfig','$alert','$upload','$compile'
              });
   };
   //service function to save the social config details
-	  this.FnSaveSocialConfigDetails=function($scope){
+      this.FnSaveSocialConfigDetails=function($scope){
       var result;
       var featureImg;
       var socialConfigData={};
-      socialConfigData.urmId=123;
-      socialConfigData.websiteId=321;
+      socialConfigData.urmId=$scope.urmId;
+      socialConfigData.websiteId=$scope.touterConfig.selectedDomainId._id.$oid;
       socialConfigData.feature='fb';
       socialConfigData.elementId=$scope.touterConfig.elementId;
       socialConfigData.currentPage=$scope.touterConfig.currentPage;
       socialConfigData.channelId=$scope.touterConfig.featureId;
-      socialConfigData.broadcastTypeId=$scope.touterConfig.selectedFeatureType;
-      if(!angular.equals($scope.fileObj.image,undefined)){
-         featureImg= $scope.fileObj.image;
-      }
+      socialConfigData.broadcastTypeId=$scope.touterConfig.selectedFeatureType.btId.$oid;
       socialConfigData.fieldObj=$scope.formData;
-      console.log(featureImg);
+      socialConfigData.fieldObj.featureFunction='fn_'+$scope.touterConfig.channelName+'_'+$scope.touterConfig.selectedFeatureType.name;
+  if(!angular.equals($scope.configFileObj,null)||!angular.equals($scope.configFileObj,undefined)){ //checking for image file exists or not
       //adding all the required fields into the custom json object
        $upload.upload({
            url: bbConfig.BWS+'FnSaveSocialConfigDetails/',
-           file: featureImg,
+           file: $scope.configFileObj,
            data: socialConfigData,
            method: 'POST',
            withCredentials: false,
@@ -54,9 +52,26 @@ app.service('SocialConfigHome',['$http','bbConfig','$alert','$upload','$compile'
        progress(function(evt) {
         //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
       });
+    }
+    else{ // exicutes when there will not be any file exists
+      $http({
+           url: bbConfig.BWS+'FnSaveSocialConfigDetails/',
+           data: socialConfigData,
+           method: 'POST',
+           withCredentials: false,
+           contentType:'application/json',
+           dataType:'json',
+           }).
+              success(function( data, status, headers, config) {
+                result='success';
+                $alert({title: 'Success!', content: 'Successfully Saved the config details!.', placement: 'top-right', type: 'info', show: true,animation: 'am-fade-and-slide-top',duration:2});
+              }).
+              error(function(data, status, headers, config) {
+                result='error';    
+                $alert({title: 'Failed!', content: 'Some error found while saving the config details.', placement: 'top-right', type: 'info', show: true,animation: 'am-fade-and-slide-top',duration:2});
+             });  
 
-
-
+    }
      return result;
    };
 
@@ -65,7 +80,7 @@ app.service('SocialConfigHome',['$http','bbConfig','$alert','$upload','$compile'
       var result;
      $http({
            url: bbConfig.BWS+'FnLoadChannels/',
-           data: JSON.stringify({domainId:$scope.touterConfig.selectedDomainId}),
+           data: JSON.stringify({domainId:$scope.touterConfig.selectedDomainId._id.$oid}),
            method: 'POST',
            withCredentials: false,
            contentType:'application/json',
@@ -91,27 +106,29 @@ app.service('SocialConfigHome',['$http','bbConfig','$alert','$upload','$compile'
     };
 
 
-    this.fnLoadBroadcastTypeTemplate=function($scope){
-        var result;
-      
-     $http({
+    this.fnLoadBroadcastTypeTemplate=function($scope){ //service to load the broadcast template for specific broadcast type
+      var result;
+
+      var inputObj={channelId:$scope.touterConfig.featureId,broadcastTypeId:$scope.touterConfig.selectedFeatureType.btId.$oid,urmId:$scope.urmId,domainId:$scope.touterConfig.selectedDomainId._id.$oid,currentPage:$scope.touterConfig.currentPage,elementId:$scope.touterConfig.elementId};
+      $http({
            url: bbConfig.BWS+'fnLoadBroadcastTypeTemplate/',
-           data: JSON.stringify({channelId:$scope.touterConfig.featureId,broadcastTypeId:$scope.touterConfig.selectedFeatureType,urmId:$scope.urmId,domainId:$scope.touterConfig.selectedDomainId,currentPage:'http://localhost:9000/#/',elementId:$scope.touterConfig.tempSelElemId}),
+           data: JSON.stringify(inputObj),
            method: 'POST',
            withCredentials: false,
            contentType:'application/json',
            dataType:'json',
            }).
-              success(function(data, status, headers, config) {
-                        
+              success(function(data, status, headers, config) { //success response from server
                 result=angular.fromJson(JSON.parse(data));
-                 
-                 var ss={};
-                 ss.results=result.schema;
-                 console.log(ss);
-                 var single_object = $filter('filter')(ss.results, function (d) {return btId.$oid === $scope.touterConfig.selectedFeatureType;});
-                console.log(single_object);
-                //$scope.fnLoadBroadcastTypeTemplateCallBack(result);
+                var outcomeObj={};                        //outcome object which contain the formData and schema
+                outcomeObj.formData=result.formData;
+                for(var key in result.schema){            //looping through template objects
+                  if(angular.equals(result.schema[key].btId.$oid,$scope.touterConfig.selectedFeatureType.btId.$oid)){ //comparing the current selected broadcastTypeId with loaded btId
+                    outcomeObj.schema=result.schema[key];
+                    $scope.fnLoadBroadcastTypeTemplateCallBack(outcomeObj);
+                  }
+                }
+               
               }). error(function(data, status, headers, config) {
                 result='error';
                 //$scope.featureList=[];

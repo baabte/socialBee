@@ -49,7 +49,7 @@ angular.module('baabtra').service('userMenuMappingSrv',['$http','$alert','bbConf
 	                $scope.tree1 = $scope.ExMenus[0].menuStructure[0].regionMenuStructure;
 	                 
             var changeObjIdOfMenu=function(menu,sub){
-              if(sub==null){
+              if(sub===null){
                 sub=0;
               }
               if(angular.equals(menu[sub],undefined))
@@ -89,7 +89,7 @@ angular.module('baabtra').service('userMenuMappingSrv',['$http','$alert','bbConf
 
                   $scope.tree2 = $scope.menuList.menuStructure[0].regionMenuStructure; //Assigning the object value into a variable to load All menus
             var changeObjIdOfMenu=function(menu,sub){
-              if(sub==null){
+              if(sub===null){
                 sub=0;
               }
               if(angular.equals(menu[sub],undefined))
@@ -127,15 +127,15 @@ this.FnSaveUserMenu=function ($scope){ //function to save the user menus.
            dataType:'json',
            }).
               success(function(data, status, headers, config) {
-               if (data=="Insert")
+               if (data==="Insert")
           {
             $alert({title: 'Success!', content: 'Menus Insert Successfuly..',animation:'am-fade',duration:'3', placement: 'top-right', template: 'views/ui/angular-strap/alert.tpl.html', show: true});
           }
-          else if (data=="Update")
+          else if (data==="Update")
           {
             $alert({title: 'Success!', type:'success' ,content: 'Menus Updated Successfuly..',animation:'am-fade',duration:'3', placement: 'top-right', template: 'views/ui/angular-strap/alert.tpl.html', show: true});
           }
-          else if (data=="Not Allowed")
+          else if (data==="Not Allowed")
           {
             $alert({title: 'Not Allowed!', type:'warning' ,content: 'More than 1 Submenu Not Allowed',animation:'am-fade',duration:'3', placement: 'top-right', template: 'views/ui/angular-strap/alert.tpl.html', show: true});
           }          
