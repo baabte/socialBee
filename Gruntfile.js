@@ -228,7 +228,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-wiredep');  
 
-  grunt.registerTask('build',['jshint','clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngmin:main','uglify:main','copy','htmlmin','ngmin:vendorjs','uglify:vendorjs', 'imagemin','clean:after']);
+  grunt.registerTask('build',['jshint','clean:before',/*'less',*/'dom_munger','ngtemplates','cssmin','concat','ngmin:main','uglify:main','copy','htmlmin','ngmin:vendorjs','uglify:vendorjs', /*'imagemin',*/'clean:after']);
   grunt.registerTask('serve', ['dom_munger:read', 'wiredep','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
 

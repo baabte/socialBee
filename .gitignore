@@ -1,0 +1,3 @@
+#ignore the following in git operations
+#$ git push
+#dist/
