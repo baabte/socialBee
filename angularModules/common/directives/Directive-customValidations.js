@@ -1,4 +1,4 @@
-angular.module('baabtra')
+angular.module('touterbee')
 
 //Add scope.icon to individual controls
 .directive('indicateVal', function() {

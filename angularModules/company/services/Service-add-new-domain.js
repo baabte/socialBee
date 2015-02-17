@@ -1,5 +1,5 @@
 
-var app=angular.module('baabtra');
+var app=angular.module('touterbee');
 app.service('addNewDomain',['bbConfig','$http','$sce',function(bbConfig,$http,$sce) {
 	//service function to load the domains
 	this.fnLoadDomains=function($scope){

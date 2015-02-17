@@ -1,7 +1,7 @@
 
 
 
-angular.module('baabtra').service('companyRegistrationService',['$http','$upload','bbConfig',function companyRegistrationService($http,$upload,bbConfig) {
+angular.module('touterbee').service('companyRegistrationService',['$http','$upload','bbConfig',function companyRegistrationService($http,$upload,bbConfig) {
 
 	// service('Companyregistration',['$http','$upload', function Companyregistration($http,$upload) {
 

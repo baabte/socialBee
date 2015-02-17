@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('forgotPassword',['$scope','forgotPassword','$alert', function($scope,forgotPassword,$alert) {
+angular.module('touterbee').controller('forgotPassword',['$scope','forgotPassword','$alert', function($scope,forgotPassword,$alert) {
 	$scope.user_email="midhun@baabte.com";
 	$scope.process=false;
 	$scope.Error_msg_of_forgot_pwd=false; 

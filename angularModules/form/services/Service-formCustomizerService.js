@@ -1,4 +1,4 @@
-angular.module('baabtra').factory('formCustomizerService',function() {
+angular.module('touterbee').factory('formCustomizerService',function() {
 
 	var formCustomizerService = {};
 

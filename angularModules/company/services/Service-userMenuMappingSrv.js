@@ -1,4 +1,4 @@
-angular.module('baabtra').service('userMenuMappingSrv',['$http','$alert','bbConfig', function userMenuMappingSrv($http,$alert,bbConfig) {
+angular.module('touterbee').service('userMenuMappingSrv',['$http','$alert','bbConfig', function userMenuMappingSrv($http,$alert,bbConfig) {
     var thisService=this;
     // To load the existing company users.
     this.FnGetCompanyDetails=function($scope,range,prefix)

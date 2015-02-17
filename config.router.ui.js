@@ -9,7 +9,7 @@
      * # Config
      * Config for the uikit router
      */
-    angular.module('baabtra')
+    angular.module('touterbee')
       .config(
         [          '$stateProvider', '$urlRouterProvider',
           function ( $stateProvider,   $urlRouterProvider ) {

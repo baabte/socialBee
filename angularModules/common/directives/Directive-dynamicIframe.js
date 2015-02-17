@@ -1,4 +1,4 @@
-angular.module('baabtra').directive('iframe', ['bbConfig',function(bbConfig) { /* Directive to load the iframe dynamically.*/
+angular.module('touterbee').directive('iframe', ['bbConfig',function(bbConfig) { /* Directive to load the iframe dynamically.*/
              
   return {
     restrict: 'A',

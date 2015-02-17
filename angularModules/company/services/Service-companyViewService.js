@@ -1,4 +1,4 @@
-angular.module('baabtra').service('companyViewService',['$http','bbConfig',function companyViewService($http,bbConfig) {
+angular.module('touterbee').service('companyViewService',['$http','bbConfig',function companyViewService($http,bbConfig) {
 
 	
 	//fnc to get registered companies default count 6

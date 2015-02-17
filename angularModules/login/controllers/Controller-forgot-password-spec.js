@@ -1,6 +1,6 @@
 describe('forgotPassword', function() {
 
-	beforeEach(module('baabtra'));
+	beforeEach(module('touterbee'));
 
 	it('should ...', inject(function($controller) {
 

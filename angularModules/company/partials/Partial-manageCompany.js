@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('ManagecompanyCtrl',['$scope','$localStorage','localStorageService','$rootScope','$state','$location','manageCompanySrv',function ($scope,$localStorage,localStorageService,$rootScope,$state,$location,manageCompanySrv){
+angular.module('touterbee').controller('ManagecompanyCtrl',['$scope','$localStorage','localStorageService','$rootScope','$state','$location','manageCompanySrv',function ($scope,$localStorage,localStorageService,$rootScope,$state,$location,manageCompanySrv){
 
   var loginInfo=localStorageService.get('loginInfo');
   if(loginInfo===null||loginInfo.length===0){

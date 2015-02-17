@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('TreeCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+angular.module('touterbee').controller('TreeCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   var apple_selected, tree, treedata_avm, treedata_geography;
   $scope.my_tree_handler = function(branch) {
     var _ref;

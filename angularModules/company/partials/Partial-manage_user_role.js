@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('ManageUserRoleCtrl',['$scope','manageCompanyRoleService','localStorageService','$state','$alert','$rootScope','commonService',function($scope,manageCompanyRoleService,localStorageService,$state,$alert,$rootScope,commonService){
+angular.module('touterbee').controller('ManageUserRoleCtrl',['$scope','manageCompanyRoleService','localStorageService','$state','$alert','$rootScope','commonService',function($scope,manageCompanyRoleService,localStorageService,$state,$alert,$rootScope,commonService){
 
 if(!$rootScope.userinfo){ //checking for the login credentilas is present or not
       $rootScope.hide_when_root_empty=true;

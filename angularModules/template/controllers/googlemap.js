@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('GoogleMapCtrl', ['$scope', function ($scope) {
+angular.module('touterbee').controller('GoogleMapCtrl', ['$scope', function ($scope) {
 
     $scope.myMarkers = [];
 

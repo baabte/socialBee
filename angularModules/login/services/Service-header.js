@@ -1,4 +1,4 @@
-angular.module('baabtra').service('header',['$http','bbConfig',function header($http,bbConfig) {
+angular.module('touterbee').service('header',['$http','bbConfig',function header($http,bbConfig) {
 
 	
 	this.logout=function($scope)//function for logout

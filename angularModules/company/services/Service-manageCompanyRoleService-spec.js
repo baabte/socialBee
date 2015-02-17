@@ -1,6 +1,6 @@
 describe('manageCompanyRoleService', function() {
 
-  beforeEach(module('baabtra'));
+  beforeEach(module('touterbee'));
 
   it('should ...', inject(function(manageCompanyRoleService) {
 

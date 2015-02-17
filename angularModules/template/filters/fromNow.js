@@ -10,7 +10,7 @@
 		 * # fromNow
 		 * filter of the app
 		 */
-		angular.module('baabtra')
+		angular.module('touterbee')
 		  .filter('fromNow', function() {
 		    return function(date) {
 		      return moment(date).fromNow();

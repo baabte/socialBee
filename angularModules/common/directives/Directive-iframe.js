@@ -1,4 +1,4 @@
-angular.module('baabtra').directive('myIframe', function(){ /*Directive to load the iframe window */
+angular.module('touterbee').directive('myIframe', function(){ /*Directive to load the iframe window */
     var linkFn = function(scope, element, attrs) { 
           element.find('iframe').bind('load', function (event) {
           //event.target.contentWindow.scrollTo(0,400);

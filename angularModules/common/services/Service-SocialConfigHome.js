@@ -1,4 +1,4 @@
-var app=angular.module('baabtra');
+var app=angular.module('touterbee');
 app.service('SocialConfigHome',['$http','bbConfig','$alert','$upload','$compile','$timeout','$filter',function($http,bbConfig,$alert,$upload,$compile,$timeout,$filter) {
 
   //service function to load the domains

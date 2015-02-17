@@ -1,5 +1,5 @@
 
-var app=angular.module('baabtra');
+var app=angular.module('touterbee');
 app.controller('SocialconfighomeCtrl',['$scope','SocialConfigHome','$upload','$alert','$compile','fileReader','growl','$linkedIn','$facebook','$rootScope',function($scope,SocialConfigHome,$upload,$alert,$compile,fileReader,growl,$linkedIn,$facebook,$rootScope){
 	var i=0;
 	$scope.touterConfig={};

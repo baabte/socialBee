@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('SliderCtrl', function($scope) {
+angular.module('touterbee').controller('SliderCtrl', function($scope) {
   $scope.cost = 40;
   $scope.range = {
     min: 30,

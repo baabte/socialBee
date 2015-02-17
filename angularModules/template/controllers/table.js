@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('TableCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+angular.module('touterbee').controller('TableCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   $scope.rowCollectionBasic = [
       {firstName: 'Laurent', lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
       {firstName: 'Blandine', lastName: 'Faivre', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'oufblandou@gmail.com'},

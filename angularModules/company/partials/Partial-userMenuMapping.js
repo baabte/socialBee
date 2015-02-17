@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('UsermenumappingCtrl',['$location','$modal','commonService','$scope','$rootScope','userMenuMappingSrv','$alert','localStorageService','$state',function ($location,$modal,commonService,$scope,$rootScope,userMenuMappingSrv,$alert,localStorageService,$state){
+angular.module('touterbee').controller('UsermenumappingCtrl',['$location','$modal','commonService','$scope','$rootScope','userMenuMappingSrv','$alert','localStorageService','$state',function ($location,$modal,commonService,$scope,$rootScope,userMenuMappingSrv,$alert,localStorageService,$state){
 
 
 if(!$rootScope.userinfo){

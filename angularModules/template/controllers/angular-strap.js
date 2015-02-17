@@ -10,7 +10,7 @@
      * Controller of the angular-strap
      */
 
-      angular.module('baabtra').controller('AlertDemoCtrl', function($scope, $templateCache, $timeout, $alert) {
+      angular.module('touterbee').controller('AlertDemoCtrl', function($scope, $templateCache, $timeout, $alert) {
         $scope.alert = {title: 'Holy guacamole!', content: 'Best check yo self, you\'re not looking too good.', type: 'info'};
 
         // Service usage
@@ -21,11 +21,11 @@
 
       });
 
-      angular.module('baabtra').controller('AsideDemoCtrl', function($scope) {
+      angular.module('touterbee').controller('AsideDemoCtrl', function($scope) {
         $scope.aside = {title: 'Title', content: 'Hello Aside<br />This is a multiline message!'};
       });
 
-      angular.module('baabtra').controller('ButtonDemoCtrl', function($scope) {
+      angular.module('touterbee').controller('ButtonDemoCtrl', function($scope) {
         $scope.button = {
           toggle: false,
           checkbox: {left: false, middle: true, right: false},
@@ -33,7 +33,7 @@
         };
       });
 
-      angular.module('baabtra').controller('DropdownDemoCtrl', function($scope, $alert) {
+      angular.module('touterbee').controller('DropdownDemoCtrl', function($scope, $alert) {
         $scope.dropdown = [
           {text: '<i class="fa fa-fw fa-download"></i>&nbsp;Another action', href: '#anotherAction'},
           {text: '<i class="fa fa-fw fa-globe"></i>&nbsp;Display an alert', click: '$alert("Holy guacamole!")'},
@@ -48,7 +48,7 @@
 
       });
 
-      angular.module('baabtra').controller('CollapseDemoCtrl', function($scope, $templateCache) {
+      angular.module('touterbee').controller('CollapseDemoCtrl', function($scope, $templateCache) {
         $scope.panels = [
           {title:'Collapsible Group Item #1', body: 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.'},
           {title:'Collapsible Group Item #2', body: 'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.'},
@@ -63,7 +63,7 @@
 
       });
 
-      angular.module('baabtra').controller('DatepickerDemoCtrl', function($scope, $http) {
+      angular.module('touterbee').controller('DatepickerDemoCtrl', function($scope, $http) {
         $scope.selectedDate = new Date();
         $scope.selectedDateAsNumber = Date.UTC(1986, 1, 22);
         // $scope.fromDate = new Date();
@@ -77,7 +77,7 @@
         };
       });
 
-      angular.module('baabtra').controller('TimepickerDemoCtrl', function($scope, $http) {
+      angular.module('touterbee').controller('TimepickerDemoCtrl', function($scope, $http) {
         $scope.time = new Date(1970, 0, 1, 10, 30);
         $scope.selectedTimeAsNumber = 10 * 36e5;
         $scope.selectedTimeAsString = '10:00';
@@ -85,7 +85,7 @@
       });
 
 
-      angular.module('baabtra').controller('ModalDemoCtrl', function($scope, $modal) {
+      angular.module('touterbee').controller('ModalDemoCtrl', function($scope, $modal) {
         $scope.modal = {title: 'Title', content: 'Hello Modal<br />This is a multiline message!'};
 
         // Controller usage example
@@ -100,7 +100,7 @@
 
       });
 
-      angular.module('baabtra').controller('SelectDemoCtrl', function($scope, $http) {
+      angular.module('touterbee').controller('SelectDemoCtrl', function($scope, $http) {
 
         $scope.selectedIcon = '';
         $scope.selectedIcons = ['Globe', 'Heart'];
@@ -116,7 +116,7 @@
 
       });
 
-      angular.module('baabtra').controller('TabDemoCtrl', function($scope, $templateCache) {
+      angular.module('touterbee').controller('TabDemoCtrl', function($scope, $templateCache) {
 
         $scope.tabs = [
           {title:'Home', content: 'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.'},
@@ -133,7 +133,7 @@
       });
 
 
-      angular.module('baabtra').controller('TooltipDemoCtrl', function($scope, $q, $sce, $tooltip) {
+      angular.module('touterbee').controller('TooltipDemoCtrl', function($scope, $q, $sce, $tooltip) {
 
         $scope.tooltip = {title: 'Hello Tooltip<br />This is a multiline message!', checked: false};
 
@@ -152,7 +152,7 @@
 
 
 
-      angular.module('baabtra').controller('PopoverDemoCtrl', function($scope) {
+      angular.module('touterbee').controller('PopoverDemoCtrl', function($scope) {
 
         $scope.popover = {title: 'Title', content: 'Hello Popover<br />This is a multiline message!'};
 
@@ -169,7 +169,7 @@
 
       });
 
-      angular.module('baabtra').controller('TypeaheadDemoCtrl', function($scope, $templateCache, $http) {
+      angular.module('touterbee').controller('TypeaheadDemoCtrl', function($scope, $templateCache, $http) {
 
         $scope.selectedState = '';
         $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];

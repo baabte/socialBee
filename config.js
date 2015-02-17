@@ -1,7 +1,7 @@
 // config
 
 var app =  
-angular.module('baabtra')
+angular.module('touterbee')
   .config(
     [        '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
     function ($controllerProvider,   $compileProvider,   $filterProvider,   $provide) {
@@ -64,8 +64,8 @@ angular.module('baabtra')
 
   
   .constant('bbConfig',{ //used for storing enviornment variables
-   //"BWS": "http://127.0.0.1:8000/",//local
-   "BWS": "services.touterbee.com",//production
+   "BWS": "http://127.0.0.1:8000/",//local
+   //"BWS": "services.touterbee.com",//production
    "selectedDomain" : "http://localhost:9000/#/",
    //"BWS": "http://server.mb-test.in/",//server-test
 

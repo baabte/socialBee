@@ -1,4 +1,4 @@
-var app=angular.module('baabtra');
+var app=angular.module('touterbee');
 app.controller('DomainVerificationCtrl',['$scope','domainVerification','$rootScope','$modal','$sce',function($scope,domainVerification,$rootScope,$modal,$sce){
 	$scope.domainObj={};
 	//calling the service to load the domains

@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('header',['$scope','$rootScope','$state','localStorageService','header','commonService', function($scope,$rootScope,$state,localStorageService,header,commonService) {
+angular.module('touterbee').controller('header',['$scope','$rootScope','$state','localStorageService','header','commonService', function($scope,$rootScope,$state,localStorageService,header,commonService) {
 		
 		if($rootScope.userinfo){
 			$scope.loggedUserInfo=$rootScope.userinfo.ActiveUserData;

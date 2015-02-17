@@ -1,4 +1,4 @@
-angular.module('baabtra').service('commonSrv',['$http','bbConfig',function commonSrv($http,bbConfig) {
+angular.module('touterbee').service('commonSrv',['$http','bbConfig',function commonSrv($http,bbConfig) {
 this.FnLoadGlobalValues=function($scope,key)
       {
         $http({

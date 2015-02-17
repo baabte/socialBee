@@ -1,4 +1,4 @@
-angular.module('baabtra').service('manageCompanySrv',['$http','bbConfig',function manageCompanySrv($http,bbConfig) {
+angular.module('touterbee').service('manageCompanySrv',['$http','bbConfig',function manageCompanySrv($http,bbConfig) {
 
 this.FnGetCompanyDetails=function($scope,range,cmp_name)//To Load The Existing Company Details
       {

@@ -1,6 +1,6 @@
 describe('domainVerification', function() {
 
-  beforeEach(module('baabtra'));
+  beforeEach(module('touterbee'));
 
   it('should ...', inject(function(domainVerification) {
 

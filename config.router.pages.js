@@ -8,7 +8,7 @@
      * # Config
      * Config for the pages router
      */
-    angular.module('baabtra')
+    angular.module('touterbee')
       .config(
         ['$stateProvider', '$urlRouterProvider',
           function ( $stateProvider,   $urlRouterProvider ) {
