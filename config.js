@@ -65,6 +65,7 @@ angular.module('baabtra')
   
   .constant('bbConfig',{ //used for storing enviornment variables
    "BWS": "http://127.0.0.1:8000/",//local
+   //"BWS": "http://server.mb-test.in/",//server-test
    //"BWS": "services.touterbee.com",//production
    "selectedDomain" : "http://localhost:9000/#/",
    //"BWS": "http://server.mb-test.in/",//server-test
