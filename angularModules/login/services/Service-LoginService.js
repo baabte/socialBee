@@ -1,4 +1,4 @@
-angular.module('baabtra').service('LoginService',['$http','bbConfig',function LoginService($http,bbConfig) {
+angular.module('touterbee').service('LoginService',['$http','bbConfig',function LoginService($http,bbConfig) {
   
 
 

@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('ViewmenuCtrl',function($scope){
+angular.module('touterbee').controller('ViewmenuCtrl',function($scope){
 
 
 });

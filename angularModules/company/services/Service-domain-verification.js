@@ -1,4 +1,4 @@
-var app=angular.module('baabtra');
+var app=angular.module('touterbee');
 app.service('domainVerification',['bbConfig','$http','$sce',function(bbConfig,$http,$sce) {
 	//service function to load the domains
 	this.fnLoadDomains=function($scope){

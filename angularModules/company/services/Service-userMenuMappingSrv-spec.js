@@ -1,6 +1,6 @@
 describe('userMenuMappingSrv', function() {
 
-  beforeEach(module('baabtra'));
+  beforeEach(module('touterbee'));
 
   it('should ...', inject(function(userMenuMappingSrv) {
 

@@ -1,4 +1,4 @@
-var app=angular.module('baabtra');
+var app=angular.module('touterbee');
 app.controller('AddNewDomainCtrl',['$scope','addNewDomain','$rootScope','$modal','$sce','$alert',function($scope,addNewDomain,$rootScope,$modal,$sce,$alert){
 	$scope.domainObj={};
 	$scope.EMsgDomainExist='This domain already exists.';

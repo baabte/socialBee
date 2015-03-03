@@ -1,4 +1,4 @@
-angular.module('baabtra').service('forgotPassword',['$http','bbConfig',function forgotPassword($http,bbConfig) {
+angular.module('touterbee').service('forgotPassword',['$http','bbConfig',function forgotPassword($http,bbConfig) {
 
 	this.funGetPassword=function($scope){
 		// console.log("called");

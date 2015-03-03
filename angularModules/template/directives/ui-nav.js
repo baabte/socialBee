@@ -8,7 +8,7 @@
      * # uiScroll
      * Directive of the app
      */
-    angular.module('baabtra')
+    angular.module('touterbee')
       .directive('uiNav', ['$timeout', function($timeout) {
         return {
           restrict: 'AC',

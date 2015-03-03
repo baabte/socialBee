@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('FormcustomizerCtrl',['$scope','$rootScope','$state','commonService','$alert',function($scope,$rootScope,$state,commonService,$alert){
+angular.module('touterbee').controller('FormcustomizerCtrl',['$scope','$rootScope','$state','commonService','$alert',function($scope,$rootScope,$state,commonService,$alert){
 
 	if(!$rootScope.userinfo){
    commonService.GetUserCredentials($scope);

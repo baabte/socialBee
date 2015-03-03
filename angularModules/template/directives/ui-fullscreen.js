@@ -8,7 +8,7 @@
      * # uiFullscreen
      * Directive of the app
      */
-    angular.module('baabtra')
+    angular.module('touterbee')
       .directive('uiFullscreen', ['$ocLazyLoad', '$document', function($ocLazyLoad, $document) {
         return {
           restrict: 'AC',

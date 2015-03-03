@@ -1,6 +1,6 @@
 // lazyload config
 
-angular.module('baabtra')
+angular.module('touterbee')
   .constant('MODULE_CONFIG', [
       {
           name: 'ui.select',

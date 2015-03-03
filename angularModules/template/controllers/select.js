@@ -1,7 +1,7 @@
 // this is a lazy load controller, 
 // so start with "app." to register this controller
 
-angular.module('baabtra').filter('propsFilter', function() {
+angular.module('touterbee').filter('propsFilter', function() {
     return function(items, props) {
         var out = [];
 
@@ -31,7 +31,7 @@ angular.module('baabtra').filter('propsFilter', function() {
         return out;
     };
 });
-angular.module('baabtra').controller('SelectCtrl', function($scope, $http, $timeout) {
+angular.module('touterbee').controller('SelectCtrl', function($scope, $http, $timeout) {
         $scope.disabled = undefined;
         $scope.searchEnabled = undefined;
 

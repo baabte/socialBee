@@ -1,4 +1,4 @@
-angular.module('baabtra').factory('viewMenuSrv',function() {
+angular.module('touterbee').factory('viewMenuSrv',function() {
 
 	var viewMenuSrv = {};
 

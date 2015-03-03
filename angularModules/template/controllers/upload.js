@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('UploadCtrl', ['$scope', 'FileUploader', function($scope, FileUploader) {
+angular.module('touterbee').controller('UploadCtrl', ['$scope', 'FileUploader', function($scope, FileUploader) {
     var uploader = $scope.uploader = new FileUploader({
         url: 'scripts/controllers/upload.php'
     });

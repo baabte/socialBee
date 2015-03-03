@@ -9,7 +9,7 @@
      * # uiScroll
      * Directive of the app
      */
-    angular.module('baabtra')
+    angular.module('touterbee')
       .directive('lazyLoad', ['MODULE_CONFIG','$ocLazyLoad', '$compile', function(MODULE_CONFIG, $ocLazyLoad, $compile) {
         return {
           restrict: 'A',

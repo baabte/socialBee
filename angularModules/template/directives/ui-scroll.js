@@ -8,7 +8,7 @@
      * # uiScroll
      * Directive of the app
      */
-    angular.module('baabtra')
+    angular.module('touterbee')
       .directive('uiScroll', ['$location', '$anchorScroll', function($location, $anchorScroll) {
         return {
           restrict: 'AC',

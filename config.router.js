@@ -9,7 +9,7 @@
      * # Config
      * Config for the router
      */
-    angular.module('baabtra')
+    angular.module('touterbee')
       .run(
         [           '$rootScope', '$state', '$stateParams',
           function ( $rootScope,   $state,   $stateParams ) {

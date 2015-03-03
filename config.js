@@ -1,7 +1,7 @@
 // config
 
 var app =  
-angular.module('baabtra')
+angular.module('touterbee')
   .config(
     [        '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
     function ($controllerProvider,   $compileProvider,   $filterProvider,   $provide) {

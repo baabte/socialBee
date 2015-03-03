@@ -4,7 +4,7 @@
  * Created Date : 18-11-2014
  * Description : This service is used for interacting server side for company signup.
 ******************************************************************************/
-var app=angular.module('baabtra');
+var app=angular.module('touterbee');
 app.service('UserSignup',['$http','bbConfig', function($http,bbConfig) {
 	 //service fuction for username validation
 	this.fnCheckEmailExists=function($scope,emailId){

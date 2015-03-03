@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('CompanyhomeCtrl',['$scope','$state','localStorageService','$location',function ($scope,$state,localStorageService,$location){
+angular.module('touterbee').controller('CompanyhomeCtrl',['$scope','$state','localStorageService','$location',function ($scope,$state,localStorageService,$location){
   var loginInfo=localStorageService.get('loginInfo');
   if(angular.equals(loginInfo,null)||angular.equals(loginInfo.length,0)){
        $location.path('/'); //setting the location path to login page if local storage contain null value.

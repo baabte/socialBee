@@ -1,6 +1,6 @@
 describe('manageCompanySrv', function() {
 
-  beforeEach(module('baabtra'));
+  beforeEach(module('touterbee'));
 
   it('should ...', inject(function(manageCompanySrv) {
 

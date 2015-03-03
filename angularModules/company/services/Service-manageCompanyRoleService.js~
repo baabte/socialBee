@@ -1,4 +1,4 @@
-angular.module('baabtra').service('manageCompanyRoleService',['$http',function manageCompanyRoleService($http) {
+angular.module('touterbee').service('manageCompanyRoleService',['$http',function manageCompanyRoleService($http) {
 
 	 this.addUserRole=function ($scope){ // functon that call web service to add a comapny role
 	 	var roles={"roleName":$scope.roleName,"RoleDesc":$scope.RoleDesc,"companyId":$scope.companyId,"crmId":$scope.crmId,"urmId":$scope.urmId};

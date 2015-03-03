@@ -1,4 +1,4 @@
-angular.module('baabtra').service('manageTreeStructureSrv',function manageTreeStructureSrv() {
+angular.module('touterbee').service('manageTreeStructureSrv',function manageTreeStructureSrv() {
 
 var branchTree=[];
 var branch="";

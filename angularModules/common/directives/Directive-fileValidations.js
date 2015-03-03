@@ -1,4 +1,4 @@
-angular.module('baabtra')
+angular.module('touterbee')
 
 // .directive("ngFileSelect",['fileReader','$rootScope',function(fileReader, $rootScope){  //directive for file onload preview
 

@@ -1,5 +1,5 @@
 
-angular.module('baabtra').
+angular.module('touterbee').
 	controller('RoleMenuMappingCtrl',['$location','commonService','$scope','$modal','$rootScope','RoleMenuMappingSrv','$alert','localStorageService','$state',function ($location,commonService,$scope,$modal,$rootScope,RoleMenuMappingSrv,$alert,localStorageService,$state) {
 
     if(!$rootScope.userinfo){

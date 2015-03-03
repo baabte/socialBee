@@ -1,6 +1,6 @@
 describe('dynamicIframe', function() {
 
-  beforeEach(module('baabtra'));
+  beforeEach(module('touterbee'));
 
   var scope,compile;
 

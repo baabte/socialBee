@@ -1,6 +1,6 @@
 describe('fileuploadDir', function() {
 
-  beforeEach(module('baabtra'));
+  beforeEach(module('touterbee'));
 
   var scope,compile;
 

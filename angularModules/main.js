@@ -11,7 +11,7 @@
  * # MainCtrl
  * Controller of the app
  */
-angular.module('baabtra')  
+angular.module('touterbee')  
   .controller('MainCtrl', ['$scope', '$translate', '$localStorage', '$window', 
     function (              $scope,   $translate,   $localStorage,   $window ) {
       // add 'ie' classes to html

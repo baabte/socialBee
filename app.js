@@ -1,18 +1,6 @@
-// $stateProvider.state('UserSignup', {
-//         url: 'signup',
-//         templateUrl: 'angularModules/signup/partials/Partial-UserSignup.html'
-//     });
-// $stateProvider.state('SocialConfigHome', {
-//         url: 'common',
-//         templateUrl: 'angularModules/common/partials/Partial-SocialConfigHome.html'
-//     });
-// $stateProvider.state('SocialChannelConfigHome', {
-//         url: 'common',
-//         templateUrl: 'angularModules/common/partials/Partial-SocialChannelConfigHome.html'
-//     });
 (function() {
 
-    'use strict';
+    'use strict';   
 
     /**
      * @ngdoc overview
@@ -23,7 +11,7 @@
      * Main module of the application.
      */
     angular
-      .module('baabtra', [
+      .module('touterbee', [       
         'ngAnimate',
         'ngCookies',
         'ngResource',
@@ -61,11 +49,12 @@
         'angular-ladda',
         'angular-intro',
         'contenteditable'
-
       ]).run(function(editableOptions) {
   editableOptions.theme = 'bs3';
 });
-      
+
 
 }());
+
+
 

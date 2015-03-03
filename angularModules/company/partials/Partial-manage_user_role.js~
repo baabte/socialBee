@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('ManageUserRoleCtrl',['$scope','manageCompanyRoleService','localStorageService','$location',function($scope,manageCompanyRoleService,localStorageService,$location){
+angular.module('touterbee').controller('ManageUserRoleCtrl',['$scope','manageCompanyRoleService','localStorageService','$location',function($scope,manageCompanyRoleService,localStorageService,$location){
 	
 	
 	var loginInfo=localStorageService.get('loginInfo');

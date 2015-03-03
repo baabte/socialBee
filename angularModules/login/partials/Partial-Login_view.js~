@@ -1,5 +1,5 @@
 
-angular.module('baabtra').controller('LoginViewCtrl',['$scope','LoginService','$location','localStorageService','$rootScope',function($scope,LoginService,$location,localStorageService,$rootScope){
+angular.module('touterbee').controller('LoginViewCtrl',['$scope','LoginService','$location','localStorageService','$rootScope',function($scope,LoginService,$location,localStorageService,$rootScope){
 
 /*if (localStorageService.get('loginLsCheck')===1)
     {  

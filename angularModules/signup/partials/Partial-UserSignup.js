@@ -4,7 +4,7 @@
  * Created Date : 18-11-2014
  * Description : This controller is used for signup page for specific company.
 ******************************************************************************/
-var app=angular.module('baabtra');
+var app=angular.module('touterbee');
 app.controller('UsersignupCtrl',['$scope','UserSignup','bbConfig','$alert','$rootScope','$location','localStorageService','$popover','$state','$modal', function($scope,UserSignup,SbConfig,$alert,$rootScope,$location,localStorageService,$popover,$state,$modal) {  //here signup refer to signup service
 	
     $scope.btnSignupText='Signup'; //Setting the button value as 'signup'

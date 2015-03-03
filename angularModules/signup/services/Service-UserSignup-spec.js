@@ -1,6 +1,6 @@
 describe('UserSignup', function() {
 
-  beforeEach(module('baabtra'));
+  beforeEach(module('touterbee'));
 
   it('should ...', inject(function(UserSignup) {
 

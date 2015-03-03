@@ -1,4 +1,4 @@
-angular.module('baabtra').directive('fileuploadDir',['$parse', function ($parse) {
+angular.module('touterbee').directive('fileuploadDir',['$parse', function ($parse) {
 	return {
 		restrict: 'A',
       link: function postLink(scope, element, attrs) {

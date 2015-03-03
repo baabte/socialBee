@@ -1,4 +1,4 @@
-angular.module('baabtra').controller('VectorMapCtrl', ['$scope', function ($scope) {
+angular.module('touterbee').controller('VectorMapCtrl', ['$scope', function ($scope) {
     $scope.gdpData = {
       "AF": 16.63,
       "AL": 11.58,

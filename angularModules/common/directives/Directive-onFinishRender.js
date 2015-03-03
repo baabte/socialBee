@@ -1,4 +1,4 @@
-angular.module('baabtra').directive('onFinishRender', function() {
+angular.module('touterbee').directive('onFinishRender', function() {
 	return {
 		restrict: 'AE',
 		 link: function (scope, element, attr) {

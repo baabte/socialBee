@@ -1,4 +1,4 @@
-angular.module('baabtra').service('addMenu',['$http','$alert','bbConfig',function addMenu($http,$alert,bbConfig) {
+angular.module('touterbee').service('addMenu',['$http','$alert','bbConfig',function addMenu($http,$alert,bbConfig) {
 this.addMenuDetails=function($scope){
   $http({
     method: 'post',

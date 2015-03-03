@@ -173,7 +173,7 @@ border-radius: 3px;
 
 /*Body BG*/
 html{
-  background:url(../images/Mainbg/TbBckgrnd.jpg) no-repeat center center fixed;
+  background:url(../images/TbBckgrnd.jpg) no-repeat center center fixed;
   /*background: #ECECEC !important;*/
   /*background: url(../images/Mainbg/BeeYellow.png);*/
   -webkit-background-size: cover;

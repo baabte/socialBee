@@ -1,4 +1,4 @@
-angular.module('baabtra')
+angular.module('touterbee')
 
 //Add scope.icon to individual controls
 .directive('indicateVal', function() {
@@ -72,7 +72,6 @@ angular.module('baabtra')
 			//checking for the existence of the "validation-group" attribute and throwing the error
 			if(!attrs.validationGroup){
 				throw new Error('The "validate-one-in-many" directive needs a "validation-group" attribute to work properly');
-				return;
 			}
 
 			//defining an object to hold the validation groups in a form context
@@ -115,17 +114,17 @@ angular.module('baabtra')
 						// checking whether the value of the element i null, if so validate other controls and set the validity to true if any of the other fields holds a value
 						if(angular.equals(elem.context.value.trim(),"") && !ctrls[0].$pristine)	{
 
-							for (var i = 0; i < scope.validationGroups[scope.vgName].length; i++ ){	
-								if(!angular.equals($( "input[name='" + scope.validationGroups[scope.vgName][i].$name + "']" ).val().trim(), "")){
+							for (var j = 0; j < scope.validationGroups[scope.vgName].length; j++ ){	
+								if(!angular.equals($( "input[name='" + scope.validationGroups[scope.vgName][j].$name + "']" ).val().trim(), "")){
 									setAllRequired = false;
 								}				
 
 							} //.End for (var i = 0; i < scope.validationGroups[scope.vgName].length; i++ )
 
 							// 2nd loop to set the controls valid or invalid in accordance with the setAllRequiredVariable
-							for (i = 0; i < scope.validationGroups[scope.vgName].length; i++ ){
+							for (var k = 0; k < scope.validationGroups[scope.vgName].length; k++ ){
 								
-								scope.validationGroups[scope.vgName][i].$setValidity("required", !setAllRequired);
+								scope.validationGroups[scope.vgName][k].$setValidity("required", !setAllRequired);
 
 							} //.End 2nd loop
 								

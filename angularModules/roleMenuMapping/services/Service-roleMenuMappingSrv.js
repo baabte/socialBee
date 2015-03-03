@@ -1,4 +1,4 @@
-angular.module('baabtra').service('RoleMenuMappingSrv',['$http','$alert','bbConfig',function RoleMenuMappingSrv($http,$alert,bbConfig) {
+angular.module('touterbee').service('RoleMenuMappingSrv',['$http','$alert','bbConfig',function RoleMenuMappingSrv($http,$alert,bbConfig) {
   var role_id="";
 	this.FnGetCompanyDetails=function($scope,range,cmp_name)//To Load The Existing Company Details
       {
