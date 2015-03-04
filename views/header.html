@@ -98,7 +98,8 @@
           </li> -->
           <li>            
             <a href class="clear no-padding-h" style="color: #444;" bs-aside="aside" data-template="angularModules/login/partials/Partial-sm_User_Menu.html" data-placement="right" data-animation="am-slide-right aside-open-inner modal-open" data-container="body">
-              <img src="images/a0.jpg" alt="..." class="navbar-img  pull-right">
+              <qrcode ng-if="!userinfo.ActiveUserData.roleMappingObj.avatar.length" version="2" size="30" color="#4A148C" ng-click="$hide()" class="navbar-img  pull-right" data="{{userinfo.ActiveUserData.username}}" style="margin-left: -8px;"></qrcode>
+              <img  ng-if="userinfo.ActiveUserData.roleMappingObj.avatar.length" ng-src="{{userinfo.ActiveUserData.roleMappingObj.avatar}}" alt="..." class="navbar-img img-circle pull-right">
               <span class="hidden-sm m-l">{{loggedUserInfo.fullName}}</span>
               <b class="fa  fa-caret-left m-h-xs hidden-sm"></b>
             </a>

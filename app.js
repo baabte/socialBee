@@ -48,7 +48,9 @@
         'angular-growl',
         'angular-ladda',
         'angular-intro',
-        'contenteditable'
+        'contenteditable',
+        'ngImgCrop',
+        'monospaced.qrcode'
       ]).run(function(editableOptions) {
   editableOptions.theme = 'bs3';
 });

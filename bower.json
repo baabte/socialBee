@@ -45,7 +45,9 @@
     "angular-spectrum-colorpicker": "1.2.0",
     "angular-ladda": "~0.2.1",
     "angular-intro.js": "~1.2.0",
-    "angular-contenteditable": "~0.3.7"
+    "angular-contenteditable": "~0.3.7",
+    "angular-qrcode": "monospaced/angular-qrcode#~5.1.0",
+    "ngImgCrop": "~0.3.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.2"

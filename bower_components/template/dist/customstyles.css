@@ -607,3 +607,37 @@ pre                             { margin-bottom:20px; }
     cursor: inherit;
     display: block;
 }
+
+/*
+added by jihin
+for changing palceholder color*/
+.place-white::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #FFF;
+}
+.place-white:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #909;
+   opacity:  1;
+}
+.place-white::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #909;
+   opacity:  1;
+}
+.place-white:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #909;
+}
+/*for change palceholder color*/
+
+.line-through{
+  text-decoration: line-through;
+}
+.dropdown-menu .divider{
+  background-color: #cccccc!important;
+}
+.vertical-scroll{
+  max-height: 250px;overflow-x: hidden;overflow:auto;
+}
+.line{
+  font-size: 14px!important;
+  overflow: visible!important;
+  height: inherit!important;
+}

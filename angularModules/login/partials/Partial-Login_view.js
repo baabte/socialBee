@@ -27,35 +27,40 @@ $scope.facebook_login=function(){
 };
 
 function refresh() {
-    $facebook.api("/me").then( 
+    $facebook.api("/me/",{fields: "id,picture,first_name,last_name,link,email,gender"}).then( 
       function(response) {
          $scope.loginCredential={};
          $scope.signinform.$setPristine();
-         $scope.loginCredential.id=response.id;
-         $scope.socialData=response;
+         $scope.socialData={};
+         $scope.loginCredential.facebookId=response.id; 
+         $scope.socialData.firstName=response.first_name;
+         $scope.socialData.lastName=response.last_name;
+         $scope.socialData.facebookProfileLink=response.link;
+         $scope.socialData.facebookId=response.id;
+         $scope.socialData.email=response.email;
+         $scope.socialData.profileImg=response.picture.data.url;
          $scope.socialData.mediaName="facebook";
          $scope.from_where="facebook";
-         LoginService.fnloginService($scope);
+         if($scope.socialData.email==null){
+
+                  $modal({ scope: $scope,
+                  template: 'angularModules/login/partials/addUserEmail.html',
+                  placement:'center',
+                  show: true});        
+         }
+         else{
+              LoginService.fnloginService($scope);
+         }
+         
       },
       function(err) {
         $scope.welcomeMsg = "Please log in";
-        console.log("err");
+        console.log(err);
 
       });
   }
 
-// $scope.googleplus_login=function(){
-//   GooglePlus.login().then(function (authResult) {
-//             // console.log(authResult);
-//              GooglePlus.getUser().then(function (user) {
-//               console.log(user);
-//         }, function (err) {
-//             console.log(err);
-//         });
-        
-//          });
 
-//     };
  $scope.linkedIn_login= function() {
       $linkedIn.authorize().then(function(arg){
         $linkedIn.isAuthorized().then(function(status){
@@ -125,7 +130,15 @@ $scope.loginSuccessCallback=function(data){
           $state.go('home.main');//routing to home after success login by user
           $scope.login_or_not='login Success'; 
         }
-        else
+        else if(angular.equals($scope.logData.result,'notRegistered')){
+           $scope.login_error="There is no any account registered in this email";  
+           $scope.progress=false; //setting button enable
+            $scope.btnSignupText='Sign in'; //re setting the value of nutton to signup
+            $scope.loginCredential={};
+            $scope.signinform.$setPristine();
+            $scope.Error_msg=true; 
+            $scope.login_frequency++;  
+        }else
           {
             $scope.progress=false; //setting button enable
             $scope.btnSignupText='Sign in'; //re setting the value of nutton to signup

@@ -1,4 +1,4 @@
-angular.module('touterbee').controller('HomeCtrl',['$browser','$rootScope','$state','$scope','$localStorage','localStorageService','home','$dropdown','commonService','$modal',function ($browser,$rootScope,$state,$scope,$localStorage,localStorageService,home,$dropdown,commonService,$modal){
+angular.module('touterbee').controller('HomeCtrl',['$browser','$rootScope','$state','$scope','$localStorage','localStorageService','home','$dropdown','commonService','$modal','commonSrv',function ($browser,$rootScope,$state,$scope,$localStorage,localStorageService,home,$dropdown,commonService,$modal,commonSrv){
 
 // Global variables for validating fileupload control
 $rootScope.valid=true;
@@ -41,6 +41,59 @@ if($rootScope.loggedIn===false){
 }
 
 });
+/*Start avatar change */
+ $scope.avatarSource = '';
+ var existingAvatar = '';
+  $scope.handleFileSelect=function(evt) {
+
+    if($scope.undo){
+      $scope.undo=false;
+      existingAvatar = '';
+    }
+          var file=evt.context.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+              $scope.avatarSource=evt.target.result;
+            });
+          };
+          reader.readAsDataURL(file);
+  };
+
+$scope.changeProfilePic = function(avatarImg){
+      console.log(avatarImg);
+      commonSrv.fnUploadProfilePic(avatarImg, $scope.rm_id);
+};
+
+
+$scope.cancelChangeProfilePic = function(){
+  if(!$scope.undo){
+    $scope.avatarSource = '';
+    $rootScope.userinfo.ActiveUserData.roleMappingObj.avatar = existingAvatar;
+  }
+}
+
+
+$scope.removeAvatar =function(elem){
+  existingAvatar =  angular.copy($rootScope.userinfo.ActiveUserData.roleMappingObj.avatar);
+  $rootScope.userinfo.ActiveUserData.roleMappingObj.avatar = "";
+   commonSrv.fnUploadProfilePic("", $scope.rm_id);
+   $scope.undo=true;
+};
+
+
+$scope.undoRemoveAvatar = function(){
+  $rootScope.userinfo.ActiveUserData.roleMappingObj.avatar = existingAvatar;
+  commonSrv.fnUploadProfilePic(existingAvatar, $scope.rm_id);
+  $scope.undo=false;
+};
+
+$rootScope.manageProfile =function(){
+  existingAvatar =  angular.copy($rootScope.userinfo.ActiveUserData.roleMappingObj.avatar);
+  console.log(existingAvatar);
+  $modal({scope: $scope, template: 'angularModules/login/partials/Popup-userDetails.html', placement:"center", show: true});
+ };
+/*End avatar change */
 $scope.genRandomNumbers=function(){
   return Math.floor(Math.random()*10,1);
 };

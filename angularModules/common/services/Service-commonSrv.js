@@ -15,7 +15,17 @@ this.FnLoadGlobalValues=function($scope,key)
             // or server returns response with an error status. 
           });
       };
-
+ this.fnUploadProfilePic = function (path, urmId){
+    var promise = $http({
+      url: bbConfig.BWS+'UploadProfilePic/',
+      data: {"path":path, "urmId":urmId},
+      method: "POST",
+      withCredentials: false,
+      contentType:"application/json",
+      dataType:"json",
+    });
+    return promise;
+   };
       // this.FnLoadExistingResellerUserData=function($scope, userEmail)
       // {
       //   $http({

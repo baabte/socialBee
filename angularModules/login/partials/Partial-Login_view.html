@@ -52,9 +52,9 @@
  -->
 
  <div class="container w-xxl p-lg bg-white shadow" >
-<button type="button" class="close" ui-sref="forgot-password"><code>×</code></button>
+<!-- <button type="button" class="close" ui-sref="forgot-password"><code>×</code></button> -->
   <div class="" >
-    <h4 >Sign in to {{app.name}}</h4>
+    <img class="img-responsive center-block" height='80' width="150" src="images/Logo.png">
     <div class="p-v-sm"></div>
     <div >
       <a class="btn btn-block btn-social btn-lg btn-facebook " ng-click="facebook_login()" ng-enabled="isLoggedIn">
@@ -67,8 +67,10 @@
         Sign in with linkedin
       </a>
     </div>
-    <div class="p-v-sm">
+    <div class="p-v-xs">
       <hr>
+    </div><div class="m-b text-sm ng-binding">
+      Sign in with your touterbee.com Account
     </div>
      <form name="signinform" ng-submit="fnCheckLogin()" class="form-validation" role="form" xt-form novalidate >
     <div class="input-group m-b " >
@@ -86,7 +88,7 @@
         <input type="checkbox"><i></i> Keep me signed in 
     </label>
     <div>
-      <button  type="submit" class="btn btn-primary hg" ng-disabled="signinform.$invalid || progress" ><span class="p-h-md">{{btnSignupText}}</span></button>
+      <button  type="submit" class="btn btn-primary hg col-xs-12 p-h-md m-v-sm" ng-disabled="signinform.$invalid || progress" ><span class="p-h-md">{{btnSignupText}}</span></button>
       </form>
       <p class="text-xs"><a ui-sref="forgot-password">Forgot password?</a></p>
       
