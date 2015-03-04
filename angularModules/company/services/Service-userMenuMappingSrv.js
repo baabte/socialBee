@@ -160,7 +160,6 @@ this.FnSaveUserMenu=function ($scope){ //function to save the user menus.
               success(function(data, status, headers, config) {     //success respond from server
                 
                 var result = angular.fromJson(JSON.parse(data));    //setting the respond into a  variable
-               console.log(result);
                 $scope.UserList=result.data;                   //filer the user list from respond data
                 $scope.user_count=result.user_count;
                 if($scope.ShowNoDataFound){

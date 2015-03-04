@@ -56,8 +56,6 @@ this.addMenuDetails=function($scope){
     }).
     success(function(data, status, headers, config) {
       $scope.allMenus=angular.fromJson(JSON.parse(data));//Converting the result to json object
-       console.log('----------');
-      console.log(data);
       $scope.existingMenus=true;//enable company row
     }).
     error(function(data, status, headers, config) {

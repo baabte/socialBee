@@ -118,7 +118,7 @@ this.fnUserNameValid=function($scope,userNameId){
                 $scope.fnGetCompanyRegisterDetailsCallBack(result);
              }).
         progress(function(evt) {
-        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+        //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
       });
 
 

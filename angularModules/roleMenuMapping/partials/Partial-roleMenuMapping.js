@@ -97,7 +97,6 @@ $scope.menuIcon="fa-info";
       clearTimeout(searchInProgress);
       searchInProgress=setTimeout(function ()
         {
-          console.log("calling...");
             if(!angular.equals(newValue,undefined)){
                   CurNewValue=newValue;
                   if($scope.SearchType==="Company"){//Search by Company
@@ -234,7 +233,6 @@ $scope.menuIcon="fa-info";
         $scope.tree1.push(thisv.$nodeScope.$modelValue);
     };
     $scope.moveRight = function(nodeVal){
-        console.log(nodeVal);
     };
 
     $scope.fnActionExists = function(thisAction, actions){     

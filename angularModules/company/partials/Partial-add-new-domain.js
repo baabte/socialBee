@@ -20,7 +20,6 @@ app.controller('AddNewDomainCtrl',['$scope','addNewDomain','$rootScope','$modal'
 
 	  //function for user name validation
 	$scope.fnDomainNameExists = function (){
-		console.log('in');
 		if(!angular.equals($scope.domainUrl,undefined)){   //checking for email field is empty or not
 			addNewDomain.fnDomainNameExists($scope); //call the service function present inside signup service.
 		}
@@ -45,7 +44,6 @@ app.controller('AddNewDomainCtrl',['$scope','addNewDomain','$rootScope','$modal'
 	};
 	  //callback function for fnCheckCompanyNameExists
 	$scope.fnDomainNameExistsCallBack=function(result){
-console.log(result);
 		if(result===1){   //if the company name already registered
 			$scope.existingDomainName=$scope.domainUrl; //setting the existing company name to scope variable for validation.
 		}

@@ -57,7 +57,6 @@ angular.module('touterbee').service('RoleMenuMappingSrv',['$http','$alert','bbCo
         success(function(data, status, headers, config) {
           $scope.result=angular.fromJson(JSON.parse(data));//Converting the result to json object
           $scope.roles=$scope.result.roles;//setting the roles details
-          console.log(cmp_id);
           $scope.roles_count=$scope.result.roles_count;//setting the roles count for pagenation
           if($scope.roles_count===0)//If No matching data found, This will show an error message
           {
@@ -198,7 +197,6 @@ angular.module('touterbee').service('RoleMenuMappingSrv',['$http','$alert','bbCo
       };
       this.FnSaveNewRoleMenu=function ($scope,new_menu)//To Save current menu list
       {
-        console.log({"menus":new_menu,"role_id":role_id,'rm_id':$scope.rm_id});
         $http({
           method: 'post',
           url: bbConfig.BWS+'SaveNewRoleMenu/',

@@ -359,7 +359,6 @@ app.controller('SocialconfighomeCtrl',['$scope','SocialConfigHome','$upload','$a
 
 	//callback of loading the broadcasttype template.
 	$scope.fnLoadBroadcastTypeTemplateCallBack=function(result){
-		console.log(result);
 		if(!angular.equals(result,'error')){
 			$scope.schema=result.schema.broadcastTypeTemplate.schema; //broadcast template initialise to scope schema object to load using form builder.
 			if(!angular.equals(result.formData,undefined)){
@@ -423,7 +422,7 @@ app.controller('SocialconfighomeCtrl',['$scope','SocialConfigHome','$upload','$a
 	$scope.getLinkedInData= function(){
 		$linkedIn.profile("~",["id","firstName","lastName","pictureUrl","publicProfileUrl","email-address","location","headline","phoneNumbers","network"],{scope:"r_fullprofile+r_emailaddress+rw_nus"}).then( 
 		function(response) {
-		console.log(response.values[0]);
+		
 			/*$scope.loginCredential={};
 		$scope.signinform.$setPristine();
 		$scope.loginCredential.id=response.id;

@@ -102,8 +102,6 @@ $scope.userVal = function (e){
       //$scope.companyRegData.fkdistrictId=selection.district.dId.$oid;
       $scope.companyRegData.loggedusercrmid=loggedusercrmid;
 
-
-      console.log($scope.company);
       companyRegistrationService.fnCompanyRegister($scope,$scope.companyRegData);
       $scope.companyButtonDisable=true;
       $scope.companyLoading=true;

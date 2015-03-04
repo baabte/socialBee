@@ -80,7 +80,7 @@ angular.module('touterbee').service('commonService',['$http','bbConfig','$state'
 			$rootScope.userinfo=angular.fromJson(JSON.parse(request.responseText));
 			$rootScope.hide_when_root_empty=false;
 			$rootScope.loggedIn=true;
-			console.log($rootScope.userinfo);
+			
 			}		  
 			}
 		}

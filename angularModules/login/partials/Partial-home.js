@@ -27,7 +27,7 @@ else{
     home.FnLoadMenus($scope);
 
   }
-  console.log($rootScope.userinfo);
+
   /*else{ $modal({ scope: $scope,
               template: 'angularModules/login/partials/Partial-verifyAccountInfo.html',
               placement:'center',

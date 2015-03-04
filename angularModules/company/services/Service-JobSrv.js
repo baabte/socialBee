@@ -29,7 +29,6 @@ angular.module('touterbee').service('JobSrv',['bbConfig','$http','$alert','$moda
               var result=angular.fromJson(JSON.parse(data));
               $scope.Jobs=result.JobDetails;
               $scope.JobCount=result.jobCount;
-                            console.log($scope.JobCount);
                 //$scope.pageNum=pageNum;
                 
               }).

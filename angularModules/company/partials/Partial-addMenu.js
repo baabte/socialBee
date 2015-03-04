@@ -85,7 +85,6 @@ if(angular.equals($rootScope.loggedIn,false)){
   };
 
   $scope.UpdateMenu = function(){//for update details of existing menus
-    console.log($scope.menu);
       addMenu.updateMenuDetails($scope,$scope.menu);
   };
 
