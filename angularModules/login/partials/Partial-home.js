@@ -73,7 +73,7 @@ $scope.cancelChangeProfilePic = function(){
     $scope.avatarSource = '';
     $rootScope.userinfo.ActiveUserData.roleMappingObj.avatar = existingAvatar;
   }
-}
+};
 
 
 $scope.removeAvatar =function(elem){

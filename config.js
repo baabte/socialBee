@@ -16,7 +16,7 @@ angular.module('touterbee')
         app.value      = $provide.value;
     }
   ])
-  .config(['$translateProvider', function($translateProvider){
+  /*.config(['$translateProvider', function($translateProvider){
     // Register a loader for the static files
     // So, the module will search missing translation tables under the specified urls.
     // Those urls are [prefix][langKey][suffix].
@@ -28,7 +28,7 @@ angular.module('touterbee')
     $translateProvider.preferredLanguage('en');
     // Tell the module to store the language in the local storage
     $translateProvider.useLocalStorage();
-  }]).
+  }])*/.
   config(['$facebookProvider', function( $facebookProvider ) {
     $facebookProvider.setAppId('610577519050579');
   }])
