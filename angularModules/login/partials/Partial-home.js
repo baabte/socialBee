@@ -64,8 +64,7 @@ if($rootScope.loggedIn===false){
   };
 
 $scope.changeProfilePic = function(avatarImg){
-      console.log(avatarImg);
-      commonSrv.fnUploadProfilePic(avatarImg, $scope.rm_id);
+        commonSrv.fnUploadProfilePic(avatarImg, $scope.rm_id);
 };
 
 
@@ -93,8 +92,7 @@ $scope.undoRemoveAvatar = function(){
 
 $rootScope.manageProfile =function(){
   existingAvatar =  angular.copy($rootScope.userinfo.ActiveUserData.roleMappingObj.avatar);
-  console.log(existingAvatar);
-  $modal({scope: $scope, template: 'angularModules/login/partials/Popup-userDetails.html', placement:"center", show: true});
+   $modal({scope: $scope, template: 'angularModules/login/partials/Popup-userDetails.html', placement:"center", show: true});
  };
 /*End avatar change */
 $scope.genRandomNumbers=function(){
