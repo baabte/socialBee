@@ -11,6 +11,9 @@ $rootScope.$watch('userinfo',function(){
   if($rootScope.userinfo){
     $scope.rm_id=$rootScope.userinfo.ActiveUserData.roleMappingId.$oid;
     $scope.verificationFlag=$rootScope.userinfo.verificationFlag;
+    if(angular.equals($rootScope.userinfo.ActiveUserData.roleMappingObj.avatar,undefined)){
+      $rootScope.userinfo.ActiveUserData.roleMappingObj.avatar = '';
+    }
     if($scope.verificationFlag===1){ //condition to check the account is verified or not by the user.
       home.FnLoadMenus($scope);//Load Menus for logged user
     }else{ $modal({ scope: $scope,
